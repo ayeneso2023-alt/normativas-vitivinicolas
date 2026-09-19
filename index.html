@@ -1,0 +1,2848 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-950 text-slate-100">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Regulatorio y de Cumplimiento Vitivinícola | Bodega & Viñedos</title>
+  
+  <!-- Tipografía Google: Inter & Cormorant Garamond / Playfair -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+            display: ['Cinzel', 'Playfair Display', 'serif'],
+          },
+          colors: {
+            wine: {
+              50: '#fdf2f4',
+              100: '#fbe8eb',
+              200: '#f7d3d8',
+              300: '#f0b0ba',
+              400: '#e58092',
+              500: '#d4546d',
+              600: '#b8334f',
+              700: '#9b243e',
+              800: '#832137',
+              900: '#722033',
+              950: '#400c19',
+            },
+            gold: {
+              300: '#fde047',
+              400: '#facc15',
+              500: '#eab308',
+              600: '#ca8a04',
+              700: '#a16207',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Estilos personalizados y utilidades de scroll/animación */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #722033;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #b8334f;
+    }
+
+    /* Ocultar scrollbar pero mantener funcionalidad */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Animación de pulso sutil para alertas críticas */
+    @keyframes subtlePulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.92; transform: scale(1.008); }
+    }
+    .animate-subtle-pulse {
+      animation: subtlePulse 4s infinite ease-in-out;
+    }
+
+    /* Estilos de Impresión */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .print-only {
+        display: block !important;
+      }
+      .card-print {
+        border: 1px solid #cccccc !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+    }
+    .print-only {
+      display: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-wine-700 selection:text-white antialiased custom-scrollbar">
+
+  <!-- ========================================================
+       TOP NOTIFICATION BAR / TICKER DE NOVEDADES CRÍTICAS
+  ======================================================== -->
+  <header class="border-b border-wine-900/60 bg-gradient-to-r from-slate-950 via-wine-950 to-slate-950 sticky top-0 z-40 shadow-xl backdrop-blur-md">
+    
+    <!-- Barra superior institucional y accesos rápidos -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 border-b border-slate-800/60 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-wine-600 to-wine-900 flex items-center justify-center shadow-lg shadow-wine-950/80 border border-wine-500/30">
+          <!-- Icono SVG Racimo de uva / Bodega -->
+          <svg class="w-6 h-6 text-amber-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 2v3m-3-1l6 2m-6 4a2.5 2.5 0 100-5 2.5 2.5 0 000 5zm6 0a2.5 2.5 0 100-5 2.5 2.5 0 000 5zm-3 4a2.5 2.5 0 100-5 2.5 2.5 0 000 5zm-5 0a2.5 2.5 0 100-5 2.5 2.5 0 000 5zm10 0a2.5 2.5 0 100-5 2.5 2.5 0 000 5zm-7 4a2.5 2.5 0 100-5 2.5 2.5 0 000 5zm4 0a2.5 2.5 0 100-5 2.5 2.5 0 000 5zm-2 4a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-serif font-bold text-xl sm:text-2xl text-white tracking-wide">
+              BODEGAS & VIÑEDOS
+            </h1>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-semibold border border-amber-500/30">
+              CUMPLIMIENTO LEGAL & TÉCNICO
+            </span>
+          </div>
+          <p class="text-xs text-slate-400 font-medium">
+            Sistema Integral Regulatorio • OIV, UE, España, CCAA & Consejos Reguladores
+          </p>
+        </div>
+      </div>
+
+      <!-- Métricas en vivo y botón rápido -->
+      <div class="flex items-center gap-3 ml-auto">
+        <div class="hidden sm:flex items-center gap-2 bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-800 text-xs">
+          <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span class="text-slate-300 font-medium">BD Actualizada:</span>
+          <span class="text-emerald-400 font-semibold">Vigente 2024-2026</span>
+        </div>
+
+        <button id="btn-quick-news-filter" onclick="toggleOnlyNewsFilter()" class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-wine-700/80 hover:bg-wine-600 text-white font-medium text-xs transition border border-wine-500/40 shadow-sm hover:shadow-wine-700/50">
+          <svg class="w-4 h-4 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          <span id="txt-quick-news-filter">Filtrar Novedades</span>
+          <span id="badge-total-novedades" class="bg-amber-400 text-slate-950 px-1.5 py-0.2 rounded-full font-bold text-[10px]">14</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ==================== BLOQUE DE NOVEDADES CRÍTICAS DESTACADAS (REQUISITO 1) ==================== -->
+    <section class="bg-slate-900/90 border-b border-wine-900/40 px-4 sm:px-6 lg:px-8 py-2.5">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+        
+        <!-- Etiqueta de cabecera del Banner -->
+        <div class="flex items-center gap-2 flex-shrink-0">
+          <span class="flex h-3 w-3 relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+          </span>
+          <span class="text-xs font-bold uppercase tracking-wider text-amber-300 flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            </svg>
+            Novedades y Obligaciones Críticas (2024 - 2026):
+          </span>
+        </div>
+
+        <!-- Ticker dinámico desplazable de novedades prioritarias -->
+        <div id="urgent-news-container" class="flex items-center gap-2 overflow-x-auto no-scrollbar w-full py-1">
+          <!-- Las tarjetas de novedades se inyectan dinámicamente mediante JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Barra de Navegación por Pestañas -->
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-2 overflow-x-auto no-scrollbar pt-2">
+      <div class="flex space-x-1 sm:space-x-2">
+        
+        <!-- Pestaña 1: Catálogo Normativo Cronológico -->
+        <button onclick="switchTab('tab-catalogo')" id="nav-tab-catalogo" class="tab-btn active flex items-center gap-2 px-4 py-2.5 border-b-2 border-amber-400 text-amber-300 font-semibold text-sm transition whitespace-nowrap">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+          </svg>
+          <span>Catálogo Cronológico</span>
+          <span id="badge-tab-total-count" class="ml-1 px-2 py-0.5 text-xs rounded-full bg-slate-800 text-slate-300 font-mono">78</span>
+        </button>
+
+        <!-- Pestaña 2: Denominaciones de Origen e IGPs -->
+        <button onclick="switchTab('tab-denominaciones')" id="nav-tab-denominaciones" class="tab-btn flex items-center gap-2 px-4 py-2.5 border-b-2 border-transparent text-slate-400 hover:text-slate-200 font-semibold text-sm transition whitespace-nowrap">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+          </svg>
+          <span>Denominaciones de Origen & IGPs</span>
+          <span class="ml-1 px-2 py-0.5 text-xs rounded-full bg-wine-900/60 text-wine-200 font-mono">9 Figuras</span>
+        </button>
+
+        <!-- Pestaña 3: Herramienta de Autodiagnóstico / Auditoría (Compliance Check) -->
+        <button onclick="switchTab('tab-auditoria')" id="nav-tab-auditoria" class="tab-btn flex items-center gap-2 px-4 py-2.5 border-b-2 border-transparent text-slate-400 hover:text-slate-200 font-semibold text-sm transition whitespace-nowrap">
+          <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+          </svg>
+          <span>Autodiagnóstico de Cumplimiento</span>
+          <span id="badge-nav-compliance" class="ml-1 px-2 py-0.5 text-xs rounded-full bg-emerald-900/40 text-emerald-300 font-mono">0%</span>
+        </button>
+
+        <!-- Pestaña 4: Calendario de Obligaciones Periódicas -->
+        <button onclick="switchTab('tab-calendario')" id="nav-tab-calendario" class="tab-btn flex items-center gap-2 px-4 py-2.5 border-b-2 border-transparent text-slate-400 hover:text-slate-200 font-semibold text-sm transition whitespace-nowrap">
+          <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          <span>Calendario Periódico</span>
+          <span class="ml-1 px-2 py-0.5 text-xs rounded-full bg-slate-800 text-amber-300 font-mono">INFOVI / SILICIE / MITECO</span>
+        </button>
+
+        <!-- Pestaña 5: Radar Oficial en Tiempo Real (BOE / DOUE) -->
+        <button onclick="switchTab('tab-radar')" id="nav-tab-radar" class="tab-btn flex items-center gap-2 px-4 py-2.5 border-b-2 border-transparent text-cyan-400 hover:text-cyan-300 font-semibold text-sm transition whitespace-nowrap">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+          </span>
+          <span>Radar Oficial en Tiempo Real</span>
+          <span class="ml-1 px-2 py-0.5 text-xs rounded-full bg-cyan-950/80 text-cyan-300 border border-cyan-700/60 font-mono">BOE / DOUE</span>
+        </button>
+
+      </div>
+    </nav>
+  </header>
+
+  <!-- ========================================================
+       CONTENIDO PRINCIPAL
+  ======================================================== -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+    <!-- =========================================================================
+         PESTAÑA 1: CATÁLOGO NORMATIVO CRONOLÓGICO (REQUISITO 2 & 3 & 4.1)
+    ========================================================================= -->
+    <div id="tab-catalogo" class="tab-content block space-y-6">
+      
+      <!-- Panel de Control y Filtros Multifactoriales -->
+      <section class="bg-slate-900/90 rounded-2xl p-5 border border-slate-800 shadow-2xl backdrop-blur">
+        
+        <!-- Fila Superior: Buscador y Acciones Rápidas -->
+        <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 pb-4 border-b border-slate-800/80">
+          
+          <!-- Buscador Predictivo -->
+          <div class="relative flex-1">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+            </div>
+            <input 
+              type="text" 
+              id="search-input" 
+              placeholder="Buscar por norma, palabra clave (ej. 'e-label', 'SILICIE', 'asfixia CO2', 'ecológico', 'sulfito', 'pliego')..." 
+              class="w-full pl-10 pr-10 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-slate-100 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400 transition"
+              oninput="handleFilterChange()"
+            >
+            <button id="search-clear-btn" onclick="clearSearch()" class="hidden absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-200">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Selector de Orden Cronológico (Estricto por defecto: Reciente a Antiguo) -->
+          <div class="flex items-center gap-3">
+            <label class="text-xs font-medium text-slate-400 whitespace-nowrap flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"/>
+              </svg>
+              Orden:
+            </label>
+            <select id="sort-order" onchange="handleFilterChange()" class="bg-slate-950 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-amber-400 focus:outline-none">
+              <option value="desc" selected>📅 Más Reciente a Más Antiguo (2025 → 1924)</option>
+              <option value="asc">📅 Más Antiguo a Más Reciente (1924 → 2025)</option>
+              <option value="alpha">🔤 Alfabético por Título</option>
+            </select>
+          </div>
+
+          <!-- Botón Limpiar Filtros -->
+          <button 
+            id="btn-reset-filters" 
+            onclick="resetAllFilters()" 
+            class="hidden px-3.5 py-2 text-xs font-semibold text-rose-300 hover:text-rose-100 bg-rose-950/40 hover:bg-rose-900/60 border border-rose-800/60 rounded-xl transition flex items-center justify-center gap-1.5"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+            </svg>
+            Restablecer Filtros
+          </button>
+        </div>
+
+        <!-- Fila de Selectores Multifactoriales (Ámbito, Nivel, Región, DO) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-4">
+          
+          <!-- Filtro 1: Ámbito Temático -->
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1.5 flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+              Ámbito Temático:
+            </label>
+            <select id="filter-ambito" onchange="handleFilterChange()" class="w-full bg-slate-950 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-amber-400 focus:outline-none">
+              <option value="todos">Todos los Ámbitos (78)</option>
+              <option value="Vitivinícola y Etiquetado">🍇 Vitivinícola y Etiquetado</option>
+              <option value="Medio Ambiente y Aguas">💧 Medio Ambiente y Aguas</option>
+              <option value="Seguridad y Salud Laboral (PRL)">🦺 Seguridad y Salud / PRL</option>
+              <option value="Seguridad Alimentaria y Calidad">🔬 Seguridad Alimentaria y Calidad</option>
+              <option value="Fiscalidad e Impuestos Especiales">💼 Fiscalidad / SILICIE / IIEE</option>
+              <option value="Contratación y Cadena Alimentaria">⚖️ Contratación AICA / Cadena</option>
+              <option value="Seguridad Contra Incendios / Bomberos">🚒 Incendios y Bomberos</option>
+              <option value="Seguridad Industrial y Maquinaria">⚙️ Seguridad Industrial y Maquinaria</option>
+            </select>
+          </div>
+
+          <!-- Filtro 2: Nivel Jurisdiccional -->
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1.5 flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+              Nivel Jurisdiccional:
+            </label>
+            <select id="filter-nivel" onchange="handleFilterChange()" class="w-full bg-slate-950 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-amber-400 focus:outline-none">
+              <option value="todos">Todos los Niveles</option>
+              <option value="Mundial / Internacional">🌍 Mundial / OIV</option>
+              <option value="Unión Europea">🇪🇺 Unión Europea</option>
+              <option value="Estatal">🇪🇸 Estatal (España)</option>
+              <option value="Regional / Autonómica">🏛️ Regional / Autonómica</option>
+              <option value="Denominación de Origen">🏷️ Denominación de Origen</option>
+            </select>
+          </div>
+
+          <!-- Filtro 3: Región / Comunidad Autónoma -->
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1.5 flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+              Territorio / Región:
+            </label>
+            <select id="filter-region" onchange="handleFilterChange()" class="w-full bg-slate-950 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-amber-400 focus:outline-none">
+              <option value="todos">Todas las Regiones</option>
+              <option value="Cataluña">Cataluña</option>
+              <option value="Navarra">Navarra</option>
+              <option value="La Rioja">La Rioja</option>
+              <option value="País Vasco">País Vasco</option>
+              <option value="Castilla y León">Burgos / Castilla y León</option>
+              <option value="Andalucía">Málaga / Andalucía</option>
+              <option value="España">Nacional (España)</option>
+              <option value="Unión Europea">Unión Europea</option>
+              <option value="Mundial">Mundial (OIV)</option>
+            </select>
+          </div>
+
+          <!-- Filtro 4: Denominación de Origen / IGP Específica -->
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1.5 flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              Denominación de Origen / IGP:
+            </label>
+            <select id="filter-do" onchange="handleFilterChange()" class="w-full bg-slate-950 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-amber-400 focus:outline-none">
+              <option value="todos">Todas las DOs e IGPs</option>
+              <option value="DO Empordà">DO Empordà</option>
+              <option value="DO Catalunya">DO Catalunya</option>
+              <option value="DOQ Priorat">DOQ Priorat</option>
+              <option value="DO Cava">DO Cava</option>
+              <option value="DO Ribera del Duero">DO Ribera del Duero</option>
+              <option value="DOCa Rioja">DOCa Rioja</option>
+              <option value="DO Navarra">DO Navarra</option>
+              <option value="IGP Tres Riberas">IGP 3 Riberas / Tres Riberas</option>
+              <option value="DO Ronda / Sierras de Málaga">DO Sierras de Málaga / Ronda</option>
+            </select>
+          </div>
+
+        </div>
+
+        <!-- Barra Inferior de Chips y Contador de Resultados en Vivo -->
+        <div class="mt-4 pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div class="flex items-center gap-2">
+            <span class="text-slate-400 font-medium">Resultados:</span>
+            <span id="results-count-badge" class="px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 font-bold border border-amber-400/30">
+              78 normativas
+            </span>
+            <span id="filter-state-summary" class="text-slate-400">Mostrando catálogo completo ordenado cronológicamente</span>
+          </div>
+
+          <!-- Accesos directos / Chips de Filtrado Rápido -->
+          <div class="flex flex-wrap items-center gap-1.5">
+            <button onclick="setAmbitoFilter('Vitivinícola y Etiquetado')" class="px-2.5 py-1 rounded-full bg-slate-800 hover:bg-wine-900/60 text-slate-300 hover:text-white transition border border-slate-700 text-[11px]">
+              🍇 Etiquetado / Enología
+            </button>
+            <button onclick="setAmbitoFilter('Seguridad y Salud Laboral (PRL)')" class="px-2.5 py-1 rounded-full bg-slate-800 hover:bg-wine-900/60 text-slate-300 hover:text-white transition border border-slate-700 text-[11px]">
+              🦺 CO2 / PRL
+            </button>
+            <button onclick="setAmbitoFilter('Fiscalidad e Impuestos Especiales')" class="px-2.5 py-1 rounded-full bg-slate-800 hover:bg-wine-900/60 text-slate-300 hover:text-white transition border border-slate-700 text-[11px]">
+              💼 SILICIE / IIEE
+            </button>
+            <button onclick="setAmbitoFilter('Medio Ambiente y Aguas')" class="px-2.5 py-1 rounded-full bg-slate-800 hover:bg-wine-900/60 text-slate-300 hover:text-white transition border border-slate-700 text-[11px]">
+              💧 Envases / Aguas
+            </button>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Grid Principal de Tarjetas de Normativas -->
+      <div id="normativas-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Tarjetas inyectadas dinámicamente -->
+      </div>
+
+      <!-- Estado Vacío si ningún filtro coincide -->
+      <div id="empty-state" class="hidden text-center py-16 px-4 bg-slate-900/50 rounded-2xl border border-dashed border-slate-800">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-800/80 flex items-center justify-center text-slate-400">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </div>
+        <h3 class="text-base font-semibold text-slate-200">No se encontraron normativas</h3>
+        <p class="text-xs text-slate-400 max-w-md mx-auto mt-1">
+          No hay disposiciones que coincidan con la combinación de filtros seleccionada. Prueba a ajustar o restablecer los criterios.
+        </p>
+        <button onclick="resetAllFilters()" class="mt-4 px-4 py-2 bg-wine-700 hover:bg-wine-600 text-white rounded-lg text-xs font-semibold transition">
+          Restablecer todos los filtros
+        </button>
+      </div>
+
+    </div>
+
+    <!-- =========================================================================
+         PESTAÑA 2: DENOMINACIONES DE ORIGEN E IGPs (REQUISITO 4.2)
+    ========================================================================= -->
+    <div id="tab-denominaciones" class="tab-content hidden space-y-6">
+      
+      <!-- Cabecera de la Pestaña DOs -->
+      <div class="bg-gradient-to-r from-wine-950/80 via-slate-900 to-slate-900 rounded-2xl p-6 border border-wine-900/40">
+        <div class="max-w-3xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-300 text-xs font-semibold border border-amber-500/20 mb-3">
+            <span>🛡️ Figuras de Calidad Vinícola</span>
+          </div>
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-white tracking-wide">
+            Pliegos Técnicos y Consejos Reguladores
+          </h2>
+          <p class="text-sm text-slate-300 mt-2 leading-relaxed">
+            Parámetros agronómicos, rendimientos por hectárea, normas de crianza y variedades autorizadas de las 9 figuras protegidas en nuestro ámbito operativo (Cataluña, Navarra, La Rioja, País Vasco, Burgos / Ribera del Duero y Serranía de Ronda).
+          </p>
+        </div>
+      </div>
+
+      <!-- Grid de las 9 Denominaciones de Origen e IGPs -->
+      <div id="do-cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Inyectado por JS con datos enriquecidos de pliegos oficiales -->
+      </div>
+
+    </div>
+
+    <!-- =========================================================================
+         PESTAÑA 3: HERRAMIENTA DE AUTODIAGNÓSTICO / AUDITORÍA (REQUISITO 4.3)
+    ========================================================================= -->
+    <div id="tab-auditoria" class="tab-content hidden space-y-6">
+      
+      <!-- Panel de Control y Resumen Ejecutivo de la Auditoría -->
+      <div class="bg-slate-900/90 rounded-2xl p-6 border border-slate-800 shadow-2xl backdrop-blur">
+        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+          
+          <!-- Descripción y Estado -->
+          <div class="space-y-2 max-w-xl">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-300 text-xs font-semibold border border-emerald-500/20">
+              <span>📋 Autoevaluación de Cumplimiento Técnico</span>
+            </div>
+            <h2 class="font-serif text-2xl font-bold text-white">
+              Herramienta de Diagnóstico y Compliance Bodega
+            </h2>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Verifique los 24 puntos críticos de control legal y operativo. Sus respuestas se guardan automáticamente en su navegador para auditorías internas y seguimiento continuo.
+            </p>
+          </div>
+
+          <!-- Indicador Circular / Medidor de Progreso Global -->
+          <div class="flex items-center gap-5 bg-slate-950 p-4 rounded-xl border border-slate-800 w-full lg:w-auto justify-between lg:justify-start">
+            <div class="relative w-20 h-20 flex items-center justify-center flex-shrink-0">
+              <!-- SVG Radial Gauge -->
+              <svg class="w-20 h-20 transform -rotate-90" viewBox="0 0 36 36">
+                <path class="text-slate-800" stroke-width="3.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                <path id="radial-progress-bar" class="text-emerald-500 transition-all duration-500" stroke-dasharray="0, 100" stroke-width="3.5" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+              </svg>
+              <div class="absolute inset-0 flex flex-col items-center justify-center">
+                <span id="txt-progress-percent" class="text-lg font-extrabold text-white font-mono">0%</span>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Estado de Auditoría:</div>
+              <div id="txt-audit-status" class="text-sm font-bold text-rose-400 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+                <span>Riesgo Crítico</span>
+              </div>
+              <div class="text-xs text-slate-400">
+                <span id="txt-completed-items">0</span> de <span id="txt-total-items">25</span> requisitos cumplidos
+              </div>
+            </div>
+
+            <!-- Botones de Acción de Auditoría -->
+            <div class="flex flex-col gap-2 pl-3 border-l border-slate-800">
+              <button onclick="window.print()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white rounded-lg text-xs font-semibold flex items-center gap-1.5 transition">
+                <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+                </svg>
+                Imprimir Informe
+              </button>
+              <button onclick="resetAuditChecklist()" class="px-3 py-1 text-slate-400 hover:text-rose-400 rounded text-[11px] font-medium transition text-center">
+                Reiniciar marcas
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Barra de Progreso Desglosada por Áreas Clave -->
+        <div class="mt-6 pt-4 border-t border-slate-800/80 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-xs">
+          <div class="bg-slate-950/60 p-2.5 rounded-lg border border-slate-800">
+            <div class="text-slate-400 text-[11px] truncate">1. Etiquetado & DO</div>
+            <div class="flex items-center justify-between mt-1">
+              <span id="cat-prog-0" class="font-bold text-amber-400 font-mono">0/4</span>
+              <div class="w-12 h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                <div id="cat-bar-0" class="h-full bg-amber-400 transition-all duration-300" style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-slate-950/60 p-2.5 rounded-lg border border-slate-800">
+            <div class="text-slate-400 text-[11px] truncate">2. PRL & CO2 'Tufo'</div>
+            <div class="flex items-center justify-between mt-1">
+              <span id="cat-prog-1" class="font-bold text-rose-400 font-mono">0/4</span>
+              <div class="w-12 h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                <div id="cat-bar-1" class="h-full bg-rose-400 transition-all duration-300" style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-slate-950/60 p-2.5 rounded-lg border border-slate-800">
+            <div class="text-slate-400 text-[11px] truncate">3. Medio Ambiente / Aguas</div>
+            <div class="flex items-center justify-between mt-1">
+              <span id="cat-prog-2" class="font-bold text-cyan-400 font-mono">0/5</span>
+              <div class="w-12 h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                <div id="cat-bar-2" class="h-full bg-cyan-400 transition-all duration-300" style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-slate-950/60 p-2.5 rounded-lg border border-slate-800">
+            <div class="text-slate-400 text-[11px] truncate">4. Fiscalidad & SILICIE</div>
+            <div class="flex items-center justify-between mt-1">
+              <span id="cat-prog-3" class="font-bold text-purple-400 font-mono">0/4</span>
+              <div class="w-12 h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                <div id="cat-bar-3" class="h-full bg-purple-400 transition-all duration-300" style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-slate-950/60 p-2.5 rounded-lg border border-slate-800">
+            <div class="text-slate-400 text-[11px] truncate">5. Cadena AICA / Uva</div>
+            <div class="flex items-center justify-between mt-1">
+              <span id="cat-prog-4" class="font-bold text-emerald-400 font-mono">0/4</span>
+              <div class="w-12 h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                <div id="cat-bar-4" class="h-full bg-emerald-400 transition-all duration-300" style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-slate-950/60 p-2.5 rounded-lg border border-slate-800">
+            <div class="text-slate-400 text-[11px] truncate">6. Incendios & Fábrica</div>
+            <div class="flex items-center justify-between mt-1">
+              <span id="cat-prog-5" class="font-bold text-orange-400 font-mono">0/4</span>
+              <div class="w-12 h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                <div id="cat-bar-5" class="h-full bg-orange-400 transition-all duration-300" style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Checklist Agrupado por Departamentos y Normas -->
+      <div id="audit-categories-container" class="space-y-6">
+        <!-- Renderizado dinámico de los 6 bloques y 24 preguntas de auditoría -->
+      </div>
+
+    </div>
+
+    <!-- =========================================================================
+         PESTAÑA 4: CALENDARIO DE OBLIGACIONES PERIÓDICAS (REQUISITO 4.4)
+    ========================================================================= -->
+    <div id="tab-calendario" class="tab-content hidden space-y-6">
+      
+      <!-- Banner del Calendario -->
+      <div class="bg-gradient-to-r from-slate-900 via-wine-950/50 to-slate-900 rounded-2xl p-6 border border-slate-800">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-300 text-xs font-semibold border border-amber-500/20 mb-2">
+              <span>📅 Agenda Regulatoria Permanente</span>
+            </div>
+            <h2 class="font-serif text-2xl font-bold text-white">
+              Vencimientos y Declaraciones Periódicas de Bodega
+            </h2>
+            <p class="text-xs text-slate-300 mt-1 max-w-2xl">
+              Obligaciones administrativas periódicas ante el MAPA (INFOVI), Agencia Tributaria (SILICIE / IIEE), AICA (Contratos de compra de uva), MITECO (Envases) y Sanidad / Industria.
+            </p>
+          </div>
+
+          <!-- Filtro de Periodicidad -->
+          <div class="flex items-center gap-2 bg-slate-950 p-1.5 rounded-xl border border-slate-800">
+            <button onclick="filterCalendar('todos')" id="cal-btn-todos" class="cal-filter-btn active px-3 py-1.5 text-xs font-semibold rounded-lg bg-wine-700 text-white transition">
+              Todos
+            </button>
+            <button onclick="filterCalendar('mensual')" id="cal-btn-mensual" class="cal-filter-btn px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-400 hover:text-white transition">
+              Mensual / Continuo
+            </button>
+            <button onclick="filterCalendar('anual')" id="cal-btn-anual" class="cal-filter-btn px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-400 hover:text-white transition">
+              Anual / Vendimia
+            </button>
+            <button onclick="filterCalendar('mantenimiento')" id="cal-btn-mantenimiento" class="cal-filter-btn px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-400 hover:text-white transition">
+              Mantenimiento & OCAs
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid de Obligaciones Periódicas -->
+      <div id="calendar-timeline-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Renderizado dinámico desde NORMATIVAS_META.obligaciones_calendario y calendario ampliado -->
+      </div>
+
+    </div>
+
+    <!-- =========================================================================
+         PESTAÑA 5: RADAR OFICIAL EN TIEMPO REAL (BOE / DOUE / CCAA)
+    ========================================================================= -->
+    <div id="tab-radar" class="tab-content hidden space-y-6">
+      
+      <!-- Banner de Conexión en Tiempo Real -->
+      <div class="bg-gradient-to-r from-slate-900 via-cyan-950/40 to-slate-900 rounded-2xl p-6 border border-cyan-800/40 shadow-xl shadow-cyan-950/20">
+        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 text-xs font-semibold border border-cyan-500/30 mb-2">
+              <span class="inline-block w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+              <span>Conexión en Directo con Boletines Oficiales</span>
+            </div>
+            <h2 class="font-serif text-2xl font-bold text-white flex items-center gap-2">
+              Radar de Novedades Oficiales (BOE / DOUE / CCAA)
+            </h2>
+            <p class="text-xs text-slate-300 mt-1 max-w-2xl">
+              Vigila en tiempo real las publicaciones normativas del Estado y la Unión Europea. Supervisa no solo la normativa vitivinícola, sino también <strong>Prevención de Riesgos (PRL)</strong>, <strong>Maquinaria Industrial</strong>, <strong>Seguridad Alimentaria y Desperdicio</strong>, <strong>Medio Ambiente</strong> y <strong>Seguridad Contra Incendios</strong>.
+            </p>
+          </div>
+
+          <!-- Botones de Acción Rápida -->
+          <div class="flex flex-wrap items-center gap-2">
+            <button onclick="openNewNormaModal()" class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-gradient-to-r from-wine-700 to-wine-600 hover:from-wine-600 hover:to-wine-500 text-white font-medium text-xs shadow-lg transition border border-wine-500/40">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+              </svg>
+              <span>+ Registrar Norma / Circular</span>
+            </button>
+
+            <button onclick="exportCatalogoJSON()" class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-xs transition border border-slate-700">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+              </svg>
+              <span>Exportar JSON</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Barra de Búsqueda del Radar y Filtros Temáticos -->
+        <div class="mt-6 pt-5 border-t border-slate-800/80">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+            <div class="md:col-span-3">
+              <div class="relative">
+                <input type="text" id="radar-search-input" onkeyup="if(event.key==='Enter') executeRadarSearch()" placeholder="Buscar en el BOE en vivo (ej: 'riesgos laborales', 'maquinaria', 'desperdicio', 'cava', 'vertidos')..." class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 focus:border-cyan-500 text-xs text-white placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 transition">
+                <svg class="w-4 h-4 text-slate-500 absolute left-3.5 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+              </div>
+            </div>
+            <div>
+              <button onclick="executeRadarSearch()" class="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-cyan-700 hover:bg-cyan-600 text-white font-semibold text-xs shadow-md transition border border-cyan-500/40">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+                <span>Escanear Boletines</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Selectores Temáticos Rápidos -->
+          <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pt-3 mt-1">
+            <span class="text-[11px] font-semibold text-slate-400 whitespace-nowrap">Ámbitos en vigilancia:</span>
+            <button onclick="filterRadarByTopic('todos')" id="radar-topic-todos" class="radar-topic-btn active px-2.5 py-1 rounded-lg text-[11px] font-medium bg-cyan-800 text-white border border-cyan-600 transition whitespace-nowrap">
+              Todos los Ámbitos
+            </button>
+            <button onclick="filterRadarByTopic('prl')" id="radar-topic-prl" class="radar-topic-btn px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-950 text-slate-300 hover:text-white border border-slate-800 transition whitespace-nowrap">
+              🦺 PRL y Riesgos Laborales
+            </button>
+            <button onclick="filterRadarByTopic('maquinaria')" id="radar-topic-maquinaria" class="radar-topic-btn px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-950 text-slate-300 hover:text-white border border-slate-800 transition whitespace-nowrap">
+              ⚙️ Maquinaria e Industria
+            </button>
+            <button onclick="filterRadarByTopic('alimentaria')" id="radar-topic-alimentaria" class="radar-topic-btn px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-950 text-slate-300 hover:text-white border border-slate-800 transition whitespace-nowrap">
+              🍏 Seguridad Alimentaria & Desperdicio
+            </button>
+            <button onclick="filterRadarByTopic('medioambiente')" id="radar-topic-medioambiente" class="radar-topic-btn px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-950 text-slate-300 hover:text-white border border-slate-800 transition whitespace-nowrap">
+              💧 Medio Ambiente & Aguas
+            </button>
+            <button onclick="filterRadarByTopic('vitivinicola')" id="radar-topic-vitivinicola" class="radar-topic-btn px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-950 text-slate-300 hover:text-white border border-slate-800 transition whitespace-nowrap">
+              🍷 Vitivinícola & Consejos Reguladores
+            </button>
+            <button onclick="filterRadarByTopic('incendios')" id="radar-topic-incendios" class="radar-topic-btn px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-950 text-slate-300 hover:text-white border border-slate-800 transition whitespace-nowrap">
+              🚒 Incendios y Bomberos
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contenedor de Resultados del Radar -->
+      <div id="radar-results-container" class="space-y-4">
+        <!-- Tarjetas dinámicas inyectadas por el motor del radar -->
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ========================================================
+       MODAL DE FICHA TÉCNICA COMPLETA DE NORMATIVA (REQUISITO 4.1)
+  ======================================================== -->
+  <div id="normativa-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm hidden overflow-y-auto">
+    <div class="relative w-full max-w-3xl my-8 bg-slate-900 border border-wine-700/60 rounded-2xl shadow-2xl shadow-wine-950/50 overflow-hidden transform transition-all">
+      
+      <!-- Cabecera del Modal -->
+      <div class="p-6 bg-gradient-to-r from-slate-950 via-wine-950 to-slate-950 border-b border-wine-900/60">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="flex flex-wrap items-center gap-2 mb-2">
+              <span id="modal-badge-year" class="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-amber-400/20 text-amber-300 border border-amber-400/30">
+                2024
+              </span>
+              <span id="modal-badge-nivel" class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-900/50 text-blue-200 border border-blue-700/50">
+                Nivel
+              </span>
+              <span id="modal-badge-ambito" class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-wine-900/50 text-wine-200 border border-wine-700/50">
+                Ámbito
+              </span>
+              <span id="modal-badge-news" class="hidden px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40 animate-pulse">
+                Novedad
+              </span>
+            </div>
+            <h3 id="modal-title" class="font-serif font-bold text-xl sm:text-2xl text-white leading-tight">
+              Título de la Norma
+            </h3>
+            <p id="modal-code" class="text-xs font-mono text-slate-300 mt-1">
+              Código / Referencia Oficial
+            </p>
+          </div>
+
+          <button onclick="closeModal()" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Cuerpo del Modal -->
+      <div class="p-6 space-y-6 max-h-[70vh] overflow-y-auto custom-scrollbar">
+        
+        <!-- Resumen Técnico -->
+        <div>
+          <h4 class="text-xs uppercase font-bold tracking-wider text-amber-300 mb-2 flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Resumen Técnico y Objeto Legal
+          </h4>
+          <p id="modal-summary" class="text-sm text-slate-200 leading-relaxed bg-slate-950/70 p-4 rounded-xl border border-slate-800">
+            Resumen técnico descriptivo.
+          </p>
+        </div>
+
+        <!-- Requisitos Operativos de la Bodega (Checklist) -->
+        <div>
+          <h4 class="text-xs uppercase font-bold tracking-wider text-emerald-400 mb-2.5 flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Requisitos Operativos y Checklist en Bodega
+          </h4>
+          <ul id="modal-requirements" class="space-y-2.5">
+            <!-- Items de requisitos inyectados -->
+          </ul>
+        </div>
+
+        <!-- Régimen de Sanciones y Consecuencias -->
+        <div>
+          <h4 class="text-xs uppercase font-bold tracking-wider text-rose-400 mb-2 flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            </svg>
+            Régimen Sancionador y Consecuencias por Incumplimiento
+          </h4>
+          <div id="modal-sanctions" class="bg-rose-950/30 border border-rose-800/50 p-4 rounded-xl text-rose-200 text-xs leading-relaxed font-medium">
+            Régimen de sanciones.
+          </div>
+        </div>
+
+        <!-- Metadatos de Jurisdicción y Fecha -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs bg-slate-950/80 p-3 rounded-xl border border-slate-800">
+          <div>
+            <span class="text-slate-400 block text-[11px]">Fecha Oficial:</span>
+            <span id="modal-date" class="font-bold text-slate-200 font-mono">-</span>
+          </div>
+          <div>
+            <span class="text-slate-400 block text-[11px]">Jurisdicción:</span>
+            <span id="modal-jurisdiction" class="font-semibold text-slate-200">-</span>
+          </div>
+          <div>
+            <span class="text-slate-400 block text-[11px]">Región / Territorio:</span>
+            <span id="modal-region" class="font-semibold text-slate-200">-</span>
+          </div>
+          <div>
+            <span class="text-slate-400 block text-[11px]">Denominación:</span>
+            <span id="modal-do" class="font-semibold text-amber-300">-</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Pie del Modal -->
+      <div class="p-4 bg-slate-950 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3">
+        <button onclick="copyModalCitation()" id="btn-copy-citation" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg text-xs font-semibold flex items-center gap-1.5 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+          </svg>
+          <span id="txt-copy-citation">Copiar Referencia Legal</span>
+        </button>
+
+        <div class="flex items-center gap-2">
+          <button id="modal-delete-btn" onclick="if(appState.activeModalNormativa) removeCustomNorma(appState.activeModalNormativa.id)" class="hidden px-3 py-2 bg-rose-950/60 hover:bg-rose-900 border border-rose-800/60 text-rose-300 hover:text-white rounded-lg text-xs font-semibold flex items-center gap-1.5 transition">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+            </svg>
+            <span>Retirar de mi Catálogo</span>
+          </button>
+          <a id="modal-official-link" href="#" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-wine-700 hover:bg-wine-600 text-white rounded-lg text-xs font-semibold flex items-center gap-1.5 transition shadow-sm">
+            <span>Acceder a Fuente Oficial (BOE / DOUE / CR)</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+            </svg>
+          </a>
+          <button onclick="closeModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg text-xs font-semibold transition">
+            Cerrar
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL: REGISTRAR NUEVA NORMA O CIRCULAR MANUALMENTE
+  ======================================================== -->
+  <div id="new-norma-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-sm hidden overflow-y-auto">
+    <div class="relative w-full max-w-2xl my-8 bg-slate-900 border border-cyan-700/60 rounded-2xl shadow-2xl shadow-cyan-950/60 overflow-hidden transform transition-all">
+      
+      <div class="p-5 bg-gradient-to-r from-slate-950 via-cyan-950 to-slate-950 border-b border-cyan-900/60 flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-cyan-600/30 flex items-center justify-center border border-cyan-500/40 text-cyan-300 font-bold text-sm">
+            +
+          </div>
+          <div>
+            <h3 class="font-serif font-bold text-lg text-white">Registrar Nueva Norma o Circular</h3>
+            <p class="text-[11px] text-cyan-300/80">Incorpora al catálogo acuerdos de Consejo Regulador, decretos autonómicos o leyes recientes</p>
+          </div>
+        </div>
+        <button onclick="closeNewNormaModal()" class="text-slate-400 hover:text-white p-1 rounded-lg">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <form id="form-new-norma" onsubmit="handleNewNormaSubmit(event)" class="p-6 space-y-4 text-xs">
+        <div>
+          <label class="block font-semibold text-slate-300 mb-1">Título de la Norma o Disposición *</label>
+          <input type="text" id="fn-titulo" required placeholder="Ej: Nueva Circular de Vendimia sobre Rendimientos Máximos" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-white text-xs focus:border-cyan-500 focus:outline-none">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Código Oficial / Referencia Legal *</label>
+            <input type="text" id="fn-codigo" required placeholder="Ej: Circular 04/2026 CRDOCa Rioja o BOE-A-2026-XXXX" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-white text-xs focus:border-cyan-500 focus:outline-none">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Fecha de Publicación / Aplicación *</label>
+            <input type="date" id="fn-fecha" required class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-white text-xs focus:border-cyan-500 focus:outline-none">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Ámbito Temático *</label>
+            <select id="fn-ambito" required class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-white text-xs focus:border-cyan-500 focus:outline-none">
+              <option value="Vitivinícola y Etiquetado">Vitivinícola y Etiquetado</option>
+              <option value="Seguridad y Salud Laboral (PRL)">Seguridad y Salud Laboral (PRL)</option>
+              <option value="Seguridad Industrial y Maquinaria">Seguridad Industrial y Maquinaria</option>
+              <option value="Seguridad Alimentaria y Calidad">Seguridad Alimentaria y Calidad</option>
+              <option value="Medio Ambiente y Aguas">Medio Ambiente y Aguas</option>
+              <option value="Seguridad Contra Incendios / Bomberos">Seguridad Contra Incendios / Bomberos</option>
+              <option value="Fiscalidad e Impuestos Especiales">Fiscalidad e Impuestos Especiales</option>
+              <option value="Contratación y Cadena Alimentaria">Contratación y Cadena Alimentaria</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Nivel Territorial *</label>
+            <select id="fn-nivel" required class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-white text-xs focus:border-cyan-500 focus:outline-none">
+              <option value="Denominación de Origen">Denominación de Origen</option>
+              <option value="Regional / Autonómica">Regional / Autonómica</option>
+              <option value="Estatal">Estatal (España)</option>
+              <option value="Unión Europea">Unión Europea</option>
+              <option value="Mundial / Internacional">Mundial (OIV)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Región / Comunidad *</label>
+            <select id="fn-region" required class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-white text-xs focus:border-cyan-500 focus:outline-none">
+              <option value="Multi-región">Multi-región / Estatal</option>
+              <option value="Cataluña">Cataluña</option>
+              <option value="Navarra">Navarra</option>
+              <option value="La Rioja">La Rioja</option>
+              <option value="País Vasco">País Vasco</option>
+              <option value="Burgos (Castilla y León)">Burgos (Castilla y León)</option>
+              <option value="Málaga (Andalucía)">Málaga (Andalucía)</option>
+              <option value="Unión Europea">Unión Europea</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Denominación de Origen acogida</label>
+            <select id="fn-do" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-white text-xs focus:border-cyan-500 focus:outline-none">
+              <option value="Todas">Todas / General</option>
+              <option value="DO Empordà">DO Empordà</option>
+              <option value="DO Catalunya">DO Catalunya</option>
+              <option value="DOQ Priorat">DOQ Priorat</option>
+              <option value="DO Cava">DO Cava</option>
+              <option value="DO Ribera del Duero">DO Ribera del Duero</option>
+              <option value="DOCa Rioja">DOCa Rioja</option>
+              <option value="DO Navarra">DO Navarra</option>
+              <option value="IGP Tres Riberas">IGP Tres Riberas</option>
+              <option value="DO Ronda / Sierras de Málaga">DO Ronda / Sierras de Málaga</option>
+            </select>
+          </div>
+          <div class="flex items-center gap-3 pt-5">
+            <label class="inline-flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="fn-isnews" class="w-4 h-4 rounded text-wine-600 bg-slate-950 border-slate-800 focus:ring-wine-500">
+              <span class="text-xs font-semibold text-amber-300">Marcar como Novedad Crítica Arriba</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-semibold text-slate-300 mb-1">Resumen Ejecutivo *</label>
+          <textarea id="fn-resumen" required rows="2" placeholder="Describe brevemente de qué trata esta norma y por qué afecta a la bodega..." class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-white text-xs focus:border-cyan-500 focus:outline-none"></textarea>
+        </div>
+
+        <div>
+          <label class="block font-semibold text-slate-300 mb-1">Requisitos Prácticos para la Bodega (uno por línea) *</label>
+          <textarea id="fn-requisitos" required rows="3" placeholder="Paso 1: ¿Qué tiene que hacer la bodega?&#10;Paso 2: ¿Qué documentación debe registrar?&#10;Paso 3: ¿Qué plazo legal tiene?" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-white text-xs focus:border-cyan-500 focus:outline-none"></textarea>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Sanciones / Riesgo por Incumplimiento</label>
+            <input type="text" id="fn-sanciones" placeholder="Ej: Descalificación de partida, multas de hasta 30.000 €" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-white text-xs focus:border-cyan-500 focus:outline-none">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-300 mb-1">Enlace Oficial (URL)</label>
+            <input type="url" id="fn-enlace" placeholder="https://www.boe.es/ o https://..." class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-white text-xs focus:border-cyan-500 focus:outline-none">
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-slate-800 flex items-center justify-end gap-3">
+          <button type="button" onclick="closeNewNormaModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs font-semibold">
+            Cancelar
+          </button>
+          <button type="submit" class="px-5 py-2 bg-cyan-700 hover:bg-cyan-600 text-white rounded-lg text-xs font-semibold shadow-lg shadow-cyan-950/50">
+            Guardar e Incorporar al Catálogo
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- Pie de página institucional -->
+  <footer class="mt-auto border-t border-slate-800/80 bg-slate-950 py-6 text-slate-400 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-wine-500"></span>
+        <span class="font-serif font-bold text-slate-300">Bodegas & Viñedos</span>
+        <span>• Portal de Normativas, Reglamentos y Compliance Vitivinícola</span>
+      </div>
+      <div class="flex items-center gap-4 text-slate-400">
+        <span id="footer-normativas-count">78 Normativas Indexadas</span>
+        <span>•</span>
+        <span>9 Consejos Reguladores</span>
+        <span>•</span>
+        <span>ISO / APPCC / IFS / BRC Compatible</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================
+       CARGA DE DATOS Y LÓGICA DE INTERFAZ REACTIVA
+  ======================================================== -->
+  <script src="normativas_data.js?v=20260919.1"></script>
+
+  <script>
+    /**
+     * ESTADO GLOBAL DE LA APLICACIÓN
+     */
+    let appState = {
+      searchQuery: '',
+      selectedAmbito: 'todos',
+      selectedNivel: 'todos',
+      selectedRegion: 'todos',
+      selectedDO: 'todos',
+      sortOrder: 'desc', // 'desc' (más reciente primero), 'asc', 'alpha'
+      onlyNewsFilter: false,
+      activeModalNormativa: null,
+      calendarFilter: 'todos',
+      auditChecks: {} // Carga desde localStorage
+    };
+
+    /**
+     * DATOS ENRIQUECIDOS DE LAS 9 DENOMINACIONES DE ORIGEN E IGPS
+     */
+    const ENRICHED_DOS = [
+      {
+        id: "do_cava",
+        nombre: "DO Cava",
+        tipo: "DO Vinos Espumosos de Calidad",
+        subtitulo: "Método Tradicional • Comtats de Barcelona, Valle del Ebro y zonas históricas",
+        region: "Supraautonómica (Cataluña, Navarra, La Rioja, País Vasco, etc.)",
+        icon: "🥂",
+        badgeColor: "from-amber-600 to-amber-900",
+        variedadesBlancas: "Macabeo (Viura), Xarel·lo, Parellada, Chardonnay, Malvasía (Subirat Parent)",
+        variedadesTintas: "Garnacha tinta, Trepat (rosados), Pinot Noir, Monastrell",
+        rendimiento: "12.000 kg/ha (Cava de Guarda) | 10.000 kg/ha (Guarda Superior)",
+        extraccion: "Máx. 100 L mosto por cada 150 kg de uva vendimiada (rendimiento máx 66,6%)",
+        crianza: "Guarda: mín 9 meses | Reserva: mín 18 meses (100% ecológico cosecha 2025) | Gran Reserva: mín 30 meses | Paraje Calificado: mín 36 meses",
+        normasClave: [
+          "Segunda fermentación obligatoria en la misma botella comercializada",
+          "100% Ecológico obligatorio para Cavas de Guarda Superior a partir de cosecha 2025",
+          "Zonificación estricta: Comtats de Barcelona, Valle del Ebro, Requena y Almendralejo",
+          "Prohibición expresa de prensas continuas y mostos concentrados ajenos"
+        ],
+        normasDataId: "DO Cava",
+        webUrl: "https://www.cava.wine/"
+      },
+      {
+        id: "doca_rioja",
+        nombre: "DOCa Rioja",
+        tipo: "Denominación de Origen Calificada",
+        subtitulo: "Rioja Alta, Rioja Alavesa y Rioja Oriental",
+        region: "La Rioja, País Vasco (Álava) y Navarra",
+        icon: "🍷",
+        badgeColor: "from-red-700 to-wine-950",
+        variedadesTintas: "Tempranillo (predominante), Garnacha tinta, Graciano, Mazuelo, Maturana tinta",
+        variedadesBlancas: "Viura (Macabeo), Malvasía de Rioja, Garnacha blanca, Tempranillo blanco, Maturana blanca, Turruntés, Chardonnay, Sauvignon Blanc, Verdejo",
+        rendimiento: "Tintas: 6.500 kg/ha | Blancas: 9.000 kg/ha",
+        extraccion: "Máximo 70 litros de vino por cada 100 kg de uva",
+        crianza: "Barrica de roble obligatoria de 225 L. Crianza (tintos: 2 años con 1 año barrica) | Reserva (3 años con 1 año barrica + 6 m botella) | Gran Reserva (5 años con 2 años barrica + 2 años botella)",
+        normasClave: [
+          "Separación física estricta en bodega para vinos no amparados (Revisión 2024)",
+          "Parque de barricas registrado y sellado con código individual",
+          "Categorización por origen: Vinos de Zona, Vinos de Municipio y Viñedos Singulares",
+          "Declaración telemática diaria y control estricto de rendimientos y precintas"
+        ],
+        normasDataId: "DOCa Rioja",
+        webUrl: "https://www.riojawine.com/normativa/"
+      },
+      {
+        id: "doq_priorat",
+        nombre: "DOQ Priorat / Priorato",
+        tipo: "Denominación de Origen Calificada",
+        subtitulo: "Suelos de llicorella • Viticultura heroica en terrazas y costers",
+        region: "Cataluña (Tarragona / 12 Villas)",
+        icon: "🏆",
+        badgeColor: "from-purple-900 to-slate-950",
+        variedadesTintas: "Garnatxa negra, Carinyena (Samsó), Cabernet Sauvignon, Syrah, Merlot",
+        variedadesBlancas: "Garnatxa blanca, Macabeu, Pedro Ximénez, Chenin blanc, Viognier",
+        rendimiento: "Estrictamente 6.000 kg/ha en terrazas | 4.000 kg/ha en costers y viñedo viejo",
+        extraccion: "Máximo 65 litros de vino por cada 100 kg de uva",
+        crianza: "Clasificación piramidal: Vi de la DOQ Priorat, Vi de Vila (12 villas), Vi de Paratge, Vinya Classificada y Gran Vinya Classificada",
+        normasClave: [
+          "Suelos exclusivos de llicorella (pizarras paleozoicas) y pendientes superiores al 15%",
+          "Vinificación y embotellado exclusivo dentro del municipio correspondiente en Vins de Vila",
+          "Prohibición de entrada de uvas o mostos no procedentes del territorio delimitado",
+          "Comité de cata sensorial exhaustivo lote por lote antes de concesión de precintas"
+        ],
+        normasDataId: "DOQ Priorat",
+        webUrl: "https://www.doqpriorat.org/es/normativa/"
+      },
+      {
+        id: "do_ribera",
+        nombre: "DO Ribera del Duero",
+        tipo: "Denominación de Origen Protegida",
+        subtitulo: "Corazón del río Duero • Meseta castellana y clima continental extremo",
+        region: "Burgos, Valladolid, Soria y Segovia (Castilla y León)",
+        icon: "🍇",
+        badgeColor: "from-wine-800 to-slate-950",
+        variedadesTintas: "Tempranillo (Tinto Fino o Tinta del País, mín 75%), Cabernet Sauvignon, Merlot, Malbec, Garnacha tinta",
+        variedadesBlancas: "Albillo Mayor (autorizada para monovarietales y coupages blancos)",
+        rendimiento: "Máximo estricto de 7.000 kg/ha",
+        extraccion: "Máximo 70 litros de vino por cada 100 kg de uva",
+        crianza: "Crianza (mín 24 meses con 12 en barrica de roble) | Reserva (mín 36 meses con 12 en barrica) | Gran Reserva (mín 60 meses con 24 en barrica + 36 en botella)",
+        normasClave: [
+          "Mínimo del 75% de Tempranillo en todos los vinos tintos elaborados",
+          "Integración de la variedad autóctona Albillo Mayor para blancos de guarda",
+          "Precintas de garantía oficiales con holograma de seguridad de alta tecnología",
+          "Prohibición de añadir uva de viñedos de menos de 3 años a vinos amparados"
+        ],
+        normasDataId: "DO Ribera del Duero",
+        webUrl: "https://www.riberadelduero.es/"
+      },
+      {
+        id: "do_navarra",
+        nombre: "DO Navarra",
+        tipo: "Denominación de Origen Protegida",
+        subtitulo: "Cinco subzonas • Referente de rosados por sangrado y tintos de garnacha",
+        region: "Comunidad Foral de Navarra",
+        icon: "🍷",
+        badgeColor: "from-rose-800 to-slate-950",
+        variedadesTintas: "Garnacha tinta, Tempranillo, Cabernet Sauvignon, Merlot, Graciano, Syrah, Mazuelo, Pinot Noir",
+        variedadesBlancas: "Garnacha blanca, Viura, Chardonnay, Moscatel de Grano Menudo, Sauvignon Blanc, Malvasía",
+        rendimiento: "Tintas: 8.000 kg/ha | Blancas: 9.000 kg/ha",
+        extraccion: "Máximo 70 litros de vino por cada 100 kg de uva",
+        crianza: "Crianza (mín 24 meses, 6 en barrica) | Reserva (mín 36 meses, 12 en barrica) | Gran Reserva (mín 60 meses, 18 en barrica + 42 en botella)",
+        normasClave: [
+          "Protección estricta del método tradicional de sangrado para vinos rosados sin prensa continua",
+          "Zonificación agronómica: Tierra Estella, Valdizarbe, Baja Montaña, Ribera Alta y Ribera Baja",
+          "Declaración telemática de cosecha obligatoria antes del 10 de diciembre",
+          "Control analítico de acidez y anhídrido sulfuroso según pliego técnico"
+        ],
+        normasDataId: "DO Navarra",
+        webUrl: "https://navarrawine.com/"
+      },
+      {
+        id: "do_emporda",
+        nombre: "DO Empordà",
+        tipo: "Denominación de Origen Protegida",
+        subtitulo: "Alt y Baix Empordà • Viento de Tramuntana, sol mediterráneo y Garnatxa",
+        region: "Cataluña (Girona)",
+        icon: "🌊",
+        badgeColor: "from-cyan-900 to-wine-950",
+        variedadesTintas: "Garnatxa negra (Lledoner), Carinyena (Samsó), Ull de Llebre (Tempranillo), Cabernet Sauvignon, Merlot, Syrah",
+        variedadesBlancas: "Garnatxa blanca, Macabeu, Moscatell d'Alexandria, Xarel·lo, Chardonnay, Sauvignon Blanc",
+        rendimiento: "Tintas: 8.000 kg/ha | Blancas: 10.000 kg/ha",
+        extraccion: "Máximo 70 litros de vino por cada 100 kg de uva",
+        crianza: "Tintos: mínimo de 24 meses totales con al menos 6 meses en barrica de roble. Especialidad tradicional: Vinos de licor 'Garnatxa de l'Empordà' y 'Moscatell'",
+        normasClave: [
+          "Inscripción obligatoria de parcelas y bodegas en el RVC y Consejo Regulador",
+          "Variedades autóctonas prioritarias: Garnatxa negra (Lledoner) y Carinyena (Samsó)",
+          "Regulación técnica especial para los vinos dulces naturales con soleras centenarias",
+          "Controles organolépticos del INCAVI y panel de cata comarcal"
+        ],
+        normasDataId: "DO Empordà",
+        webUrl: "https://www.doemporda.cat/es/normativa.html"
+      },
+      {
+        id: "do_catalunya",
+        nombre: "DO Catalunya",
+        tipo: "Denominación de Origen Protegida",
+        subtitulo: "Ámbito geográfico transversal catalán • Innovación, coupages y monovarietales",
+        region: "Cataluña (Más de 300 municipios vitícolas)",
+        icon: "🍇",
+        badgeColor: "from-amber-700 to-wine-950",
+        variedadesTintas: "Ull de Llebre (Tempranillo), Garnatxa negra, Merlot, Cabernet Sauvignon, Syrah, Pinot Noir, Carinyena, Trepat",
+        variedadesBlancas: "Macabeu, Xarel·lo, Parellada, Chardonnay, Garnatxa blanca, Sauvignon Blanc, Moscatell, Chenin",
+        rendimiento: "Tintas: 10.000 kg/ha | Blancas: 12.000 kg/ha",
+        extraccion: "Máximo 72 litros de vino por cada 100 kg de uva",
+        crianza: "Nobles, Crianza, Reserva y Gran Reserva conforme a pliego de condiciones de vinos tranquilos",
+        normasClave: [
+          "Aprobación previa obligatoria del diseño de etiquetado por el Consell Regulador",
+          "Libro de trazabilidad específico avalado con sellos de garantía oficiales",
+          "Excelente plataforma para vinos monovarietales de alta expresión técnica",
+          "Coordinación analítica permanente con los servicios de control del INCAVI"
+        ],
+        normasDataId: "DO Catalunya",
+        webUrl: "https://www.docatalunya.org/es/"
+      },
+      {
+        id: "igp_tres_riberas",
+        nombre: "IGP 3 Riberas / Tres Riberas",
+        tipo: "Indicación Geográfica Protegida (Vino de la Tierra)",
+        subtitulo: "Cuencas de los ríos Ebro, Arga y Aragón en Navarra",
+        region: "Navarra",
+        icon: "🌿",
+        badgeColor: "from-emerald-800 to-slate-950",
+        variedadesTintas: "Tempranillo, Garnacha tinta, Graciano, Merlot, Cabernet Sauvignon, Syrah, Mazuelo",
+        variedadesBlancas: "Chardonnay, Viura, Garnacha blanca, Sauvignon Blanc, Moscatel de Grano Menudo",
+        rendimiento: "Tintas: 10.000 kg/ha | Blancas: 11.000 kg/ha",
+        extraccion: "Rendimiento agronómico flexible con límite de extracción del 72%",
+        crianza: "Vinos jóvenes, robles y crianzas con libertad de estilo enológico",
+        normasClave: [
+          "Uva procedente exclusivamente del área de las tres riberas fluviales de Navarra",
+          "Grado alcohólico volumétrico natural mínimo de 11% vol.",
+          "Trazabilidad documental en los registros de bodega y comunicación anual al Gobierno Foral",
+          "Ideal para vinos de autor y proyectos enológicos fuera de los corsés de la DO"
+        ],
+        normasDataId: "IGP Tres Riberas",
+        webUrl: "https://www.navarra.es/"
+      },
+      {
+        id: "do_ronda",
+        nombre: "DO Sierras de Málaga / Ronda",
+        tipo: "Denominación de Origen Protegida",
+        subtitulo: "Subzona Serranía de Ronda • Altitud mínima 400m, suelos calizos y tintos singulares",
+        region: "Málaga (Andalucía)",
+        icon: "☀️",
+        badgeColor: "from-amber-800 to-wine-900",
+        variedadesTintas: "Tintilla de Rota, Romé, Garnacha, Tempranillo, Cabernet Sauvignon, Merlot, Syrah, Petit Verdot, Cabernet Franc, Graciano",
+        variedadesBlancas: "Moscatel de Alejandría, Moscatel Morisco, Pedro Ximénez, Doradilla, Vijiriego, Chardonnay, Macabeo, Sauvignon Blanc",
+        rendimiento: "Tintas: 9.000 kg/ha | Blancas: 10.000 kg/ha",
+        extraccion: "Máximo 70 litros de vino por cada 100 kg de uva",
+        crianza: "Crianza (mín 6 meses en roble) | Reserva (mín 12 meses barrica + 24 botella) | Gran Reserva (mín 24 barrica + 36 botella)",
+        normasClave: [
+          "Exigencia de viñedos situados a una altitud mínima de 400 metros sobre el nivel del mar",
+          "Elaboración y embotellado exclusivo en bodegas radicadas en la Serranía de Ronda",
+          "Puesta en valor de variedades autóctonas andaluzas como Tintilla de Rota y Romé",
+          "Controles de calidad y precinta específica expedida por el Consejo Regulador"
+        ],
+        normasDataId: "DO Ronda / Sierras de Málaga",
+        webUrl: "https://sierrasdemalaga.net/"
+      }
+    ];
+
+    /**
+     * CHECKLIST DE AUDITORÍA Y COMPLIANCE (24 PUNTOS CRÍTICOS AGRUPADOS EN 6 ÁREAS)
+     */
+    const AUDIT_CATEGORIES = [
+      {
+        id: "cat_etiquetado",
+        titulo: "1. Vitivinícola, Etiquetado y Trazabilidad de Cosecha",
+        icono: "🍇",
+        items: [
+          {
+            id: "chk_01",
+            titulo: "Etiquetado Nutricional y Lista de Ingredientes vía QR (e-Label)",
+            norma: "Reglamento (UE) 2021/2117",
+            desc: "Disponer de plataforma digital e-label neutral (sin cookies, sin rastreo y sin publicidad comercial) accesible por QR con declaración de valor energético e ingredientes completos."
+          },
+          {
+            id: "chk_02",
+            titulo: "Mención Obligatoria de Alérgenos y Sulfitos en Etiqueta Física",
+            norma: "Reglamento (UE) 1169/2011 y RD 1334/1999",
+            desc: "Figuración clara y legible de 'Contiene Sulfitos' (si > 10 mg/L) y proteínas clarificantes (huevo, leche) en el idioma oficial del mercado de comercialización."
+          },
+          {
+            id: "chk_03",
+            titulo: "Declaración Telemática Mensual en INFOVI antes del día 20",
+            norma: "Real Decreto 1303/2018 (AICA / MAPA)",
+            desc: "Notificación mensual rigurosa de entradas de uva, salidas de vino, existencias finales por categoría y mermas en la plataforma del Sistema de Información de Mercados del Sector Vitivinícola."
+          },
+          {
+            id: "chk_04",
+            titulo: "Cumplimiento del Pliego de Condiciones de la DO acogida",
+            norma: "Pliegos de Condiciones Oficiales (Cava, Rioja, Priorat, etc.)",
+            desc: "Respeto riguroso a rendimientos agronómicos máximos (kg/ha), variedades autorizadas, parques de barricas homologados y custodia de precintas de garantía."
+          }
+        ]
+      },
+      {
+        id: "cat_prl",
+        titulo: "2. Seguridad Laboral (PRL) y Riesgo Crítico de Asfixia por CO2 ('Tufo')",
+        icono: "🦺",
+        items: [
+          {
+            id: "chk_05",
+            titulo: "Sistema Fijo de Detección Continua de CO2 en Naves de Fermentación",
+            norma: "Real Decreto 145/2024 y Criterio Técnico INSST 108/2024",
+            desc: "Sensores de CO2 calibrados instalados a 15-20 cm del suelo, conectados a alarma acústica/luminosa y disparo automático forzado de extractores de aire a ras de suelo."
+          },
+          {
+            id: "chk_06",
+            titulo: "Procedimiento y Permiso de Entrada en Espacios Confinados",
+            norma: "RD 486/1997 y NTP 223 INSST",
+            desc: "Protocolo formal firmado de Permiso de Trabajo para entrada en cubas, depósitos y fosos, con medición previa de oxígeno (>20.5%) y gases con oxímetro homologado."
+          },
+          {
+            id: "chk_07",
+            titulo: "Recurso Preventivo y Equipos de Rescate Vertical en Depósitos",
+            norma: "Ley 31/1995 (LPRL) y RD 39/1997",
+            desc: "Presencia obligatoria de operario en el exterior del depósito con trípode de rescate, arnés anticaídas, línea de vida y equipo de respiración autónoma o de escape de emergencia."
+          },
+          {
+            id: "chk_08",
+            titulo: "Evaluación de Riesgos (ERL) y Entrega de EPIs Específicos",
+            norma: "RD 773/1997 (EPIs) y RD 486/1997",
+            desc: "Calzado antideslizante con puntera de seguridad para suelos húmedos, protectores auditivos para línea de embotellado y pantallas/guantes para manipulación de ácidos y sosa."
+          }
+        ]
+      },
+      {
+        id: "cat_medioambiente",
+        titulo: "3. Medio Ambiente, Gestión de Envases y Aguas Residuales",
+        icono: "💧",
+        items: [
+          {
+            id: "chk_09",
+            titulo: "Inscripción en Registro de Productores y Declaración de Envases MITECO",
+            norma: "Real Decreto 1055/2022 de Envases y Residuos",
+            desc: "Número de Registro MITECO asignado y presentación antes del 31 de marzo de la declaración de toneladas de vidrio, cartón, corcho y film paletizado puestas en el mercado."
+          },
+          {
+            id: "chk_10",
+            titulo: "Plan Sanitario del Agua (PSA) y Calidad de Aguas de Proceso",
+            norma: "Real Decreto 3/2023 de Aguas de Consumo",
+            desc: "Plan Sanitario documentado de la red interna de agua de bodega, analíticas microbiológicas periódicas y mantenimiento higiénico de depósitos de acumulación de agua potable."
+          },
+          {
+            id: "chk_11",
+            titulo: "Autorización de Vertido y Depuración de Efluentes Vinícolas",
+            norma: "Real Decreto Legislativo 1/2001 (Ley de Aguas)",
+            desc: "Autorización de vertido en vigor emitida por Confederación Hidrográfica o ACA, con sistema de desbaste de orujos, homogeneización y neutralización de pH antes del vertido."
+          },
+          {
+            id: "chk_12",
+            titulo: "Adhesión a SCRAP de Envases y Marcado de Reciclabilidad",
+            norma: "RD 1055/2022 y Reglamento Europeo PPWR 2024",
+            desc: "Adhesión formal a un Sistema Colectivo de Responsabilidad Ampliada (ej. Ecovidrio) e inclusión en contraetiqueta de los pictogramas de separación y depósito selectivo."
+          },
+          {
+            id: "chk_25",
+            titulo: "Plan de Prevención de Pérdidas y Desperdicio Alimentario",
+            norma: "Ley de Prevención del Desperdicio Alimentario y Llei 3/2020 de Catalunya",
+            desc: "Disponer de Plan documentado de prevención de pérdidas en bodega y almacén logístico, jerarquía de aprovechamiento (donación a bancos de alimentos de botellas con tara de etiqueta, destilería de mermas, aprovechamiento de lías) y acuerdos sociales formalizados."
+          }
+        ]
+      },
+      {
+        id: "cat_fiscalidad",
+        titulo: "4. Fiscalidad, Impuestos Especiales y Suministro SILICIE",
+        icono: "💼",
+        items: [
+          {
+            id: "chk_13",
+            titulo: "CAE Activo de Fábrica de Vino (VF) o Depósito Fiscal (VD)",
+            norma: "Ley 38/1992 y RD 1165/1995 (Reglamento Impuestos Especiales)",
+            desc: "Código de Actividad y Establecimiento en vigor ante la Agencia Tributaria con libro de materias primas y productos elaborados en regla."
+          },
+          {
+            id: "chk_14",
+            titulo: "Suministro Electrónico de Contabilidad en SILICIE (Máx 8 días)",
+            norma: "Orden HAC/998/2019 de la AEAT",
+            desc: "Transmisión informática de movimientos, trasiegos, embotellados y mermas en los libros oficiales de la sede electrónica de la AEAT en un plazo inferior a 8 días hábiles."
+          },
+          {
+            id: "chk_15",
+            titulo: "Control de Expediciones y Documentos e-DA en EMCS",
+            norma: "Directiva (UE) 2020/262 y RD 1165/1995",
+            desc: "Gestión reglamentaria de documentos administrativos electrónicos para el transporte de vino en régimen suspensivo intracomunitario o nacional."
+          },
+          {
+            id: "chk_16",
+            titulo: "Liquidación del Impuesto de Envases de Plástico No Reutilizables",
+            norma: "Ley 7/2022 y Modelo 592 AEAT (0,45 €/kg)",
+            desc: "Declaración tributaria periódica del plástico virgen no reciclado contenido en precintos retráctiles de botellas, cápsulas de plástico y film retráctil de paletización."
+          }
+        ]
+      },
+      {
+        id: "cat_aica",
+        titulo: "5. Contratación Alimentaria, Cadena de Valor (AICA) y Pagos",
+        icono: "⚖️",
+        items: [
+          {
+            id: "chk_17",
+            titulo: "Firma Previa Escrita de Contratos de Compraventa de Uva",
+            norma: "Ley 16/2021 de la Cadena Alimentaria",
+            desc: "Formalización obligatoria del contrato con cada viticultor por escrito ANTES del inicio de la entrega o descarga de uva en las tolvas de bodega."
+          },
+          {
+            id: "chk_18",
+            titulo: "Inscripción en el Registro Telemático de Contratos de la AICA",
+            norma: "Real Decreto 1028/2022 (Ministerio de Agricultura)",
+            desc: "Registro informático fehaciente del contrato firmado y sus anexos en el portal del Registro de Contratos Alimentarios antes de la entrega de la materia prima."
+          },
+          {
+            id: "chk_19",
+            titulo: "Cláusula Contractual de Cobertura de Costes de Producción",
+            norma: "Artículo 9 de la Ley 16/2021 de la Cadena Alimentaria",
+            desc: "Inclusión expresa en el contrato del precio pactado y declaración expresa de que dicho importe es superior al coste efectivo de producción asumido por el viticultor."
+          },
+          {
+            id: "chk_20",
+            titulo: "Plazo de Pago de Uva Estrictamente Limitado a 30 Días",
+            norma: "Ley 15/2010 y Ley 12/2013 de Medidas contra la Morosidad",
+            desc: "Pago íntegro de la liquidación de cosecha en un plazo no superior a 30 días naturales desde la fecha de entrega de uva (producto perecedero)."
+          }
+        ]
+      },
+      {
+        id: "cat_industria",
+        titulo: "6. Seguridad Contra Incendios, Frío Industrial y Sanidad",
+        icono: "🚒",
+        items: [
+          {
+            id: "chk_21",
+            titulo: "Mantenimiento Certificado de Extintores, BIEs y Alarmas (RIPCI)",
+            norma: "Real Decreto 513/2017 (RIPCI)",
+            desc: "Contrato de mantenimiento en vigor con empresa mantenedora habilitada, revisiones trimestrales y anuales selladas y retimbrado quinquenal de botellas."
+          },
+          {
+            id: "chk_22",
+            titulo: "Inspección Periódica Oficial por OCA de Seguridad Contra Incendios",
+            norma: "Real Decreto 2267/2004 (RSCIEI)",
+            desc: "Acta favorable de inspección reglamentaria realizada por Organismo de Control Autorizado (cada 2, 3 o 5 años según la carga de fuego y sectorización)."
+          },
+          {
+            id: "chk_23",
+            titulo: "Programa de Prevención y Control de Legionelosis en Equipos de Frío",
+            norma: "Real Decreto 487/2022 de Prevención de la Legionelosis",
+            desc: "Plan de control documentado, limpiezas semestrales certificadas y analíticas periódicas en torres de refrigeración y condensadores evaporativos de bodega."
+          },
+          {
+            id: "chk_24",
+            titulo: "Marcado CE y Adecuación de Maquinaria de Bodega",
+            norma: "Real Decreto 1215/1997 y Directiva 2006/42/CE de Máquinas",
+            desc: "Paradas de emergencia activas, resguardos en sinfines de tolva, despalilladora, prensas neumáticas y protecciones en línea de embotellado y etiquetado."
+          }
+        ]
+      }
+    ];
+
+    /**
+     * INICIALIZACIÓN DE LA APLICACIÓN
+     */
+    document.addEventListener('DOMContentLoaded', () => {
+      // Verificar que los datos existen
+      if (typeof NORMATIVAS_DATA === 'undefined') {
+        console.error("Error: NORMATIVAS_DATA no está cargado.");
+        alert("Atención: No se ha podido cargar el archivo 'normativas_data.js'. Asegúrate de que esté en el mismo directorio.");
+        return;
+      }
+
+      // Cargar marcas de autodiagnóstico desde localStorage
+      loadSavedAuditChecks();
+
+      // Renderizar banner superior de novedades
+      renderUrgentNewsBanner();
+
+      // Renderizar catálogo cronológico
+      renderCatalogo();
+
+      // Renderizar pestañas complementarias
+      renderDenominacionesGrid();
+      renderAuditChecklist();
+      renderCalendarTimeline();
+      renderRadarResults('todos', '');
+
+      // Actualizar medidor global de cumplimiento
+      updateAuditProgressStats();
+    });
+
+    /**
+     * FUSIÓN DE DATOS: BASE REGULATORIA + NORMAS GUARDADAS EN TIEMPO REAL
+     */
+    function getMergedNormativas() {
+      let custom = [];
+      try {
+        const saved = localStorage.getItem('bodega_custom_normas_v1');
+        if (saved) custom = JSON.parse(saved);
+      } catch(e) {}
+      const combined = [...(typeof NORMATIVAS_DATA !== 'undefined' ? NORMATIVAS_DATA : []), ...custom];
+      const map = new Map();
+      combined.forEach(n => map.set(n.id, n));
+      const list = Array.from(map.values());
+      list.sort((a, b) => b.fecha.localeCompare(a.fecha));
+      return list;
+    }
+
+    /**
+     * RENDER: BANNER DE NOVEDADES CRÍTICAS (REQUISITO 1)
+     */
+    function renderUrgentNewsBanner() {
+      const container = document.getElementById('urgent-news-container');
+      if (!container) return;
+
+      const allNormas = getMergedNormativas();
+      const newsItems = allNormas.filter(item => item.is_news);
+      const totalNewsBadge = document.getElementById('badge-total-novedades');
+      if (totalNewsBadge) totalNewsBadge.textContent = newsItems.length;
+      const tabTotalBadge = document.getElementById('badge-tab-total-count');
+      if (tabTotalBadge) tabTotalBadge.textContent = allNormas.length;
+      const footerCount = document.getElementById('footer-normativas-count');
+      if (footerCount) footerCount.textContent = `${allNormas.length} Normativas Indexadas`;
+
+      // Ordenar novedades por fecha desc
+      newsItems.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+
+      container.innerHTML = newsItems.map(item => `
+        <div onclick="openModal('${item.id}')" class="cursor-pointer group flex-shrink-0 flex items-center gap-2.5 px-3 py-1.5 bg-slate-950/80 hover:bg-wine-950/90 border border-slate-700/70 hover:border-wine-500/80 rounded-xl transition duration-200 shadow-sm">
+          <span class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-rose-500/20 text-rose-300 border border-rose-500/30">
+            ${item.novedad_badge || 'Crítica'}
+          </span>
+          <div class="flex flex-col">
+            <span class="text-xs font-semibold text-slate-100 group-hover:text-amber-300 transition truncate max-w-[220px] sm:max-w-[280px]">
+              ${item.titulo}
+            </span>
+            <span class="text-[10px] text-slate-400 font-mono">
+              ${item.fecha} • ${item.do !== 'Todas' ? item.do : item.ambito}
+            </span>
+          </div>
+          <svg class="w-3.5 h-3.5 text-slate-500 group-hover:text-amber-300 group-hover:translate-x-0.5 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </div>
+      `).join('');
+    }
+
+    /**
+     * GESTIÓN DE FILTRADO Y ORDENACIÓN (REQUISITO 2 & 3)
+     */
+    function getFilteredNormativas() {
+      let list = getMergedNormativas();
+
+      // 1. Filtro Solo Novedades si está activo
+      if (appState.onlyNewsFilter) {
+        list = list.filter(n => n.is_news);
+      }
+
+      // 2. Filtro Ámbito Temático
+      if (appState.selectedAmbito !== 'todos') {
+        list = list.filter(n => n.ambito.toLowerCase() === appState.selectedAmbito.toLowerCase());
+      }
+
+      // 3. Filtro Nivel Jurisdiccional
+      if (appState.selectedNivel !== 'todos') {
+        list = list.filter(n => n.nivel.toLowerCase() === appState.selectedNivel.toLowerCase());
+      }
+
+      // 4. Filtro Región
+      if (appState.selectedRegion !== 'todos') {
+        const regLower = appState.selectedRegion.toLowerCase();
+        list = list.filter(n => {
+          const nRegLower = (n.region || '').toLowerCase();
+          if (nRegLower === regLower || nRegLower.includes(regLower)) return true;
+          // Si seleccionamos una región española o estatal, las normas estatales y multirregionales también le aplican
+          if (['cataluña', 'navarra', 'la rioja', 'país vasco', 'castilla y león', 'andalucía', 'españa'].includes(regLower) && (n.region === 'España' || n.region === 'Multi-región')) {
+            return true;
+          }
+          return false;
+        });
+      }
+
+      // 5. Filtro Denominación de Origen
+      if (appState.selectedDO !== 'todos') {
+        list = list.filter(n => {
+          if (n.do === appState.selectedDO) return true;
+          // Si es norma general, aplica a todas
+          if (n.do === 'Todas') return true;
+          return false;
+        });
+      }
+
+      // 6. Buscador predictivo en texto
+      if (appState.searchQuery.trim() !== '') {
+        const query = appState.searchQuery.toLowerCase().trim();
+        list = list.filter(n => {
+          const inTitulo = n.titulo && n.titulo.toLowerCase().includes(query);
+          const inCodigo = n.codigo && n.codigo.toLowerCase().includes(query);
+          const inResumen = n.resumen && n.resumen.toLowerCase().includes(query);
+          const inSanciones = n.sanciones && n.sanciones.toLowerCase().includes(query);
+          const inBadge = n.novedad_badge && n.novedad_badge.toLowerCase().includes(query);
+          const inDO = n.do && n.do.toLowerCase().includes(query);
+          const inRequisitos = n.requisitos && n.requisitos.some(r => r.toLowerCase().includes(query));
+          return inTitulo || inCodigo || inResumen || inSanciones || inBadge || inDO || inRequisitos;
+        });
+      }
+
+      // 7. ORDENACIÓN CRONOLÓGICA ESTRICTA (REQUISITO 2)
+      if (appState.sortOrder === 'desc') {
+        // De más reciente a más antigua (2025/2026 -> 1924)
+        list.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+      } else if (appState.sortOrder === 'asc') {
+        // De más antigua a más reciente
+        list.sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
+      } else if (appState.sortOrder === 'alpha') {
+        list.sort((a, b) => a.titulo.localeCompare(b.titulo));
+      }
+
+      return list;
+    }
+
+    /**
+     * RENDERIZAR CATÁLOGO DE NORMATIVAS
+     */
+    function renderCatalogo() {
+      const container = document.getElementById('normativas-container');
+      const emptyState = document.getElementById('empty-state');
+      const resultsCountBadge = document.getElementById('results-count-badge');
+      const filterSummary = document.getElementById('filter-state-summary');
+      const resetBtn = document.getElementById('btn-reset-filters');
+      const searchClearBtn = document.getElementById('search-clear-btn');
+
+      const items = getFilteredNormativas();
+
+      const allNormas = getMergedNormativas();
+      resultsCountBadge.textContent = `${items.length} de ${allNormas.length} normativas`;
+      document.getElementById('badge-tab-total-count').textContent = items.length;
+      const footerCount = document.getElementById('footer-normativas-count');
+      if (footerCount) footerCount.textContent = `${allNormas.length} Normativas Indexadas`;
+
+      // Visibilidad del botón restablecer
+      const hasActiveFilters = appState.searchQuery !== '' || 
+                               appState.selectedAmbito !== 'todos' || 
+                               appState.selectedNivel !== 'todos' || 
+                               appState.selectedRegion !== 'todos' || 
+                               appState.selectedDO !== 'todos' || 
+                               appState.onlyNewsFilter ||
+                               appState.sortOrder !== 'desc';
+
+      if (hasActiveFilters) {
+        resetBtn.classList.remove('hidden');
+        filterSummary.textContent = `Filtros activos • Orden: ${appState.sortOrder === 'desc' ? 'Cronológico Reciente' : appState.sortOrder === 'asc' ? 'Cronológico Antiguo' : 'Alfabético'}`;
+      } else {
+        resetBtn.classList.add('hidden');
+        filterSummary.textContent = 'Mostrando catálogo completo ordenado cronológicamente (2025 → 1924)';
+      }
+
+      if (appState.searchQuery.trim() !== '') {
+        searchClearBtn.classList.remove('hidden');
+      } else {
+        searchClearBtn.classList.add('hidden');
+      }
+
+      if (items.length === 0) {
+        container.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+
+      // Generar tarjetas con línea de tiempo y diseño vinícola premium
+      container.innerHTML = items.map(item => {
+        const year = item.fecha.split('-')[0];
+        
+        // Colores y badges por ámbito
+        let ambitoBadgeClass = "bg-slate-800 text-slate-300 border-slate-700";
+        if (item.ambito.includes('Vitivinícola')) ambitoBadgeClass = "bg-wine-900/40 text-rose-300 border-wine-700/50";
+        else if (item.ambito.includes('Medio Ambiente')) ambitoBadgeClass = "bg-cyan-950 text-cyan-300 border-cyan-800/50";
+        else if (item.ambito.includes('PRL') || item.ambito.includes('Seguridad y Salud')) ambitoBadgeClass = "bg-amber-950 text-amber-300 border-amber-800/50";
+        else if (item.ambito.includes('Alimentaria')) ambitoBadgeClass = "bg-emerald-950 text-emerald-300 border-emerald-800/50";
+        else if (item.ambito.includes('Fiscalidad')) ambitoBadgeClass = "bg-purple-950 text-purple-300 border-purple-800/50";
+        else if (item.ambito.includes('Contratación')) ambitoBadgeClass = "bg-blue-950 text-blue-300 border-blue-800/50";
+        else if (item.ambito.includes('Incendios')) ambitoBadgeClass = "bg-red-950 text-red-300 border-red-800/50";
+
+        // Badge de nivel
+        let nivelIcon = "🏛️";
+        if (item.nivel.includes('Mundial')) nivelIcon = "🌍";
+        else if (item.nivel.includes('Unión Europea')) nivelIcon = "🇪🇺";
+        else if (item.nivel.includes('Estatal')) nivelIcon = "🇪🇸";
+        else if (item.nivel.includes('Denominación')) nivelIcon = "🏷️";
+
+        return `
+          <div class="relative group bg-slate-900/90 hover:bg-slate-900 border ${item.is_news ? 'border-wine-600/70 shadow-lg shadow-wine-950/40' : 'border-slate-800'} hover:border-amber-500/50 rounded-2xl p-5 flex flex-col justify-between transition-all duration-200 hover:-translate-y-1">
+            
+            <!-- Marca de Año Prominente (Línea Cronológica) -->
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-1 rounded-lg text-xs font-mono font-bold ${item.is_news ? 'bg-amber-400 text-slate-950 shadow-sm' : 'bg-slate-800 text-amber-300'}">
+                  ${year}
+                </span>
+                <span class="text-[11px] text-slate-400 font-mono">
+                  ${item.fecha}
+                </span>
+              </div>
+
+              ${item.is_news ? `
+                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40">
+                  <span class="w-1.5 h-1.5 rounded-full bg-rose-400 animate-pulse"></span>
+                  ${item.novedad_badge || 'Crítica 2024-2026'}
+                </span>
+              ` : `
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-medium bg-slate-800/80 text-slate-400 border border-slate-700/60">
+                  ${item.id}
+                </span>
+              `}
+            </div>
+
+            <!-- Título y Código Legal -->
+            <div class="space-y-2 flex-1">
+              <h3 class="font-serif font-bold text-base sm:text-lg text-slate-100 group-hover:text-amber-300 transition leading-snug">
+                ${item.titulo}
+              </h3>
+              
+              <p class="text-xs font-mono text-slate-400 leading-normal line-clamp-1">
+                ${item.codigo}
+              </p>
+
+              <!-- Resumen breve -->
+              <p class="text-xs text-slate-300 leading-relaxed line-clamp-3 pt-1">
+                ${item.resumen}
+              </p>
+            </div>
+
+            <!-- Etiquetas de Ámbito y Territorio -->
+            <div class="mt-4 pt-3 border-t border-slate-800/80 flex flex-wrap items-center gap-1.5 text-[11px]">
+              <span class="px-2 py-0.5 rounded-md font-medium border ${ambitoBadgeClass}">
+                ${item.ambito}
+              </span>
+              <span class="px-2 py-0.5 rounded-md bg-slate-950 text-slate-300 border border-slate-800">
+                ${nivelIcon} ${item.nivel}
+              </span>
+              ${item.do !== 'Todas' ? `
+                <span class="px-2 py-0.5 rounded-md bg-wine-950 text-amber-200 border border-wine-800 font-semibold">
+                  🏷️ ${item.do}
+                </span>
+              ` : ''}
+            </div>
+
+            <!-- Botones de Acción de la Tarjeta -->
+            <div class="mt-4 pt-3 border-t border-slate-800/60 flex items-center justify-between gap-2">
+              <button 
+                onclick="openModal('${item.id}')" 
+                class="flex-1 py-2 px-3 rounded-xl bg-slate-800 hover:bg-wine-700 text-slate-200 hover:text-white text-xs font-semibold transition duration-150 flex items-center justify-center gap-1.5 shadow-sm group-hover:border group-hover:border-wine-500/40"
+              >
+                <span>Ver Ficha Completa</span>
+                <svg class="w-3.5 h-3.5 text-amber-400 group-hover:translate-x-0.5 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                </svg>
+              </button>
+
+              <a 
+                href="${item.enlace}" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                title="Abrir fuente oficial (BOE/DOUE/Consejo Regulador)"
+                class="p-2 rounded-xl bg-slate-950 hover:bg-slate-800 text-slate-400 hover:text-amber-300 border border-slate-800 transition"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
+              </a>
+            </div>
+
+          </div>
+        `;
+      }).join('');
+    }
+
+    /**
+     * RENDERIZAR TARJETAS DE DENOMINACIONES DE ORIGEN E IGPS (PESTAÑA 2)
+     */
+    function renderDenominacionesGrid() {
+      const container = document.getElementById('do-cards-grid');
+      if (!container) return;
+
+      const allNormas = getMergedNormativas();
+      container.innerHTML = ENRICHED_DOS.map(doItem => {
+        // Contar cuántas normativas en catálogo tienen asignada esta DO
+        const matchingNormativas = allNormas.filter(n => n.do === doItem.normasDataId);
+
+        return `
+          <div class="bg-slate-900 border border-slate-800 hover:border-amber-500/50 rounded-2xl p-6 flex flex-col justify-between transition-all duration-200 hover:-translate-y-1 shadow-xl">
+            
+            <div>
+              <!-- Cabecera de la DO -->
+              <div class="flex items-start justify-between gap-3 mb-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-12 h-12 rounded-2xl bg-gradient-to-br ${doItem.badgeColor} flex items-center justify-center text-2xl shadow-lg border border-white/10">
+                    ${doItem.icon}
+                  </div>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-amber-400">
+                      ${doItem.tipo}
+                    </span>
+                    <h3 class="font-serif font-bold text-xl text-white">
+                      ${doItem.nombre}
+                    </h3>
+                  </div>
+                </div>
+
+                <span class="px-2.5 py-1 rounded-full text-[11px] font-medium bg-slate-950 text-slate-300 border border-slate-800">
+                  ${doItem.region}
+                </span>
+              </div>
+
+              <p class="text-xs text-slate-400 font-medium mb-4 italic">
+                ${doItem.subtitulo}
+              </p>
+
+              <!-- Ficha Técnica de Parámetros Agronómicos -->
+              <div class="space-y-3 text-xs bg-slate-950/80 p-4 rounded-xl border border-slate-800/80 mb-4">
+                
+                <div>
+                  <span class="text-slate-400 block text-[11px] font-semibold">Variedades Tintas:</span>
+                  <span class="text-slate-200">${doItem.variedadesTintas || 'N/A'}</span>
+                </div>
+
+                <div>
+                  <span class="text-slate-400 block text-[11px] font-semibold">Variedades Blancas:</span>
+                  <span class="text-slate-200">${doItem.variedadesBlancas || 'N/A'}</span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-800">
+                  <div>
+                    <span class="text-slate-400 block text-[11px] font-semibold">Rendimiento Agronómico:</span>
+                    <span class="text-amber-300 font-medium">${doItem.rendimiento}</span>
+                  </div>
+                  <div>
+                    <span class="text-slate-400 block text-[11px] font-semibold">Extracción Mosto:</span>
+                    <span class="text-slate-200 font-medium">${doItem.extraccion}</span>
+                  </div>
+                </div>
+
+                <div class="pt-2 border-t border-slate-800">
+                  <span class="text-slate-400 block text-[11px] font-semibold">Normas de Crianza:</span>
+                  <span class="text-slate-300">${doItem.crianza}</span>
+                </div>
+
+              </div>
+
+              <!-- Puntos Clave del Pliego -->
+              <div>
+                <h4 class="text-[11px] font-bold uppercase tracking-wider text-amber-300 mb-2">
+                  Regulaciones Específicas de Bodega:
+                </h4>
+                <ul class="space-y-1.5 text-xs text-slate-300">
+                  ${doItem.normasClave.map(norma => `
+                    <li class="flex items-start gap-2">
+                      <span class="text-emerald-400 flex-shrink-0 mt-0.5">✓</span>
+                      <span>${norma}</span>
+                    </li>
+                  `).join('')}
+                </ul>
+              </div>
+
+            </div>
+
+            <!-- Acciones de la Tarjeta DO -->
+            <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between gap-3">
+              <button 
+                onclick="filterByDOFromTab('${doItem.normasDataId}')"
+                class="flex-1 py-2 px-3 rounded-xl bg-wine-900/60 hover:bg-wine-700 text-wine-100 hover:text-white text-xs font-semibold transition flex items-center justify-center gap-1.5 border border-wine-700/50"
+              >
+                <span>Ver Normativas (${matchingNormativas.length})</span>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+              </button>
+
+              <a 
+                href="${doItem.webUrl}" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold transition flex items-center gap-1"
+                title="Pliego de Condiciones y Consejo Regulador"
+              >
+                <span>Pliego</span>
+                <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
+              </a>
+            </div>
+
+          </div>
+        `;
+      }).join('');
+    }
+
+    /**
+     * RENDERIZAR CHECKLIST DE AUDITORÍA Y COMPLIANCE (PESTAÑA 3)
+     */
+    function renderAuditChecklist() {
+      const container = document.getElementById('audit-categories-container');
+      if (!container) return;
+
+      container.innerHTML = AUDIT_CATEGORIES.map((cat, catIndex) => {
+        return `
+          <div class="bg-slate-900/80 rounded-2xl border border-slate-800 p-6 shadow-lg card-print">
+            
+            <div class="flex items-center justify-between gap-3 mb-4 pb-3 border-b border-slate-800">
+              <div class="flex items-center gap-3">
+                <span class="text-2xl">${cat.icono}</span>
+                <h3 class="font-serif font-bold text-lg text-white">
+                  ${cat.titulo}
+                </h3>
+              </div>
+              <span class="text-xs font-mono text-slate-400 font-medium">
+                ${cat.items.length} Puntos Críticos
+              </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              ${cat.items.map(item => {
+                const isChecked = !!appState.auditChecks[item.id];
+                return `
+                  <label class="relative flex items-start gap-3 p-4 rounded-xl cursor-pointer transition select-none ${isChecked ? 'bg-emerald-950/20 border border-emerald-500/40 text-slate-100' : 'bg-slate-950/60 border border-slate-800/80 text-slate-300 hover:border-slate-700'}">
+                    <input 
+                      type="checkbox" 
+                      id="${item.id}" 
+                      ${isChecked ? 'checked' : ''}
+                      onchange="toggleAuditCheck('${item.id}', ${catIndex})"
+                      class="mt-1 w-4 h-4 rounded text-emerald-600 bg-slate-900 border-slate-700 focus:ring-emerald-500 focus:ring-offset-slate-950"
+                    >
+                    <div class="space-y-1 flex-1">
+                      <div class="flex items-center justify-between gap-2">
+                        <span class="font-semibold text-xs sm:text-sm text-slate-100 ${isChecked ? 'line-through text-emerald-300' : ''}">
+                          ${item.titulo}
+                        </span>
+                      </div>
+                      <span class="text-[11px] font-mono text-amber-400 block font-medium">
+                        ${item.norma}
+                      </span>
+                      <p class="text-xs text-slate-400 leading-relaxed">
+                        ${item.desc}
+                      </p>
+                    </div>
+                  </label>
+                `;
+              }).join('')}
+            </div>
+
+          </div>
+        `;
+      }).join('');
+    }
+
+    /**
+     * RENDERIZAR CALENDARIO DE OBLIGACIONES PERIÓDICAS (PESTAÑA 4)
+     */
+    function renderCalendarTimeline() {
+      const container = document.getElementById('calendar-timeline-container');
+      if (!container) return;
+
+      // Base ampliada de obligaciones periódicas de bodega
+      const fullCalendar = [
+        {
+          id: "cal-infovi",
+          periodo: "Mensual",
+          plazo: "Antes del día 20 de cada mes",
+          norma: "INFOVI (Real Decreto 1303/2018)",
+          departamento: "Enología / Administración",
+          categoria: "mensual",
+          criticidad: "Alta",
+          descripcion: "Declaración telemática obligatoria de existencias iniciales, entradas de uva y mosto, salidas de vino envasado/granel y mermas técnicas de bodega ante el MAPA.",
+          consecuencia: "Bloqueo de precintas de DO y sanciones económicas por la AICA."
+        },
+        {
+          id: "cal-silicie",
+          periodo: "Continuo / Inmediato",
+          plazo: "Máximo 8 días hábiles tras el movimiento",
+          norma: "SILICIE AEAT (Orden HAC/998/2019)",
+          departamento: "Contabilidad / Bodega",
+          categoria: "mensual",
+          criticidad: "Crítica",
+          descripcion: "Suministro electrónico de asientos de la contabilidad de productos vitivinícolas y alcoholes en la sede electrónica de la Agencia Estatal de Administración Tributaria.",
+          consecuencia: "Multa pecuniaria fija por cada asiento fuera de plazo y requerimientos de inspección aduanera."
+        },
+        {
+          id: "cal-aica",
+          periodo: "Campaña de Vendimia",
+          plazo: "Previo a la descarga de la uva",
+          norma: "AICA / Ley de la Cadena Alimentaria (Ley 16/2021)",
+          departamento: "Compras / Dirección Técnica",
+          categoria: "anual",
+          criticidad: "Muy Alta",
+          descripcion: "Formalización contractual previa por escrito y alta en el Registro Telemático de Contratos Alimentarios de AICA de cada proveedor de uva con precio que cubra costes.",
+          consecuencia: "Sanciones graves de hasta 100.000 € e inclusión en el registro público de infractores del MAPA."
+        },
+        {
+          id: "cal-miteco",
+          periodo: "Anual",
+          plazo: "Antes del 31 de marzo",
+          norma: "Registro Envases MITECO (RD 1055/2022)",
+          departamento: "Calidad y Medio Ambiente",
+          categoria: "anual",
+          criticidad: "Alta",
+          descripcion: "Declaración anual de envases puestos en el mercado (kilos de vidrio de botellas, cartón de cajas, plástico retráctil y tapones) en la sede del MITECO.",
+          consecuencia: "Suspensión del número de productor y multas ambientales de la comunidad autónoma."
+        },
+        {
+          id: "cal-plastico",
+          periodo: "Mensual / Trimestral",
+          plazo: "Coincidente con IVA (Modelo 592)",
+          norma: "Impuesto Envases Plástico (Ley 7/2022)",
+          departamento: "Fiscalidad / Administración",
+          categoria: "mensual",
+          criticidad: "Media",
+          descripcion: "Autoliquidación a 0,45 €/kg de plástico virgen no reciclado utilizado en sobreembalajes de palés, cápsulas y precintos de botella no reutilizables.",
+          consecuencia: "Recargos e intereses de demora tributarios."
+        },
+        {
+          id: "cal-cosecha",
+          periodo: "Anual (Post-vendimia)",
+          plazo: "Antes del 10 de diciembre",
+          norma: "Declaración de Cosecha (Consejos Reguladores)",
+          departamento: "Dirección Técnica Enológica",
+          categoria: "anual",
+          criticidad: "Muy Alta",
+          descripcion: "Declaración de vendimia detallada por parcela catastral, rendimiento por hectárea obtenido y graduación media del mosto para asignación de precintas.",
+          consecuencia: "Descalificación de la partida de uva o pérdida de derecho a calificar como vino con DO."
+        },
+        {
+          id: "cal-legionella",
+          periodo: "Semestral / Previo a Vendimia",
+          plazo: "Al menos una vez cada 6 meses",
+          norma: "Prevención Legionelosis (RD 487/2022)",
+          departamento: "Mantenimiento / Calidad",
+          categoria: "mantenimiento",
+          criticidad: "Alta",
+          descripcion: "Limpieza y desinfección preventiva de torres de refrigeración, condensadores evaporativos e intercambiadores de frío de bodega por empresa inscrita en ROESB.",
+          consecuencia: "Clausura cautelar de las instalaciones de frío por Salud Pública."
+        },
+        {
+          id: "cal-incendios",
+          periodo: "Trimestral y Anual",
+          plazo: "Trimestral interno / Anual por mantenedor",
+          norma: "Reglamento Incendios RIPCI (RD 513/2017)",
+          departamento: "Prevención / Mantenedor Homologado",
+          categoria: "mantenimiento",
+          criticidad: "Alta",
+          descripcion: "Revisión técnica de extintores portátiles de polvo y CO2, bocas de incendio equipadas (BIEs), grupos de bombeo y detectores ópticos de humos.",
+          consecuencia: "Acta de no conformidad y paralización de actividad en caso de siniestro."
+        },
+        {
+          id: "cal-oca",
+          periodo: "Plurianual",
+          plazo: "Cada 2, 3 o 5 años según riesgo RSCIEI",
+          norma: "Inspección OCA Incendios (RD 2267/2004)",
+          departamento: "Organismo de Control Autorizado (OCA)",
+          categoria: "mantenimiento",
+          criticidad: "Alta",
+          descripcion: "Inspección periódica reglamentaria de las naves de fermentación, crianza y almacenamiento de vino embotellado conforme al riesgo intrínseco de fuego.",
+          consecuencia: "Infracción grave de seguridad industrial por Industria autonómica."
+        }
+      ];
+
+      // Filtrar según botón seleccionado
+      let filtered = fullCalendar;
+      if (appState.calendarFilter !== 'todos') {
+        filtered = fullCalendar.filter(c => c.categoria === appState.calendarFilter);
+      }
+
+      container.innerHTML = filtered.map(item => {
+        let critBadge = "bg-rose-500/20 text-rose-300 border-rose-500/30";
+        if (item.criticidad === 'Alta') critBadge = "bg-amber-500/20 text-amber-300 border-amber-500/30";
+        if (item.criticidad === 'Media') critBadge = "bg-blue-500/20 text-blue-300 border-blue-500/30";
+
+        return `
+          <div class="bg-slate-900 border border-slate-800 hover:border-amber-500/40 rounded-2xl p-5 flex flex-col justify-between transition-all duration-200 hover:-translate-y-0.5 shadow-lg">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold font-mono bg-slate-950 text-amber-300 border border-slate-800">
+                  ${item.periodo}
+                </span>
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold border ${critBadge}">
+                  ${item.criticidad}
+                </span>
+              </div>
+
+              <h4 class="font-serif font-bold text-base text-white mt-2">
+                ${item.norma}
+              </h4>
+              
+              <div class="flex items-center gap-1.5 text-xs text-amber-400 font-semibold mt-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span>Plazo: ${item.plazo}</span>
+              </div>
+
+              <p class="text-xs text-slate-300 leading-relaxed mt-3">
+                ${item.descripcion}
+              </p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-800/80 space-y-2 text-xs">
+              <div class="flex items-center justify-between text-slate-400 text-[11px]">
+                <span>Responsable:</span>
+                <span class="font-medium text-slate-200">${item.departamento}</span>
+              </div>
+
+              <div class="p-2.5 rounded-lg bg-rose-950/30 border border-rose-900/40 text-rose-200 text-[11px]">
+                <strong class="font-semibold text-rose-300">Riesgo / Sanción:</strong> ${item.consecuencia}
+              </div>
+            </div>
+
+          </div>
+        `;
+      }).join('');
+    }
+
+    /**
+     * GESTIÓN DE EVENTOS DE FILTROS Y BÚSQUEDA
+     */
+    function handleFilterChange() {
+      appState.searchQuery = document.getElementById('search-input').value;
+      appState.selectedAmbito = document.getElementById('filter-ambito').value;
+      appState.selectedNivel = document.getElementById('filter-nivel').value;
+      appState.selectedRegion = document.getElementById('filter-region').value;
+      appState.selectedDO = document.getElementById('filter-do').value;
+      appState.sortOrder = document.getElementById('sort-order').value;
+
+      renderCatalogo();
+    }
+
+    function clearSearch() {
+      document.getElementById('search-input').value = '';
+      handleFilterChange();
+    }
+
+    function resetAllFilters() {
+      appState.searchQuery = '';
+      appState.selectedAmbito = 'todos';
+      appState.selectedNivel = 'todos';
+      appState.selectedRegion = 'todos';
+      appState.selectedDO = 'todos';
+      appState.sortOrder = 'desc';
+      appState.onlyNewsFilter = false;
+
+      document.getElementById('search-input').value = '';
+      document.getElementById('filter-ambito').value = 'todos';
+      document.getElementById('filter-nivel').value = 'todos';
+      document.getElementById('filter-region').value = 'todos';
+      document.getElementById('filter-do').value = 'todos';
+      document.getElementById('sort-order').value = 'desc';
+
+      const quickBtn = document.getElementById('btn-quick-news-filter');
+      quickBtn.classList.remove('bg-amber-400', 'text-slate-950');
+      quickBtn.classList.add('bg-wine-700/80', 'text-white');
+      document.getElementById('txt-quick-news-filter').textContent = 'Filtrar Novedades';
+
+      renderCatalogo();
+    }
+
+    function setAmbitoFilter(ambito) {
+      document.getElementById('filter-ambito').value = ambito;
+      handleFilterChange();
+    }
+
+    function toggleOnlyNewsFilter() {
+      appState.onlyNewsFilter = !appState.onlyNewsFilter;
+      const quickBtn = document.getElementById('btn-quick-news-filter');
+      const textSpan = document.getElementById('txt-quick-news-filter');
+
+      if (appState.onlyNewsFilter) {
+        quickBtn.classList.remove('bg-wine-700/80', 'text-white');
+        quickBtn.classList.add('bg-amber-400', 'text-slate-950');
+        textSpan.textContent = 'Viendo Novedades';
+      } else {
+        quickBtn.classList.remove('bg-amber-400', 'text-slate-950');
+        quickBtn.classList.add('bg-wine-700/80', 'text-white');
+        textSpan.textContent = 'Filtrar Novedades';
+      }
+
+      // Si no estamos en catálogo, cambiar a catálogo
+      switchTab('tab-catalogo');
+      renderCatalogo();
+    }
+
+    function filterByDOFromTab(doName) {
+      appState.selectedDO = doName;
+      document.getElementById('filter-do').value = doName;
+      switchTab('tab-catalogo');
+      handleFilterChange();
+    }
+
+    function filterCalendar(category) {
+      appState.calendarFilter = category;
+      document.querySelectorAll('.cal-filter-btn').forEach(btn => {
+        btn.classList.remove('bg-wine-700', 'text-white');
+        btn.classList.add('text-slate-400');
+      });
+
+      const activeBtn = document.getElementById(`cal-btn-${category}`);
+      if (activeBtn) {
+        activeBtn.classList.add('bg-wine-700', 'text-white');
+        activeBtn.classList.remove('text-slate-400');
+      }
+
+      renderCalendarTimeline();
+    }
+
+    /**
+     * NAVEGACIÓN POR PESTAÑAS
+     */
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active', 'border-amber-400', 'text-amber-300');
+        btn.classList.add('border-transparent', 'text-slate-400');
+      });
+
+      const targetTab = document.getElementById(tabId);
+      const targetBtn = document.getElementById(`nav-${tabId}`);
+
+      if (targetTab) targetTab.classList.remove('hidden');
+      if (targetBtn) {
+        targetBtn.classList.add('active', 'border-amber-400', 'text-amber-300');
+        targetBtn.classList.remove('border-transparent', 'text-slate-400');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /**
+     * MODAL DE FICHA TÉCNICA COMPLETA (REQUISITO 4.1)
+     */
+    function openModal(normativaId) {
+      const item = getMergedNormativas().find(n => n.id === normativaId);
+      if (!item) return;
+
+      appState.activeModalNormativa = item;
+      const modal = document.getElementById('normativa-modal');
+
+      document.getElementById('modal-title').textContent = item.titulo;
+      document.getElementById('modal-code').textContent = item.codigo;
+      document.getElementById('modal-summary').textContent = item.resumen;
+      document.getElementById('modal-sanctions').textContent = item.sanciones;
+      document.getElementById('modal-date').textContent = item.fecha;
+      document.getElementById('modal-jurisdiction').textContent = item.nivel;
+      document.getElementById('modal-region').textContent = item.region;
+      document.getElementById('modal-do').textContent = item.do;
+
+      const year = item.fecha.split('-')[0];
+      document.getElementById('modal-badge-year').textContent = year;
+      document.getElementById('modal-badge-nivel').textContent = item.nivel;
+      document.getElementById('modal-badge-ambito').textContent = item.ambito;
+
+      const newsBadge = document.getElementById('modal-badge-news');
+      if (item.is_news) {
+        newsBadge.classList.remove('hidden');
+        newsBadge.textContent = item.novedad_badge || 'Novedad Crítica 2024-2026';
+      } else {
+        newsBadge.classList.add('hidden');
+      }
+
+      const reqList = document.getElementById('modal-requirements');
+      reqList.innerHTML = item.requisitos.map(req => `
+        <li class="flex items-start gap-2.5 p-2 rounded-lg bg-slate-950/40 text-xs text-slate-200">
+          <svg class="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+          <span class="leading-relaxed">${req}</span>
+        </li>
+      `).join('');
+
+      const officialLink = document.getElementById('modal-official-link');
+      officialLink.href = item.enlace;
+
+      // Mostrar u ocultar botón de retirar norma si es personalizada
+      const deleteBtn = document.getElementById('modal-delete-btn');
+      if (deleteBtn) {
+        let custom = [];
+        try {
+          const saved = localStorage.getItem('bodega_custom_normas_v1');
+          if (saved) custom = JSON.parse(saved);
+        } catch(e) {}
+        if (custom.some(n => n.id === item.id)) {
+          deleteBtn.classList.remove('hidden');
+        } else {
+          deleteBtn.classList.add('hidden');
+        }
+      }
+
+      modal.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('normativa-modal');
+      modal.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+      const deleteBtn = document.getElementById('modal-delete-btn');
+      if (deleteBtn) deleteBtn.classList.add('hidden');
+      appState.activeModalNormativa = null;
+    }
+
+    // Cerrar modal al hacer clic en el backdrop
+    document.getElementById('normativa-modal')?.addEventListener('click', (e) => {
+      if (e.target === document.getElementById('normativa-modal')) {
+        closeModal();
+      }
+    });
+
+    // Cerrar modal con tecla Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    function copyModalCitation() {
+      if (!appState.activeModalNormativa) return;
+      const n = appState.activeModalNormativa;
+      const text = `${n.titulo} (${n.codigo}). Fecha oficial: ${n.fecha}. Ámbito: ${n.ambito}. Enlace: ${n.enlace}`;
+      navigator.clipboard.writeText(text).then(() => {
+        const txt = document.getElementById('txt-copy-citation');
+        txt.textContent = '¡Copiado al Portapapeles!';
+        setTimeout(() => {
+          txt.textContent = 'Copiar Referencia Legal';
+        }, 2500);
+      });
+    }
+
+    /**
+     * LÓGICA DE AUDITORÍA Y CHECKLIST DE CUMPLIMIENTO (PESTAÑA 3)
+     */
+    function loadSavedAuditChecks() {
+      try {
+        const saved = localStorage.getItem('bodega_audit_checks_v1');
+        if (saved) {
+          appState.auditChecks = JSON.parse(saved);
+        }
+      } catch (err) {
+        console.warn("No se pudo acceder a localStorage", err);
+      }
+    }
+
+    function saveAuditChecks() {
+      try {
+        localStorage.setItem('bodega_audit_checks_v1', JSON.stringify(appState.auditChecks));
+      } catch (err) {
+        console.warn("Error guardando en localStorage", err);
+      }
+    }
+
+    function toggleAuditCheck(itemId, catIndex) {
+      if (appState.auditChecks[itemId]) {
+        delete appState.auditChecks[itemId];
+      } else {
+        appState.auditChecks[itemId] = true;
+      }
+      saveAuditChecks();
+      updateAuditProgressStats();
+      renderAuditChecklist();
+    }
+
+    function resetAuditChecklist() {
+      if (confirm("¿Estás seguro de que deseas reiniciar todas las marcas de la auditoría de la bodega?")) {
+        appState.auditChecks = {};
+        saveAuditChecks();
+        updateAuditProgressStats();
+        renderAuditChecklist();
+      }
+    }
+
+    function updateAuditProgressStats() {
+      const totalItems = AUDIT_CATEGORIES.reduce((acc, cat) => acc + cat.items.length, 0);
+      const completedCount = Object.keys(appState.auditChecks).length;
+      const percentage = totalItems > 0 ? Math.round((completedCount / totalItems) * 100) : 0;
+
+      // Actualizar radial progress
+      const circle = document.getElementById('radial-progress-bar');
+      if (circle) {
+        circle.setAttribute('stroke-dasharray', `${percentage}, 100`);
+      }
+
+      document.getElementById('txt-progress-percent').textContent = `${percentage}%`;
+      document.getElementById('txt-completed-items').textContent = completedCount;
+      const totalEl = document.getElementById('txt-total-items');
+      if (totalEl) totalEl.textContent = totalItems;
+      document.getElementById('badge-nav-compliance').textContent = `${percentage}%`;
+
+      // Estado cualitativo de la bodega
+      const statusEl = document.getElementById('txt-audit-status');
+      if (percentage >= 90) {
+        statusEl.className = "text-sm font-bold text-emerald-400 flex items-center gap-1.5";
+        statusEl.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-400"></span><span>Excelente / Auditoría Superada</span>';
+      } else if (percentage >= 65) {
+        statusEl.className = "text-sm font-bold text-amber-400 flex items-center gap-1.5";
+        statusEl.innerHTML = '<span class="w-2 h-2 rounded-full bg-amber-400"></span><span>Cumplimiento Aceptable</span>';
+      } else if (percentage >= 35) {
+        statusEl.className = "text-sm font-bold text-orange-400 flex items-center gap-1.5";
+        statusEl.innerHTML = '<span class="w-2 h-2 rounded-full bg-orange-400"></span><span>Subsanaciones Pendientes</span>';
+      } else {
+        statusEl.className = "text-sm font-bold text-rose-400 flex items-center gap-1.5";
+        statusEl.innerHTML = '<span class="w-2 h-2 rounded-full bg-rose-500"></span><span>Riesgo Crítico de Sanción</span>';
+      }
+
+      // Actualizar barras de categoría
+      AUDIT_CATEGORIES.forEach((cat, index) => {
+        let catCompleted = 0;
+        cat.items.forEach(it => {
+          if (appState.auditChecks[it.id]) catCompleted++;
+        });
+        const catPercent = Math.round((catCompleted / cat.items.length) * 100);
+        
+        const progEl = document.getElementById(`cat-prog-${index}`);
+        const barEl = document.getElementById(`cat-bar-${index}`);
+        if (progEl) progEl.textContent = `${catCompleted}/${cat.items.length}`;
+        if (barEl) barEl.style.width = `${catPercent}%`;
+      });
+    }
+
+    /**
+     * =========================================================================
+     * MOTOR DEL RADAR OFICIAL EN TIEMPO REAL (BOE / DOUE / CCAA)
+     * =========================================================================
+     */
+    const RADAR_DISPOSICIONES_DATABASE = [
+      {
+        id: "BOE-2024-PRL-01",
+        ambito: "Seguridad y Salud Laboral (PRL)",
+        topic: "prl",
+        organismo: "Ministerio de Trabajo y Economía Social / INSST",
+        titulo: "Criterio Técnico 108/2024 y Protocolos de Seguridad en Espacios Confinados en Vendimia",
+        codigo: "Criterio Técnico INSST 108/2024 (BOE / INSST)",
+        fecha: "2024-06-18",
+        nivel: "Estatal",
+        region: "España",
+        do: "Todas",
+        resumen: "Directriz de la Inspección de Trabajo para el control reforzado de riesgos de asfixia e intoxicación por CO2 ('tufo') durante la fermentación alcohólica en bodegas.",
+        requisitos: [
+          "Instalación de detectores fijos de CO2 a 15 cm del suelo con alarma sonora/óptica conectada a extracción forzada.",
+          "Procedimiento documentado y firmado de Permiso de Entrada en Espacios Confinados (depósitos, cubas, fosos).",
+          "Medición previa y continua de oxígeno (>20,5%) con oxímetro homologado.",
+          "Presencia permanente de Recurso Preventivo en el exterior con arnés anticaídas, trípode y equipo de respiración de rescate."
+        ],
+        sanciones: "Paralización cautelar inmediata de la bodega por la Inspección de Trabajo y sanciones de hasta 983.736 €.",
+        enlace: "https://www.insst.es/"
+      },
+      {
+        id: "BOE-2024-ALIM-01",
+        ambito: "Seguridad Alimentaria y Calidad",
+        topic: "alimentaria",
+        organismo: "Ministerio de Agricultura, Pesca y Alimentación",
+        titulo: "Ley de Prevención de las Pérdidas y el Desperdicio Alimentario",
+        codigo: "Proyecto de Ley aprobado en Consejo de Ministros / MAPA",
+        fecha: "2024-06-11",
+        nivel: "Estatal",
+        region: "España",
+        do: "Todas",
+        resumen: "Marco legal que obliga a todas las industrias de la cadena agroalimentaria (incluidas bodegas y almacenes de vino) a disponer de un Plan de Prevención del Desperdicio.",
+        requisitos: [
+          "Elaborar un Plan de Prevención de Pérdidas y Desperdicio específico para bodega y almacén.",
+          "Jerarquía de prioridades: 1º Consumo humano (donación de botellas con defectos estéticos a bancos de alimentos mediante convenio escrito); 2º Transformación (vinagres, destilación de vino picado/mermas); 3º Subproductos.",
+          "Cuantificación anual documentada de mermas y pérdidas."
+        ],
+        sanciones: "Infracciones graves con multas de 2.001 € a 60.000 € por carecer de plan de prevención.",
+        enlace: "https://www.mapa.gob.es/es/alimentacion/temas/desperdicio/"
+      },
+      {
+        id: "UE-2024-ENV-01",
+        ambito: "Medio Ambiente y Aguas",
+        topic: "medioambiente",
+        organismo: "Unión Europea / DOUE",
+        titulo: "Reglamento Europeo de Envases y Residuos de Envases (PPWR)",
+        codigo: "Reglamento (UE) 2024/1860 del Parlamento Europeo y del Consejo",
+        fecha: "2024-11-20",
+        nivel: "Unión Europea",
+        region: "Unión Europea",
+        do: "Todas",
+        resumen: "Nuevo marco europeo vinculante para reducción de residuos de embalaje, cuotas obligatorias de reutilización de botellas de vino y armonización de pictogramas de reciclaje.",
+        requisitos: [
+          "Ecodiseño y reducción de gramaje en botellas de vidrio de vino.",
+          "Adecuación a cuotas de reutilización de botellas para canales de proximidad y HORECA.",
+          "Adopción de pictogramas de reciclaje estándar europeos en embalajes secundarios."
+        ],
+        sanciones: "Restricciones a la comercialización y sanciones medioambientales de la UE.",
+        enlace: "https://eur-lex.europa.eu/"
+      },
+      {
+        id: "UE-2023-MAQ-01",
+        ambito: "Seguridad Industrial y Maquinaria",
+        topic: "maquinaria",
+        organismo: "Parlamento Europeo y Consejo de la UE",
+        titulo: "Nuevo Reglamento Europeo de Seguridad de las Máquinas",
+        codigo: "Reglamento (UE) 2023/1230 / DOUE L 165",
+        fecha: "2023-06-14",
+        nivel: "Unión Europea",
+        region: "Unión Europea",
+        do: "Todas",
+        resumen: "Sustituye a la Directiva 2006/42/CE. Establece nuevos requisitos obligatorios de ciberseguridad, marcado CE digital y protección en maquinaria industrial de embotellado, prensas y vehículos autónomos de almacén.",
+        requisitos: [
+          "Exigir declaración CE de conformidad digital y marcado CE conforme al Reglamento 2023/1230 en compra de maquinaria nueva.",
+          "Protección contra manipulación digital y ciberseguridad en autómatas de líneas de llenado y embotellado.",
+          "Resguardos físicos y parada de emergencia de doble canal en prensas, cintas y despalilladoras."
+        ],
+        sanciones: "Inmovilización de la línea de maquinaria y multas de industria de hasta 100.000 €.",
+        enlace: "https://eur-lex.europa.eu/eli/reg/2023/1230/oj"
+      },
+      {
+        id: "DOCA-2025-VITI-01",
+        ambito: "Vitivinícola y Etiquetado",
+        topic: "vitivinicola",
+        organismo: "Consejo Regulador de la DO Cava / MAPA",
+        titulo: "Obligación de Uva 100% Ecológica Certificada para Cavas de Guarda Superior",
+        codigo: "Resolución D.G. Industria Alimentaria / Pliego DO Cava 2025",
+        fecha: "2025-08-01",
+        nivel: "Denominación de Origen",
+        region: "Multi-región",
+        do: "DO Cava",
+        resumen: "Exigencia obligatoria para la vendimia 2025 de que todo el vino base para Cavas Reserva, Gran Reserva y Paraje Calificado provenga de viñedos certificados ecológicos.",
+        requisitos: [
+          "Certificado ecológico en vigor emitido por CCPAE, CPAEN, CAECyL u organismo equivalente.",
+          "Separación física y trazabilidad en bodega entre partidas de vino base ecológico y convencional.",
+          "Rendimiento limitado a 10.000 kg/ha en viñedos de más de 10 años."
+        ],
+        sanciones: "Descalificación del lote a Cava genérico o vino espumoso sin DO.",
+        enlace: "https://www.cava.wine/"
+      },
+      {
+        id: "BOE-2024-AGUA-01",
+        ambito: "Medio Ambiente y Aguas",
+        topic: "medioambiente",
+        organismo: "Ministerio de Sanidad / AESAN",
+        titulo: "Obligación del Plan Sanitario del Agua (PSA) en la Industria Agroalimentaria",
+        codigo: "Real Decreto 3/2023 y Guía Técnica AESAN 2024",
+        fecha: "2024-01-15",
+        nivel: "Estatal",
+        region: "España",
+        do: "Todas",
+        resumen: "Exigencia de elaborar e implantar un Plan Sanitario del Agua para todas las redes internas de abastecimiento de agua empleadas en limpieza de cubas, depósitos y embotellado.",
+        requisitos: [
+          "Elaborar el Plan Sanitario del Agua (PSA) con evaluación de riesgos de tuberías, grifos y depósitos de acumulación.",
+          "Analíticas microbiológicas y físico-químicas periódicas de cloro libre/combinado, turbidez, E. coli y enterococos.",
+          "Registro oficial en el sistema SINAC si se utiliza captación de pozo propio."
+        ],
+        sanciones: "Apercibimiento o clausura cautelar del tren de lavado y embotellado por la autoridad sanitaria.",
+        enlace: "https://www.boe.es/buscar/act.php?id=BOE-A-2023-628"
+      },
+      {
+        id: "BOE-2023-INC-01",
+        ambito: "Seguridad Contra Incendios / Bomberos",
+        topic: "incendios",
+        organismo: "Ministerio de Industria y Turismo",
+        titulo: "Inspecciones Periódicas por OCA en Almacenes Industriales de Bodega",
+        codigo: "Real Decreto 2267/2004 (RSCIEI) y Guía Técnica de Aplicación",
+        fecha: "2023-11-10",
+        nivel: "Estatal",
+        region: "España",
+        do: "Todas",
+        resumen: "Protocolo de inspección reglamentaria de carga de fuego en naves de crianza en barrica y almacenamiento de botellas paletizadas sobre madera y cartón.",
+        requisitos: [
+          "Cálculo actualizado de densidad de carga de fuego ponderada (Qs).",
+          "Mantenimiento al día de extintores, BIEs y detectores automáticos con empresa mantenedora autorizada.",
+          "Acta favorable de inspección reglamentaria por Organismo de Control Autorizado (OCA) cada 2, 3 o 5 años."
+        ],
+        sanciones: "Denegación de licencias municipales y posible rechazo de cobertura por compañías aseguradoras en caso de siniestro.",
+        enlace: "https://www.boe.es/buscar/act.php?id=BOE-A-2004-20730"
+      }
+    ];
+
+    let currentRadarTopic = 'todos';
+
+    function renderRadarResults(topic = 'todos', filterText = '') {
+      const container = document.getElementById('radar-results-container');
+      if (!container) return;
+
+      currentRadarTopic = topic;
+      let items = [...RADAR_DISPOSICIONES_DATABASE];
+
+      // Filtrar por tema
+      if (topic !== 'todos') {
+        items = items.filter(d => d.topic === topic);
+      }
+
+      // Filtrar por texto si existe
+      if (filterText && filterText.trim() !== '') {
+        const q = filterText.toLowerCase().trim();
+        items = items.filter(d => 
+          d.titulo.toLowerCase().includes(q) ||
+          d.codigo.toLowerCase().includes(q) ||
+          d.resumen.toLowerCase().includes(q) ||
+          d.organismo.toLowerCase().includes(q) ||
+          d.ambito.toLowerCase().includes(q)
+        );
+      }
+
+      const allMerged = getMergedNormativas();
+      const existingIds = new Set(allMerged.map(n => n.id));
+
+      if (items.length === 0) {
+        container.innerHTML = `
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-10 text-center">
+            <svg class="w-12 h-12 text-slate-600 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <h4 class="text-slate-300 font-semibold text-sm">No se encontraron disposiciones en este escaneo</h4>
+            <p class="text-xs text-slate-500 mt-1">Intenta con otro término o selecciona 'Todos los Ámbitos'.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = items.map((item, index) => {
+        const isAlreadyAdded = existingIds.has(item.id);
+
+        return `
+          <div class="bg-slate-900 border border-slate-800 hover:border-cyan-700/60 rounded-2xl p-5 transition shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div class="space-y-1.5 max-w-3xl">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-cyan-950 text-cyan-300 border border-cyan-700/50">
+                  ${item.fecha}
+                </span>
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-slate-800 text-slate-300">
+                  ${item.organismo}
+                </span>
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-wine-950 text-wine-300 border border-wine-800/40">
+                  ${item.ambito}
+                </span>
+              </div>
+              <h3 class="font-serif font-bold text-base text-white hover:text-cyan-300 transition">
+                ${item.titulo}
+              </h3>
+              <p class="text-xs text-slate-400 font-mono">
+                ${item.codigo}
+              </p>
+              <p class="text-xs text-slate-300 leading-relaxed pt-1">
+                ${item.resumen}
+              </p>
+              <div class="pt-2 text-[11px] text-cyan-400 font-medium flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                <span>Acción para la bodega: ${item.requisitos ? item.requisitos[0] : 'Revisión y adaptación de protocolos'}</span>
+              </div>
+            </div>
+
+            <div class="flex flex-row md:flex-col items-center md:items-end gap-2.5 flex-shrink-0 w-full md:w-auto pt-3 md:pt-0 border-t md:border-t-0 border-slate-800">
+              <a href="${item.enlace}" target="_blank" rel="noopener noreferrer" class="flex-1 md:flex-none text-center px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold transition flex items-center justify-center gap-1">
+                <span>Ver en BOE / Web</span>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
+              </a>
+
+              ${isAlreadyAdded ? `
+                <div class="flex items-center gap-1.5 w-full md:w-auto">
+                  <span class="flex-1 md:flex-none px-3 py-1.5 rounded-lg bg-emerald-950/70 border border-emerald-700/60 text-emerald-300 text-xs font-semibold flex items-center justify-center gap-1">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    <span>En tu Catálogo</span>
+                  </span>
+                  <button onclick="removeCustomNorma('${item.id}')" title="Retirar de mi catálogo" class="p-1.5 rounded-lg bg-rose-950/60 hover:bg-rose-900 border border-rose-800/60 text-rose-300 hover:text-white transition">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                    </svg>
+                  </button>
+                </div>
+              ` : `
+                <button onclick="addRadarItemToCatalogo('${item.id}')" class="flex-1 md:flex-none px-3 py-1.5 rounded-lg bg-cyan-700 hover:bg-cyan-600 text-white text-xs font-semibold shadow-md transition flex items-center justify-center gap-1 border border-cyan-500/50">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                  </svg>
+                  <span>Añadir a mi Catálogo</span>
+                </button>
+              `}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function executeRadarSearch() {
+      const q = document.getElementById('radar-search-input')?.value || '';
+      renderRadarResults(currentRadarTopic, q);
+    }
+
+    function filterRadarByTopic(topic) {
+      document.querySelectorAll('.radar-topic-btn').forEach(btn => {
+        btn.classList.remove('active', 'bg-cyan-800', 'text-white', 'border-cyan-600');
+        btn.classList.add('bg-slate-950', 'text-slate-300', 'border-slate-800');
+      });
+      const targetBtn = document.getElementById(`radar-topic-${topic}`);
+      if (targetBtn) {
+        targetBtn.classList.add('active', 'bg-cyan-800', 'text-white', 'border-cyan-600');
+        targetBtn.classList.remove('bg-slate-950', 'text-slate-300', 'border-slate-800');
+      }
+
+      const q = document.getElementById('radar-search-input')?.value || '';
+      renderRadarResults(topic, q);
+    }
+
+    function addRadarItemToCatalogo(normaId) {
+      const item = RADAR_DISPOSICIONES_DATABASE.find(d => d.id === normaId);
+      if (!item) return;
+
+      let custom = [];
+      try {
+        const saved = localStorage.getItem('bodega_custom_normas_v1');
+        if (saved) custom = JSON.parse(saved);
+      } catch(e) {}
+
+      // Evitar duplicados
+      if (!custom.some(n => n.id === item.id)) {
+        const newEntry = {
+          id: item.id,
+          titulo: item.titulo,
+          codigo: item.codigo,
+          fecha: item.fecha,
+          nivel: item.nivel || "Estatal",
+          region: item.region || "España",
+          do: item.do || "Todas",
+          ambito: item.ambito,
+          is_news: true,
+          novedad_badge: "Radar BOE",
+          resumen: item.resumen,
+          requisitos: item.requisitos || ["Revisión documental del expediente y adaptación del protocolo operativo."],
+          sanciones: item.sanciones || "Infracción según la ley sectorial aplicable.",
+          enlace: item.enlace
+        };
+        custom.push(newEntry);
+        localStorage.setItem('bodega_custom_normas_v1', JSON.stringify(custom));
+      }
+
+      // Refrescar vistas en tiempo real
+      renderUrgentNewsBanner();
+      renderCatalogo();
+      renderDenominacionesGrid();
+      renderRadarResults(currentRadarTopic, document.getElementById('radar-search-input')?.value || '');
+      
+      alert(`¡La disposición "${item.titulo}" ha sido incorporada con éxito a tu catálogo y ordenada cronológicamente!`);
+    }
+
+    function removeCustomNorma(normaId) {
+      if (!confirm("¿Deseas retirar esta norma de tu catálogo personalizado?")) return;
+      let custom = [];
+      try {
+        const saved = localStorage.getItem('bodega_custom_normas_v1');
+        if (saved) custom = JSON.parse(saved);
+      } catch(e) {}
+      custom = custom.filter(n => n.id !== normaId);
+      localStorage.setItem('bodega_custom_normas_v1', JSON.stringify(custom));
+      
+      renderUrgentNewsBanner();
+      renderCatalogo();
+      renderDenominacionesGrid();
+      if (document.getElementById('tab-radar') && !document.getElementById('tab-radar').classList.contains('hidden')) {
+        renderRadarResults(currentRadarTopic, document.getElementById('radar-search-input')?.value || '');
+      }
+      closeModal();
+    }
+
+    /**
+     * MODAL DE REGISTRO MANUAL DE NORMATIVAS / CIRCULARES
+     */
+    function openNewNormaModal() {
+      const modal = document.getElementById('new-norma-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+      }
+    }
+
+    function closeNewNormaModal() {
+      const modal = document.getElementById('new-norma-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+
+    function handleNewNormaSubmit(e) {
+      e.preventDefault();
+      
+      const titulo = document.getElementById('fn-titulo').value.trim();
+      const codigo = document.getElementById('fn-codigo').value.trim();
+      const fecha = document.getElementById('fn-fecha').value;
+      const ambito = document.getElementById('fn-ambito').value;
+      const nivel = document.getElementById('fn-nivel').value;
+      const region = document.getElementById('fn-region').value;
+      const doValue = document.getElementById('fn-do').value;
+      const isNews = document.getElementById('fn-isnews').checked;
+      const resumen = document.getElementById('fn-resumen').value.trim();
+      const reqText = document.getElementById('fn-requisitos').value.trim();
+      const sanciones = document.getElementById('fn-sanciones').value.trim() || "Régimen sancionador de la normativa sectorial de aplicación.";
+      const enlace = document.getElementById('fn-enlace').value.trim() || "https://www.boe.es/";
+
+      const requisitos = reqText.split('\n').map(r => r.trim()).filter(r => r.length > 0);
+
+      const newId = `CUSTOM-${Date.now()}`;
+      const newNorma = {
+        id: newId,
+        titulo: titulo,
+        codigo: codigo,
+        fecha: fecha,
+        nivel: nivel,
+        region: region,
+        do: doValue,
+        ambito: ambito,
+        is_news: isNews,
+        novedad_badge: isNews ? "Nueva Incorporación" : "",
+        resumen: resumen,
+        requisitos: requisitos.length > 0 ? requisitos : ["Cumplimiento operativo del pliego o directriz técnica."],
+        sanciones: sanciones,
+        enlace: enlace
+      };
+
+      let custom = [];
+      try {
+        const saved = localStorage.getItem('bodega_custom_normas_v1');
+        if (saved) custom = JSON.parse(saved);
+      } catch(err) {}
+
+      custom.push(newNorma);
+      localStorage.setItem('bodega_custom_normas_v1', JSON.stringify(custom));
+
+      // Limpiar formulario y cerrar
+      document.getElementById('form-new-norma').reset();
+      closeNewNormaModal();
+
+      // Refrescar dashboard
+      renderUrgentNewsBanner();
+      renderCatalogo();
+      renderDenominacionesGrid();
+      if (document.getElementById('tab-radar').classList.contains('hidden') === false) {
+        renderRadarResults(currentRadarTopic);
+      }
+
+      alert(`Normativa "${titulo}" incorporada al catálogo exitosamente.`);
+    }
+
+    /**
+     * EXPORTAR CATÁLOGO COMPLETO A ARCHIVO JSON
+     */
+    function exportCatalogoJSON() {
+      const allNormas = getMergedNormativas();
+      const jsonStr = JSON.stringify(allNormas, null, 2);
+      const blob = new Blob([jsonStr], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `catalogo_normativas_bodega_${new Date().toISOString().slice(0,10)}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+  </script>
+
+</body>
+</html>
