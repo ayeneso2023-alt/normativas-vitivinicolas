@@ -18,12 +18,12 @@ const NORMATIVAS_DATA = [
       "Custodia y remisión de certificados de partida para la solicitud de tiraje ante el Consejo Regulador del Cava."
     ],
     "sanciones": "Pérdida inmediata de la calificación como Guarda Superior y descalificación de los lotes a Cava de Guarda genérico o vino espumoso sin DO.",
-    "enlace": "https://www.cava.wine/es/profesionales/normativa/"
+    "enlace": "https://www.mapa.gob.es/es/alimentacion/temas/calidad-diferenciada/dop-igp/detalle/vinos/cava"
   },
   {
     "id": "NOR-2024-04",
     "titulo": "Reglamento Europeo Envases (PPWR)",
-    "codigo": "Reglamento (UE) 2024/1860 / Directiva Envases",
+    "codigo": "Reglamento (UE) 2025/40 del Parlamento Europeo y del Consejo",
     "fecha": "2024-11-20",
     "nivel": "Unión Europea",
     "region": "Unión Europea",
@@ -39,12 +39,12 @@ const NORMATIVAS_DATA = [
       "Auditoría del contenido de material reciclado en embalajes secundarios y terciarios (cajas de cartón corrugado y film paletizado estirable)."
     ],
     "sanciones": "Infracciones graves medioambientales, bloqueo aduanero y restricciones a la comercialización en los Estados miembros de la UE.",
-    "enlace": "https://eur-lex.europa.eu/eli/reg/2024/1860/oj"
+    "enlace": "https://eur-lex.europa.eu/eli/reg/2025/40/oj"
   },
   {
     "id": "NOR-2024-03",
     "titulo": "Actualización de Protocolos de PRL en Espacios Confinados y Riesgo de Asfixia por CO2 ('Tufo')",
-    "codigo": "Real Decreto 145/2024 y Criterio Técnico INSST 108/2024",
+    "codigo": "Real Decreto 39/1997 (Art. 22 bis) y Directrices INSST",
     "fecha": "2024-06-18",
     "nivel": "Estatal",
     "region": "España",
@@ -61,7 +61,7 @@ const NORMATIVAS_DATA = [
       "Formación teórico-práctica presencial y homologada de todo el personal de bodega en riesgo de asfixia y maniobras de rescate vertical."
     ],
     "sanciones": "Paralización cautelar inmediata de la bodega por la Inspección de Trabajo, sanciones de hasta 983.736 € y responsabilidad penal de administradores por delito contra la salud de los trabajadores.",
-    "enlace": "https://www.insst.es/el-instituto-al-dia/ct-108-2024-criterio-tecnico-de-la-itss-sobre-trabajos-en-espacios-confinados"
+    "enlace": "https://www.insst.es/materias/riesgos/seguridad-en-el-trabajo/espacios-confinados"
   },
   {
     "id": "NOR-2024-05",
@@ -83,7 +83,7 @@ const NORMATIVAS_DATA = [
       "Formación y concienciación del personal de bodega y almacén en prácticas de manipulación para evitar roturas de botellas y deterioros."
     ],
     "sanciones": "Infracciones graves sancionadas con multas de 2.001 € a 60.000 € por no disponer de Plan de Prevención de Desperdicio, y muy graves de hasta 500.000 € en caso de reincidencia o discriminación en la entrega de excedentes.",
-    "enlace": "https://www.mapa.gob.es/es/alimentacion/temas/desperdicio/proyecto-ley-prevencion-perdidas-desperdicio-alimentario.html"
+    "enlace": "https://www.mapa.gob.es/es/alimentacion/temas/desperdicio/"
   },
   {
     "id": "NOR-2024-02",
@@ -104,7 +104,7 @@ const NORMATIVAS_DATA = [
       "Notificación telemática inmediata de pesajes de vendimia, trasiegos de crianza y movimientos en la plataforma telemática del Consejo Regulador."
     ],
     "sanciones": "Suspensión del derecho al uso de precintas de garantía del Consejo Regulador y descalificación cautelar de todas las partidas de la bodega.",
-    "enlace": "https://www.riojawine.com/normativa/"
+    "enlace": "https://www.mapa.gob.es/es/alimentacion/temas/calidad-diferenciada/dop-igp/detalle/vinos/rioja"
   },
   {
     "id": "NOR-2024-01",
@@ -167,7 +167,7 @@ const NORMATIVAS_DATA = [
       "Cumplimiento improrrogable del plazo legal de pago: máximo 30 días naturales desde la entrega si es uva fresca/mosto o 60 días para vino a granel."
     ],
     "sanciones": "Infracciones graves sancionadas por la AICA con multas desde 3.001 € hasta 100.000 € por contrato no registrado o impago en plazo, acumulativas por agricultor.",
-    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-20704"
+    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-20630"
   },
   {
     "id": "NOR-2023-05B",
@@ -251,7 +251,7 @@ const NORMATIVAS_DATA = [
       "Superación preceptiva de comités de cata y análisis cualitativo lote a lote previo a la entrega de tirillas numeradas."
     ],
     "sanciones": "Descalificación de la partida a vino de mesa sin DO y pérdida de la autorización de uso de las menciones de villa y paraje.",
-    "enlace": "https://www.doqpriorat.org/es/normativa/"
+    "enlace": "https://www.mapa.gob.es/es/alimentacion/temas/calidad-diferenciada/dop-igp/detalle/vinos/priorat"
   },
   {
     "id": "NOR-2023-02",
@@ -315,7 +315,7 @@ const NORMATIVAS_DATA = [
       "Elaboración, crianza y embotellado íntegro en bodegas inscritas situadas en el ámbito territorial delimitado de la Serranía de Ronda."
     ],
     "sanciones": "Inhabilitación de la mención 'Serranía de Ronda' en el etiquetado y descalificación de los lotes.",
-    "enlace": "https://sierrasdemalaga.net/normativa/"
+    "enlace": "https://www.mapa.gob.es/es/alimentacion/temas/calidad-diferenciada/dop-igp/detalle/vinos/sierras-malaga"
   },
   {
     "id": "NOR-2023-01",
@@ -357,7 +357,7 @@ const NORMATIVAS_DATA = [
       "Registro riguroso de mermas y salidas de orujos y lías en el sistema SILICIE de la AEAT e INFOVI del MAPA."
     ],
     "sanciones": "Infracciones graves según la Ley de la Viña y del Vino con multas de hasta 30.000 € y pérdida de derechos a ayudas de la PAC.",
-    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2022-17489"
+    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2022-17475"
   },
   {
     "id": "NOR-2022-04B",
@@ -399,7 +399,7 @@ const NORMATIVAS_DATA = [
       "Toma de muestras analíticas periódicas de Legionella en laboratorio acreditado y revisión estricta de boquillas humectadoras de salas de barricas."
     ],
     "sanciones": "Multas sanitarias de 3.001 € a 600.000 € y clausura cautelar inmediata del sistema de refrigeración.",
-    "enlace": "https://www.boe.es/buscar/doc.php?id=BOE-A-2022-10357"
+    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2022-10297"
   },
   {
     "id": "NOR-2022-03",
@@ -420,7 +420,7 @@ const NORMATIVAS_DATA = [
       "Inscripción obligatoria de viñedos y bodegas en el registro oficial del Consejo Regulador de la DO Empordà."
     ],
     "sanciones": "Descalificación de la cosecha o partida elaborada y pérdida del precinto de garantía de origen.",
-    "enlace": "https://www.doemporda.cat/es/normativa.html"
+    "enlace": "https://www.mapa.gob.es/es/alimentacion/temas/calidad-diferenciada/dop-igp/detalle/vinos/emporda"
   },
   {
     "id": "NOR-2022-02B",
@@ -462,7 +462,7 @@ const NORMATIVAS_DATA = [
       "Priorización de uso de energía eléctrica de origen 100% renovable certificada."
     ],
     "sanciones": "Multas coercitivas medioambientales de hasta 200.000 € impuestas por el Gobierno de Navarra.",
-    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2022-6804"
+    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2022-6402"
   },
   {
     "id": "NOR-2022-02",
@@ -483,7 +483,7 @@ const NORMATIVAS_DATA = [
       "Implantación y control de contraetiquetas numeradas con holograma de seguridad expedidas por el Consejo Regulador."
     ],
     "sanciones": "Infracción grave según la Ley de la Viña y del Vino de Castilla y León, descalificación de la partida y pérdida del derecho al uso de la DO.",
-    "enlace": "https://www.riberadelduero.es/el-consejo/normativa"
+    "enlace": "https://www.mapa.gob.es/es/alimentacion/temas/calidad-diferenciada/dop-igp/detalle/vinos/ribera-del-duero"
   },
   {
     "id": "NOR-2022-01",
@@ -504,7 +504,7 @@ const NORMATIVAS_DATA = [
       "Declaración de vendimia telemática antes del 10 de diciembre de cada campaña en el portal del Consejo Regulador."
     ],
     "sanciones": "Descalificación del lote de rosado y prohibición expresa de colocación del marchamo oficial de la DO Navarra.",
-    "enlace": "https://navarrawine.com/normativa/"
+    "enlace": "https://www.mapa.gob.es/es/alimentacion/temas/calidad-diferenciada/dop-igp/detalle/vinos/navarra"
   },
   {
     "id": "NOR-2021-03B",
@@ -525,7 +525,7 @@ const NORMATIVAS_DATA = [
       "Llevar el libro de control de residuos industriales no peligrosos y peligrosos de la Comunidad Autónoma del País Vasco."
     ],
     "sanciones": "Sanciones medioambientales de hasta 200.000 € y paralización cautelar de actividades contaminantes.",
-    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2022-1114"
+    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2022-951"
   },
   {
     "id": "NOR-2021-03",
@@ -546,7 +546,7 @@ const NORMATIVAS_DATA = [
       "Custodia de contratos, anexos y albaranes de liquidación durante al menos 5 años a disposición de la AICA."
     ],
     "sanciones": "Sanciones económicas de hasta 1.000.000 € e inclusión pública de la empresa infractora en el registro de sanciones de la AICA.",
-    "enlace": "https://www.boe.es/eli/es/l/2021/12/14/16"
+    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-20630"
   },
   {
     "id": "NOR-2021-02",
@@ -567,7 +567,7 @@ const NORMATIVAS_DATA = [
       "Justificación documental y contable estricta de pagos mediante transferencias bancarias trazables."
     ],
     "sanciones": "Reintegro total o parcial de las ayudas percibidas más intereses de demora y bloqueo en convocatorias comunitarias.",
-    "enlace": "https://eur-lex.europa.eu/eli/reg/2021/2115/oj"
+    "enlace": "https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:32021R2115"
   },
   {
     "id": "NOR-2021-01",
@@ -588,7 +588,7 @@ const NORMATIVAS_DATA = [
       "Trazabilidad documental en los registros de bodega y comunicación anual al Servicio de Agricultura del Gobierno Foral de Navarra."
     ],
     "sanciones": "Pérdida de la autorización para utilizar la mención protegida '3 Riberas' en el etiquetado.",
-    "enlace": "https://bon.navarra.es/es/anuncio/-/texto/2021/118/4"
+    "enlace": "https://www.mapa.gob.es/es/alimentacion/temas/calidad-diferenciada/dop-igp/detalle/vinos/3-riberas"
   },
   {
     "id": "NOR-2020-02B",
@@ -630,7 +630,7 @@ const NORMATIVAS_DATA = [
       "Aprobación técnica previa del diseño de etiquetas comerciales antes de su salida al mercado por parte del Consejo Regulador."
     ],
     "sanciones": "Denegación del visado de etiquetas y retirada cautelar de precintas numeradas.",
-    "enlace": "https://www.docatalunya.org/es/normativa/"
+    "enlace": "https://www.mapa.gob.es/es/alimentacion/temas/calidad-diferenciada/dop-igp/detalle/vinos/cataluna"
   },
   {
     "id": "NOR-2020-01-CAT",
@@ -652,7 +652,7 @@ const NORMATIVAS_DATA = [
       "Incorporación de buenas prácticas en la manipulación y transporte para evitar daños mecánicos en el envasado."
     ],
     "sanciones": "Régimen sancionador de la Generalitat de Catalunya con multas de hasta 45.000 € por falta de plan de prevención o destrucción injustificada de alimentos aptos.",
-    "enlace": "https://portaldogc.gencat.cat/utilsEADOP/PDF/8084/1785501.pdf"
+    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2020-3955"
   },
   {
     "id": "NOR-2020-01",
@@ -673,7 +673,7 @@ const NORMATIVAS_DATA = [
       "Integración informática del ERP de bodega mediante Web Services con la AEAT o uso del formulario oficial de la sede electrónica."
     ],
     "sanciones": "Multas tributarias formales de 200 € por asiento erróneo o fuera de plazo (mínimo 1.000 € por trimestre) y posible apertura de inspección aduanera.",
-    "enlace": "https://sede.agenciatributaria.gob.es/Sede/procedimientoini/DZ01.shtml"
+    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2019-14247"
   },
   {
     "id": "NOR-2019-02",
@@ -721,7 +721,7 @@ const NORMATIVAS_DATA = [
   {
     "id": "NOR-2018-02",
     "titulo": "INFOVI: Declaraciones Mensuales Obligatorias de Existencias y Movimientos Vitivinícolas",
-    "codigo": "Real Decreto 1303/2018 y Real Decreto 736/2016",
+    "codigo": "Real Decreto 739/2015 y Real Decreto 1303/2018",
     "fecha": "2018-10-22",
     "nivel": "Estatal",
     "region": "España",
@@ -737,7 +737,7 @@ const NORMATIVAS_DATA = [
       "Coincidencia exacta y trazable de volúmenes con las declaraciones de asientos de SILICIE ante la Agencia Tributaria."
     ],
     "sanciones": "Infracción grave según la Ley 24/2003 de la Viña y del Vino con multas de 2.001 € a 30.000 € y pérdida de subvenciones públicas.",
-    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2018-14526"
+    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2015-8647"
   },
   {
     "id": "NOR-2018-01",
@@ -779,7 +779,7 @@ const NORMATIVAS_DATA = [
       "Cumplimiento de los Valores Límite de Emisión (VLE) autorizados."
     ],
     "sanciones": "Infracciones de la Ley 34/2007 de Calidad del Aire con sanciones de hasta 200.000 € y revocación de la autorización ambiental.",
-    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2017-15340"
+    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2017-15368"
   },
   {
     "id": "NOR-2017-02",
@@ -821,7 +821,7 @@ const NORMATIVAS_DATA = [
       "Certificado de mantenimiento firmado y registrado en el Libro de Mantenimiento de Incendios de la instalación."
     ],
     "sanciones": "Responsabilidad civil directa y rechazo de cobertura por parte de las compañías aseguradoras en caso de siniestro.",
-    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2017-6691"
+    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2017-6606"
   },
   {
     "id": "NOR-2017-02B",
@@ -842,7 +842,7 @@ const NORMATIVAS_DATA = [
       "Declaración periódica de producción y destino de residuos de vinificación."
     ],
     "sanciones": "Multas de hasta 150.000 € e inhabilitación temporal de instalaciones no autorizadas.",
-    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2017-5784"
+    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2017-5831"
   },
   {
     "id": "NOR-2015-01B",
@@ -863,7 +863,7 @@ const NORMATIVAS_DATA = [
       "Mantenimiento en regla del libro de registro ambiental de la instalación industrial."
     ],
     "sanciones": "Clausura provisional de la bodega y multas de hasta 200.000 € por carecer de licencia ambiental favorable.",
-    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2016-1052"
+    "enlace": "https://www.boe.es/buscar/act.php?id=BOCL-h-2015-90590"
   },
   {
     "id": "NOR-2015-02",
@@ -904,7 +904,7 @@ const NORMATIVAS_DATA = [
       "Procedimientos de operación segura para la purga y despresurización de líneas antes de tareas de limpieza o mantenimiento."
     ],
     "sanciones": "Precintado inmediato del equipo presurizado por los inspectores de Industria y multas de hasta 90.000 €.",
-    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2015-8167"
+    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2015-9527"
   },
   {
     "id": "NOR-2014-02",
@@ -925,7 +925,7 @@ const NORMATIVAS_DATA = [
       "Inscripción en el registro del MITECO y derecho de uso del sello oficial en botellas y material corporativo."
     ],
     "sanciones": "Retirada del sello ministerial y pérdida de puntuación en licitaciones de exportación y ayudas públicas.",
-    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-3371"
+    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2014-3379"
   },
   {
     "id": "NOR-2014-01",
@@ -946,7 +946,7 @@ const NORMATIVAS_DATA = [
       "Mantenimiento de libro de control de barricas identificando capacidad, origen de la madera y fechas de trasiego."
     ],
     "sanciones": "Infracción grave por fraude al consumidor en etiquetado, decomiso de botellas y sanciones de hasta 50.000 €.",
-    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2011-16474"
+    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2011-17174"
   },
   {
     "id": "NOR-2013-02",
@@ -967,7 +967,7 @@ const NORMATIVAS_DATA = [
       "Prohibición taxativa de sobreprensado de la uva superando los rendimientos de extracción autorizados."
     ],
     "sanciones": "Arranque forzoso a costa del infractor de viñedos no autorizados y multas de hasta 6.000 € por hectárea arrancada.",
-    "enlace": "https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=celex:32013R1308"
+    "enlace": "https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:32013R1308"
   },
   {
     "id": "NOR-2013-01",
@@ -1010,7 +1010,7 @@ const NORMATIVAS_DATA = [
       "Respeto escrupuloso a bandas de amortiguación de al menos 5 metros respecto a masas de agua superficial y pozos de captación."
     ],
     "sanciones": "Sanciones graves de hasta 120.000 € según la Ley 43/2002 de Sanidad Vegetal, inmovilización de uva con residuos plaguicidas y pérdida de ayudas PAC.",
-    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2012-11607"
+    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2012-11605"
   },
   {
     "id": "NOR-2011-02",
@@ -1031,7 +1031,7 @@ const NORMATIVAS_DATA = [
       "Indicación preceptiva de la graduación alcohólica volumétrica con el símbolo '% vol.'."
     ],
     "sanciones": "Inmovilización cautelar de la mercancía por riesgo para consumidores alérgicos y sanciones de hasta 60.000 €.",
-    "enlace": "https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=celex:32011R1169"
+    "enlace": "https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:32011R1169"
   },
   {
     "id": "NOR-2011-01",
@@ -1052,7 +1052,7 @@ const NORMATIVAS_DATA = [
       "Comunicación inmediata de cualquier modificación de instalaciones, ampliación de líneas o cambio de titularidad."
     ],
     "sanciones": "Clausura cautelar del almacén o bodega por actividad clandestina y multas sanitarias de hasta 60.000 €.",
-    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2011-4328"
+    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2011-4293"
   },
   {
     "id": "NOR-2009-01",
@@ -1073,7 +1073,7 @@ const NORMATIVAS_DATA = [
       "Inspección ambiental periódica por Entidad Colaboradora de la Administración Ambiental (ECA) cada 2 o 4 años."
     ],
     "sanciones": "Precinto y clausura de la actividad por la Generalitat y multas de hasta 150.000 €.",
-    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2010-441"
+    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2010-563"
   },
   {
     "id": "NOR-2008-02",
@@ -1157,7 +1157,7 @@ const NORMATIVAS_DATA = [
       "Registro oficial de productores de residuos no peligrosos y peligrosos de la Junta de Andalucía."
     ],
     "sanciones": "Paralización de la vendimia y multas ambientales de hasta 120.000 €.",
-    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2007-14995"
+    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2007-15158"
   },
   {
     "id": "NOR-2007-01",
@@ -1200,7 +1200,7 @@ const NORMATIVAS_DATA = [
       "Embotellado preceptivo en la bodega elaboradora situada dentro de la comarca."
     ],
     "sanciones": "Pérdida de la calificación de bodega de la DOQ Priorat y decomiso de etiquetas.",
-    "enlace": "https://portaldogc.gencat.cat/utilsEADOP/PDF/4670/670001.pdf"
+    "enlace": "https://www.mapa.gob.es/es/alimentacion/temas/calidad-diferenciada/dop-igp/detalle/vinos/priorat"
   },
   {
     "id": "NOR-2006-01",
@@ -1221,7 +1221,7 @@ const NORMATIVAS_DATA = [
       "Manual de instrucciones y mantenimiento en idioma castellano a disposición del personal operativo."
     ],
     "sanciones": "Inmovilización de la máquina por los inspectores de Industria o Trabajo y multas de hasta 100.000 €.",
-    "enlace": "https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=celex:32006L0042"
+    "enlace": "https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:32006L0042"
   },
   {
     "id": "NOR-2005-01",
@@ -1242,7 +1242,7 @@ const NORMATIVAS_DATA = [
       "Plan de contingencia documentado con material absorbente específico para derrames accidentales."
     ],
     "sanciones": "Obligación forzosa de descontaminación de suelos a cargo de la bodega con costes millonarios y multas de hasta 300.000 €.",
-    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2005-894"
+    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2005-895"
   },
   {
     "id": "NOR-2004-04",
@@ -1264,7 +1264,7 @@ const NORMATIVAS_DATA = [
       "Inspección periódica reglamentaria obligatoria por Organismo de Control Autorizado (OCA) cada 2 años (Riesgo Alto), 3 años (Medio) o 5 años (Bajo)."
     ],
     "sanciones": "Orden de clausura temporal de las naves de almacenamiento por Industria y denegación de licencias de actividad.",
-    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2004-20730"
+    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2004-21216"
   },
   {
     "id": "NOR-2004-03",
@@ -1285,7 +1285,7 @@ const NORMATIVAS_DATA = [
       "Trazabilidad de todos los lotes de tapones de corcho y materiales de envasado en contacto con el vino."
     ],
     "sanciones": "Retirada del mercado del producto envasado, inmovilización de depósitos y sanciones de hasta 60.000 €.",
-    "enlace": "https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=celex:32004R1935"
+    "enlace": "https://eur-lex.europa.eu/eli/reg/2004/1935/oj"
   },
   {
     "id": "NOR-2004-02",
@@ -1306,7 +1306,7 @@ const NORMATIVAS_DATA = [
       "Control riguroso de temperaturas de rima, degüelle y dosaje de licor de expedición con declaración de tirajes ante el Consejo Regulador."
     ],
     "sanciones": "Pérdida de la mención 'Cava' y degradación de los lotes a vino espumoso común sin origen protegido.",
-    "enlace": "https://www.cava.wine/es/profesionales/normativa/"
+    "enlace": "https://www.mapa.gob.es/es/alimentacion/temas/calidad-diferenciada/dop-igp/detalle/vinos/cava"
   },
   {
     "id": "NOR-2004-01",
@@ -1327,7 +1327,7 @@ const NORMATIVAS_DATA = [
       "Control estricto de la línea de llenado: inspección electrónica de botellas vacías antes del llenado y control de presión de taponado."
     ],
     "sanciones": "Infracciones higiénico-sanitarias graves, inmovilización preventiva de lotes y sanciones de hasta 600.000 €.",
-    "enlace": "https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=celex:32004R0852"
+    "enlace": "https://eur-lex.europa.eu/eli/reg/2004/852/oj"
   },
   {
     "id": "NOR-2003-03",
@@ -1390,7 +1390,7 @@ const NORMATIVAS_DATA = [
       "Puesta a tierra electrostática obligatoria de cisternas, tuberías y bombas antes de iniciar trasiegos de alcohol o orujos fermentados."
     ],
     "sanciones": "Infracciones muy graves de prevención de riesgos con sanciones de hasta 983.736 € por la Inspección de Trabajo.",
-    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2003-12053"
+    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2003-12099"
   },
   {
     "id": "NOR-2002-01B",
@@ -1432,7 +1432,7 @@ const NORMATIVAS_DATA = [
       "Coordinación técnica con los respectivos Consejos Reguladores (Empordà, Catalunya, Priorat y Cava)."
     ],
     "sanciones": "Multas autonómicas de hasta 150.000 € y revocación de la habilitación para elaborar en territorio de Cataluña.",
-    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-14022"
+    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-14986"
   },
   {
     "id": "NOR-2002-01",
@@ -1453,7 +1453,7 @@ const NORMATIVAS_DATA = [
       "Comunicación urgente e inmediata a las autoridades sanitarias autonómicas y a la AESAN ante cualquier sospecha de intoxicación o riesgo alimentario."
     ],
     "sanciones": "Responsabilidad penal por delito contra la salud pública, inmovilización cautelar de existencias e indemnizaciones por responsabilidad civil.",
-    "enlace": "https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=celex:32002R0178"
+    "enlace": "https://eur-lex.europa.eu/eli/reg/2002/178/oj"
   },
   {
     "id": "NOR-2001-01",
@@ -1536,7 +1536,7 @@ const NORMATIVAS_DATA = [
       "Vigilancia específica de la salud visual con reconocimientos oftalmológicos anuales para el personal de oficina."
     ],
     "sanciones": "Requerimientos de la Inspección de Trabajo y sanciones por infracción leve o grave de la LPRL.",
-    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-1997-8668"
+    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-1997-8671"
   },
   {
     "id": "NOR-1997-02",
@@ -1599,7 +1599,7 @@ const NORMATIVAS_DATA = [
       "Consulta y participación de los Delegados de Prevención y constitución del Comité de Seguridad y Salud en centros de más de 50 trabajadores."
     ],
     "sanciones": "Sanciones administrativas de hasta 983.736 €, recargo de prestaciones de la Seguridad Social del 30% al 50% por accidente laboral y responsabilidad penal de directivos.",
-    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-1995-24290"
+    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-1995-24292"
   },
   {
     "id": "NOR-1995-01",
@@ -1620,7 +1620,7 @@ const NORMATIVAS_DATA = [
       "Control y justificación analítica de mermas reglamentarias de proceso y pérdidas por roturas en almacén."
     ],
     "sanciones": "Infracciones de contrabando y fraude tributario, liquidación del impuesto y revocación inmediata del CAE de la bodega.",
-    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-1995-17799"
+    "enlace": "https://www.boe.es/buscar/act.php?id=BOE-A-1995-18266"
   },
   {
     "id": "NOR-1924-01",
