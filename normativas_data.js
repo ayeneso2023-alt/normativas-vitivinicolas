@@ -1,7 +1,7 @@
 const NORMATIVAS_DATA = [
   {
     "id": "NOR-2025-01",
-    "titulo": "Exigencia de Producción 100% Ecológica para Cavas de Guarda Superior",
+    "titulo": "Cava Guarda Superior: 100% Ecológico",
     "codigo": "Pliego de Condiciones DO Cava (Resolución D.G. Industria Alimentaria / CRDO Cava)",
     "fecha": "2025-08-01",
     "nivel": "Denominación de Origen",
@@ -9,7 +9,7 @@ const NORMATIVAS_DATA = [
     "do": "DO Cava",
     "ambito": "Vitivinícola y Etiquetado",
     "is_news": true,
-    "novedad_badge": "Obligatorio Cosecha 2025",
+    "novedad_badge": "Cosecha 2025",
     "resumen": "A partir de la vendimia 2025, el 100% de la uva y vino base destinados a la elaboración de Cava de Guarda Superior (categorías Reserva -mínimo 18 meses-, Gran Reserva -mínimo 30 meses- y Paraje Calificado -mínimo 36 meses-) debe proceder obligatoriamente de viñedos ecológicos certificados.",
     "requisitos": [
       "Certificación ecológica en vigor expedida por el organismo de control competente (CCPAE en Cataluña, CPAEN en Navarra, CAECyL en CyL, etc.).",
@@ -22,15 +22,15 @@ const NORMATIVAS_DATA = [
   },
   {
     "id": "NOR-2024-04",
-    "titulo": "Reglamento Europeo de Envases y Residuos de Envases (PPWR)",
-    "codigo": "Reglamento (UE) 2024/1860 del Parlamento Europeo y del Consejo",
+    "titulo": "Reglamento Europeo Envases (PPWR)",
+    "codigo": "Reglamento (UE) 2024/1860 / Directiva Envases",
     "fecha": "2024-11-20",
     "nivel": "Unión Europea",
     "region": "Unión Europea",
     "do": "Todas",
     "ambito": "Medio Ambiente y Aguas",
     "is_news": true,
-    "novedad_badge": "Nueva Directriz UE",
+    "novedad_badge": "Directiva UE",
     "resumen": "Nuevo marco comunitario que sustituye a la Directiva 94/62/CE. Establece cuotas vinculantes de reutilización de botellas, reducción drástica del peso de envases de vidrio, prohibición de sobreembalajes superfluos y armonización de pictogramas de reciclabilidad en toda la Unión Europea.",
     "requisitos": [
       "Ecodiseño de botellas: aligeramiento del gramaje de vidrio en botellas de vino tranquilo y espumoso para reducir la huella de carbono.",

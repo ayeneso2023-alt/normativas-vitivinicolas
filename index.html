@@ -159,78 +159,93 @@
     </div>
 
     <!-- ==================== BLOQUE DE NOVEDADES CRÍTICAS DESTACADAS (REQUISITO 1) ==================== -->
-    <section class="bg-slate-900/90 border-b border-wine-900/40 px-4 sm:px-6 lg:px-8 py-2.5">
-      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+    <section class="bg-slate-900/90 border-b border-wine-900/40 px-3 sm:px-6 lg:px-8 py-2">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-2.5">
         
         <!-- Etiqueta de cabecera del Banner -->
         <div class="flex items-center gap-2 flex-shrink-0">
-          <span class="flex h-3 w-3 relative">
+          <span class="flex h-2.5 w-2.5 relative">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
           </span>
-          <span class="text-xs font-bold uppercase tracking-wider text-amber-300 flex items-center gap-1.5">
-            <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <span class="text-xs font-bold uppercase tracking-wider text-amber-300 flex items-center gap-1.5 whitespace-nowrap">
+            <svg class="w-4 h-4 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
             </svg>
-            Novedades y Obligaciones Críticas (2024 - 2026):
+            <span class="hidden lg:inline">Novedades y Obligaciones Críticas (2024-2026):</span>
+            <span class="lg:hidden">Novedades Críticas:</span>
           </span>
         </div>
 
-        <!-- Ticker dinámico desplazable de novedades prioritarias -->
-        <div id="urgent-news-container" class="flex items-center gap-2 overflow-x-auto no-scrollbar w-full py-1">
-          <!-- Las tarjetas de novedades se inyectan dinámicamente mediante JS -->
+        <!-- Ticker dinámico desplazable con flechas de navegación lateral -->
+        <div class="flex items-center gap-1 flex-1 min-w-0 w-full">
+          <button onclick="scrollTicker(-280)" class="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition flex-shrink-0" title="Ver anteriores" aria-label="Ver anteriores">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <div id="urgent-news-container" class="flex items-center gap-2 overflow-x-auto no-scrollbar w-full py-1 scroll-smooth">
+            <!-- Las tarjetas de novedades se inyectan dinámicamente mediante JS -->
+          </div>
+          <button onclick="scrollTicker(280)" class="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition flex-shrink-0" title="Ver siguientes" aria-label="Ver siguientes">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </button>
         </div>
       </div>
     </section>
 
     <!-- Barra de Navegación por Pestañas -->
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-2 overflow-x-auto no-scrollbar pt-2">
-      <div class="flex space-x-1 sm:space-x-2">
+    <nav class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between gap-1 sm:gap-2 overflow-x-auto no-scrollbar pt-2">
+      <div class="flex space-x-1 sm:space-x-1.5 w-full">
         
         <!-- Pestaña 1: Catálogo Normativo Cronológico -->
-        <button onclick="switchTab('tab-catalogo')" id="nav-tab-catalogo" class="tab-btn active flex items-center gap-2 px-4 py-2.5 border-b-2 border-amber-400 text-amber-300 font-semibold text-sm transition whitespace-nowrap">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button onclick="switchTab('tab-catalogo')" id="nav-tab-catalogo" class="tab-btn active flex items-center gap-1.5 px-3 py-2 border-b-2 border-amber-400 text-amber-300 font-semibold text-xs sm:text-sm transition whitespace-nowrap">
+          <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
           </svg>
-          <span>Catálogo Cronológico</span>
-          <span id="badge-tab-total-count" class="ml-1 px-2 py-0.5 text-xs rounded-full bg-slate-800 text-slate-300 font-mono">78</span>
+          <span class="hidden md:inline">Catálogo Cronológico</span>
+          <span class="md:hidden">Catálogo</span>
+          <span id="badge-tab-total-count" class="ml-0.5 px-1.5 py-0.2 text-[11px] rounded-full bg-slate-800 text-slate-300 font-mono">78</span>
         </button>
 
         <!-- Pestaña 2: Denominaciones de Origen e IGPs -->
-        <button onclick="switchTab('tab-denominaciones')" id="nav-tab-denominaciones" class="tab-btn flex items-center gap-2 px-4 py-2.5 border-b-2 border-transparent text-slate-400 hover:text-slate-200 font-semibold text-sm transition whitespace-nowrap">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button onclick="switchTab('tab-denominaciones')" id="nav-tab-denominaciones" class="tab-btn flex items-center gap-1.5 px-3 py-2 border-b-2 border-transparent text-slate-400 hover:text-slate-200 font-semibold text-xs sm:text-sm transition whitespace-nowrap">
+          <svg class="w-4 h-4 flex-shrink-0 text-wine-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
           </svg>
-          <span>Denominaciones de Origen & IGPs</span>
-          <span class="ml-1 px-2 py-0.5 text-xs rounded-full bg-wine-900/60 text-wine-200 font-mono">9 Figuras</span>
+          <span class="hidden lg:inline">Denominaciones & IGPs</span>
+          <span class="lg:hidden">D.O. & IGPs</span>
+          <span class="ml-0.5 px-1.5 py-0.2 text-[11px] rounded-full bg-wine-900/60 text-wine-200 font-mono">9 Figuras</span>
         </button>
 
         <!-- Pestaña 3: Herramienta de Autodiagnóstico / Auditoría (Compliance Check) -->
-        <button onclick="switchTab('tab-auditoria')" id="nav-tab-auditoria" class="tab-btn flex items-center gap-2 px-4 py-2.5 border-b-2 border-transparent text-slate-400 hover:text-slate-200 font-semibold text-sm transition whitespace-nowrap">
-          <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button onclick="switchTab('tab-auditoria')" id="nav-tab-auditoria" class="tab-btn flex items-center gap-1.5 px-3 py-2 border-b-2 border-transparent text-slate-400 hover:text-slate-200 font-semibold text-xs sm:text-sm transition whitespace-nowrap">
+          <svg class="w-4 h-4 flex-shrink-0 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
           </svg>
-          <span>Autodiagnóstico de Cumplimiento</span>
-          <span id="badge-nav-compliance" class="ml-1 px-2 py-0.5 text-xs rounded-full bg-emerald-900/40 text-emerald-300 font-mono">0%</span>
+          <span class="hidden lg:inline">Autodiagnóstico de Cumplimiento</span>
+          <span class="lg:hidden">Autodiagnóstico</span>
+          <span id="badge-nav-compliance" class="ml-0.5 px-1.5 py-0.2 text-[11px] rounded-full bg-emerald-900/40 text-emerald-300 font-mono">0%</span>
         </button>
 
         <!-- Pestaña 4: Calendario de Obligaciones Periódicas -->
-        <button onclick="switchTab('tab-calendario')" id="nav-tab-calendario" class="tab-btn flex items-center gap-2 px-4 py-2.5 border-b-2 border-transparent text-slate-400 hover:text-slate-200 font-semibold text-sm transition whitespace-nowrap">
-          <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button onclick="switchTab('tab-calendario')" id="nav-tab-calendario" class="tab-btn flex items-center gap-1.5 px-3 py-2 border-b-2 border-transparent text-slate-400 hover:text-slate-200 font-semibold text-xs sm:text-sm transition whitespace-nowrap">
+          <svg class="w-4 h-4 flex-shrink-0 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
           </svg>
-          <span>Calendario Periódico</span>
-          <span class="ml-1 px-2 py-0.5 text-xs rounded-full bg-slate-800 text-amber-300 font-mono">INFOVI • SILICIE</span>
+          <span class="hidden sm:inline">Calendario Periódico</span>
+          <span class="sm:hidden">Calendario</span>
+          <span class="ml-0.5 px-1.5 py-0.2 text-[11px] rounded-full bg-slate-800 text-amber-300 font-mono hidden md:inline">INFOVI • SILICIE</span>
+          <span class="ml-0.5 px-1.5 py-0.2 text-[11px] rounded-full bg-slate-800 text-amber-300 font-mono md:hidden">12 Hitos</span>
         </button>
 
         <!-- Pestaña 5: Radar Oficial en Tiempo Real (BOE / DOUE) -->
-        <button onclick="switchTab('tab-radar')" id="nav-tab-radar" class="tab-btn flex items-center gap-2 px-4 py-2.5 border-b-2 border-transparent text-cyan-400 hover:text-cyan-300 font-semibold text-sm transition whitespace-nowrap">
-          <span class="relative flex h-2 w-2">
+        <button onclick="switchTab('tab-radar')" id="nav-tab-radar" class="tab-btn flex items-center gap-1.5 px-3 py-2 border-b-2 border-transparent text-cyan-400 hover:text-cyan-300 font-semibold text-xs sm:text-sm transition whitespace-nowrap">
+          <span class="relative flex h-2 w-2 flex-shrink-0">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
           </span>
-          <span>Radar Oficial en Tiempo Real</span>
-          <span class="ml-1 px-2 py-0.5 text-xs rounded-full bg-cyan-950/80 text-cyan-300 border border-cyan-700/60 font-mono">BOE / DOUE</span>
+          <span class="hidden lg:inline">Radar Oficial en Tiempo Real</span>
+          <span class="lg:hidden">Radar Oficial</span>
+          <span class="ml-0.5 px-1.5 py-0.2 text-[11px] rounded-full bg-cyan-950/80 text-cyan-300 border border-cyan-700/60 font-mono">BOE / DOUE</span>
         </button>
 
       </div>
@@ -1025,7 +1040,7 @@
   <!-- ========================================================
        CARGA DE DATOS Y LÓGICA DE INTERFAZ REACTIVA
   ======================================================== -->
-  <script src="normativas_data.js?v=20260919.2"></script>
+  <script src="normativas_data.js?v=20260919.3"></script>
 
   <script>
     /**
@@ -1513,8 +1528,8 @@
       newsItems.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
 
       container.innerHTML = newsItems.map(item => `
-        <div onclick="openModal('${item.id}')" class="cursor-pointer group flex-shrink-0 flex items-center gap-2.5 px-3 py-1.5 bg-slate-950/80 hover:bg-wine-950/90 border border-slate-700/70 hover:border-wine-500/80 rounded-xl transition duration-200 shadow-sm">
-          <span class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-rose-500/20 text-rose-300 border border-rose-500/30">
+        <div onclick="openModal('${item.id}')" class="cursor-pointer group flex-shrink-0 flex items-center gap-2 px-2.5 py-1.5 bg-slate-950/80 hover:bg-wine-950/90 border border-slate-700/70 hover:border-wine-500/80 rounded-xl transition duration-200 shadow-sm">
+          <span class="px-1.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-rose-500/20 text-rose-300 border border-rose-500/30 whitespace-nowrap flex-shrink-0">
             ${item.novedad_badge || 'Crítica'}
           </span>
           <div class="flex flex-col">
@@ -1525,11 +1540,18 @@
               ${item.fecha} • ${item.do !== 'Todas' ? item.do : item.ambito}
             </span>
           </div>
-          <svg class="w-3.5 h-3.5 text-slate-500 group-hover:text-amber-300 group-hover:translate-x-0.5 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-3.5 h-3.5 text-slate-500 group-hover:text-amber-300 group-hover:translate-x-0.5 transition flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
           </svg>
         </div>
       `).join('');
+    }
+
+    function scrollTicker(offset) {
+      const container = document.getElementById('urgent-news-container');
+      if (container) {
+        container.scrollBy({ left: offset, behavior: 'smooth' });
+      }
     }
 
     /**
