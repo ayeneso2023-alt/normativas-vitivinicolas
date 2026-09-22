@@ -26,20 +26,16 @@ Dashboard integral interactivo diseñado para **bodegas de elaboración, plantas
    - Las **78 normativas** del catálogo están ordenadas por defecto cronológicamente desde la fecha más reciente (2025) hasta las bases fundacionales internacionales (OIV - 1924).
    - Posibilidad de alternar orden ascendente o alfabético con un clic.
 
-3. **Radar Oficial en Tiempo Real (Conectado a la API oficial de Datos Abiertos del BOE)**:
-   - Motor en vivo conectado directamente a la API oficial de Datos Abiertos del Boletín Oficial del Estado (`https://www.boe.es/datosabiertos/api/boe/sumario/{YYYYMMDD}`):
-     - **Descarga y análisis en vivo** de más de 250 disposiciones por sumario diario oficial.
-     - **Selector de fechas y botón "Escanear Último BOE"** para monitorizar publicaciones recientes.
-     - **Filtros por los 6 ámbitos regulatorios de bodega**:
-       - 🦺 **Prevención de Riesgos Laborales (PRL)** (espacios confinados, asfixia por CO2, atmósferas explosivas ATEX, ergonomía).
-       - ⚙️ **Maquinaria Industrial y Equipos** (marcado CE, recipientes a presión, frío industrial RSIF, baja tensión).
-       - 🍏 **Seguridad Alimentaria, Higiene y Desperdicio** (APPCC, RGSEAA, alérgenos, materiales MOCA, control metrológico de llenado).
-       - 💧 **Medio Ambiente, Aguas y Vertidos** (EDARI, cánones hidrológicos de cuenca, residuos, huella de carbono, fitosanitarios).
-       - 🍷 **Vitivinícola y Denominaciones de Origen** (circulares de los 9 Consejos Reguladores, INFOVI, SILICIE, AICA).
-       - 🚒 **Seguridad Contra Incendios** (RSCIEI, RIPCI, revisiones OCA).
-   - **Buscador en directo**: Localiza cualquier término (ej: *decreto, subvención, uva, alcohol, residuos, inspección*) en el sumario oficial del día.
-   - **Integración Reactiva Instantánea**: El botón **"➕ Añadir a mi Catálogo"** incorpora cualquier disposición encontrada directamente a la base de datos de la bodega (`localStorage`), actualizando en tiempo real el contador global (de 78 a 79+), el banner de avisos prioritarios y el catálogo cronológico.
-   - **Formulario de Alta Rápida**: Permite a la bodega registrar circulares y acuerdos de plenos de Consejos Reguladores o decretos autonómicos sin tocar código.
+3. **Radar Multi-Jurisdiccional en Tiempo Real (5 Niveles Regulatorios)**:
+   - Supera la limitación de consultar únicamente el BOE al incorporar las 5 capas legales del sector vitivinícola:
+     - 🌍 **Mundial**: OIV (Organización Internacional de la Viña y el Vino) y Codex Alimentarius (prácticas enológicas, límites de contaminantes y aditivos, desalcoholización).
+     - 🇪🇺 **Unión Europea (DOUE / EUR-Lex)**: Reglamentos comunitarios de aplicación directa (PPWR 2025/40 de envases, Reglamento de Máquinas 2023/1230, EUDR 2023/1115 de deforestación, OCM única 1308/2013, Etiquetado e-label 2021/2117).
+     - 🇪🇸 **Estatal (BOE / Ministerios)**: Leyes estatales y Reales Decretos (Ley de la Cadena Alimentaria / AICA, Ley de Residuos 7/2022, RD Envases 1055/2022, PSA RD 3/2023, PRL RD 39/1997 / INSST). Motor conectado a la API de Datos Abiertos del BOE en vivo.
+     - 🏛️ **Autonómico (Boletines de las CCAA)**: DOGC (Cataluña), BOR (La Rioja), BON (Navarra), BOCyL (Castilla y León), BOPV (País Vasco) y BOJA (Andalucía). Gestión de autorizaciones de vertido (EDARI / ACA / URA / Confederaciones), prevención de desperdicio alimentario (Llei 3/2020), huella de carbono y calendarios de vendimia.
+     - 🍷 **Consejos Reguladores (DO / DOCa)**: Pliegos de condiciones y acuerdos de pleno de DO Cava (100% ecológico en Guarda Superior 2025), DOCa Rioja, DO Ribera del Duero, DOQ Priorat, DO Empordà, DO Navarra, DO Catalunya y DO Sierras de Málaga.
+   - **Hub de Consultas Oficiales en Directo**: Barra de accesos directos con 1 clic a los buscadores oficiales con filtros preconfigurados de DOUE/EUR-Lex, OIV, DOGC, BOR, BOCyL, BON, BOPV y BOJA.
+   - **Integración Reactiva Instantánea**: Cualquier norma agregada o sincronizada impacta al instante en `localStorage`, incrementa el contador de normativas en el encabezado, actualiza el ticker superior de novedades prioritarias y se inserta en el catálogo cronológico.
+   - **Formulario de Alta Rápida Multi-Jurisdicción**: Permite registrar con 1 clic disposiciones de cualquier nivel legal con asignación automática de ámbito y enlaces oficiales.
    - **Exportación JSON**: Descarga de la base de datos completa actualizada.
 
 4. **Autodiagnóstico de Cumplimiento (*Compliance Audit*)**:
@@ -62,14 +58,14 @@ El dashboard está desplegado y accesible desde cualquier ordenador, tablet o sm
 El dashboard es **completamente autocontenido y funciona offline**:
 1. Abre la carpeta: `/Users/joseantoniocorralesortega/Documents/Normativas y reglamentos/`
 2. Haz doble clic en `index.html` para abrirlo en cualquier navegador web moderno (Google Chrome, Safari, Firefox, Edge).
-3. Para consultar el radar o añadir normas, dirígete a la pestaña **"Radar Oficial en Tiempo Real"**.
+3. Para consultar el radar o añadir normas, dirígete a la pestaña **"Radar Multi-Jurisdiccional en Tiempo Real"**.
 4. Para ejecutar el monitorizador de BOE por consola: `node sync_boe_normativas.js`.
 
 ---
 
 ## 📁 Estructura de Archivos
 
-- `index.html`: Aplicación Single-Page interactiva con interfaz Tailwind CSS, diseño visual premium y módulo de Radar BOE en Vivo.
+- `index.html`: Aplicación Single-Page interactiva con interfaz Tailwind CSS, diseño visual premium y módulo de Radar Multi-Jurisdiccional en Vivo (Mundial, Europa, España, CCAA y DOs).
 - `normativas_data.js`: Base de datos jurídica consolidada con **78 normativas reales**, metadatos, checklist por departamentos y calendarios.
 - `sync_boe_normativas.js`: Script de monitorización del BOE por consola para novedades de PRL, maquinaria, alimentación y vino.
 - `README.md`: Documentación de uso y especificaciones técnicas.

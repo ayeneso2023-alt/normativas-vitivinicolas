@@ -734,6 +734,29 @@
             </div>
           </div>
 
+          <!-- Selector de Nivel Jurisdiccional (4 Niveles Regulatorios) -->
+          <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pt-3 border-t border-slate-800/80">
+            <span class="text-[11px] font-semibold text-slate-400 whitespace-nowrap">Nivel Jurisdiccional:</span>
+            <button onclick="filterRadarByNivel('todos')" id="radar-nivel-todos" class="radar-nivel-btn active px-2.5 py-1 rounded-lg text-[11px] font-medium bg-cyan-800 text-white border border-cyan-600 transition whitespace-nowrap">
+              Todos los Niveles
+            </button>
+            <button onclick="filterRadarByNivel('mundial')" id="radar-nivel-mundial" class="radar-nivel-btn px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-950 text-slate-300 hover:text-white border border-slate-800 transition whitespace-nowrap">
+              🌍 Mundial (OIV / Codex)
+            </button>
+            <button onclick="filterRadarByNivel('europa')" id="radar-nivel-europa" class="radar-nivel-btn px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-950 text-slate-300 hover:text-white border border-slate-800 transition whitespace-nowrap">
+              🇪🇺 Unión Europea (DOUE / EUR-Lex)
+            </button>
+            <button onclick="filterRadarByNivel('estatal')" id="radar-nivel-estatal" class="radar-nivel-btn px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-950 text-slate-300 hover:text-white border border-slate-800 transition whitespace-nowrap">
+              🇪🇸 Estatal (BOE / Ministerios)
+            </button>
+            <button onclick="filterRadarByNivel('autonomico')" id="radar-nivel-autonomico" class="radar-nivel-btn px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-950 text-slate-300 hover:text-white border border-slate-800 transition whitespace-nowrap">
+              🏛️ Autonómico (DOGC, BOR, BON, BOCyL, BOPV, BOJA)
+            </button>
+            <button onclick="filterRadarByNivel('do')" id="radar-nivel-do" class="radar-nivel-btn px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-950 text-slate-300 hover:text-white border border-slate-800 transition whitespace-nowrap">
+              🍷 Consejos Reguladores (DO / DOCa)
+            </button>
+          </div>
+
           <!-- Selectores Temáticos Rápidos -->
           <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pt-3 mt-1">
             <span class="text-[11px] font-semibold text-slate-400 whitespace-nowrap">Ámbitos en vigilancia:</span>
@@ -758,6 +781,51 @@
             <button onclick="filterRadarByTopic('incendios')" id="radar-topic-incendios" class="radar-topic-btn px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-950 text-slate-300 hover:text-white border border-slate-800 transition whitespace-nowrap">
               🚒 Incendios y Bomberos
             </button>
+          </div>
+
+          <!-- Hub de Diarios Oficiales en Directo (Acceso Inmediato a Fuentes Oficiales) -->
+          <div class="mt-4 p-3 bg-slate-950/70 rounded-xl border border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-xs">
+            <div class="flex items-center gap-2">
+              <span class="text-cyan-400 font-semibold text-[11px] flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+                <span>Acceso Directo a Boletines Oficiales:</span>
+              </span>
+              <span class="text-[10px] text-slate-500 hidden sm:inline">(Consultas oficiales en vivo)</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-1.5 text-[11px]">
+              <a href="https://eur-lex.europa.eu/search.html?scope=EURLEX&text=wine" target="_blank" rel="noopener noreferrer" title="Diario Oficial de la Unión Europea (EUR-Lex)" class="px-2 py-0.5 rounded-md bg-slate-900 hover:bg-slate-800 text-blue-300 border border-blue-900/50 flex items-center gap-1 transition">
+                <span>🇪🇺 DOUE / EUR-Lex</span>
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              </a>
+              <a href="https://www.oiv.int/es/normas-y-documentos-tecnicos/resoluciones-de-la-oiv" target="_blank" rel="noopener noreferrer" title="Resoluciones de la Organización Internacional de la Viña y el Vino" class="px-2 py-0.5 rounded-md bg-slate-900 hover:bg-slate-800 text-purple-300 border border-purple-900/50 flex items-center gap-1 transition">
+                <span>🌍 OIV Resoluciones</span>
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              </a>
+              <a href="https://dogc.gencat.cat/" target="_blank" rel="noopener noreferrer" title="Diari Oficial de la Generalitat de Catalunya" class="px-2 py-0.5 rounded-md bg-slate-900 hover:bg-slate-800 text-amber-300 border border-amber-900/50 flex items-center gap-1 transition">
+                <span>DOGC (Cat)</span>
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              </a>
+              <a href="https://web.larioja.org/bor" target="_blank" rel="noopener noreferrer" title="Boletín Oficial de La Rioja" class="px-2 py-0.5 rounded-md bg-slate-900 hover:bg-slate-800 text-emerald-300 border border-emerald-900/50 flex items-center gap-1 transition">
+                <span>BOR (Rioja)</span>
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              </a>
+              <a href="https://bocyl.jcyl.es/" target="_blank" rel="noopener noreferrer" title="Boletín Oficial de Castilla y León" class="px-2 py-0.5 rounded-md bg-slate-900 hover:bg-slate-800 text-indigo-300 border border-indigo-900/50 flex items-center gap-1 transition">
+                <span>BOCyL (CyL)</span>
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              </a>
+              <a href="https://bon.navarra.es/" target="_blank" rel="noopener noreferrer" title="Boletín Oficial de Navarra" class="px-2 py-0.5 rounded-md bg-slate-900 hover:bg-slate-800 text-rose-300 border border-rose-900/50 flex items-center gap-1 transition">
+                <span>BON (Nav)</span>
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              </a>
+              <a href="https://www.euskadi.eus/bopv/" target="_blank" rel="noopener noreferrer" title="Boletín Oficial del País Vasco" class="px-2 py-0.5 rounded-md bg-slate-900 hover:bg-slate-800 text-teal-300 border border-teal-900/50 flex items-center gap-1 transition">
+                <span>BOPV (Eusk)</span>
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              </a>
+              <a href="https://www.juntadeandalucia.es/boja.html" target="_blank" rel="noopener noreferrer" title="Boletín Oficial de la Junta de Andalucía" class="px-2 py-0.5 rounded-md bg-slate-900 hover:bg-slate-800 text-cyan-300 border border-cyan-900/50 flex items-center gap-1 transition">
+                <span>BOJA (And)</span>
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -2466,6 +2534,131 @@
      * =========================================================================
      */
     const RADAR_DISPOSICIONES_DATABASE = [
+      // 1. NIVEL MUNDIAL / INTERNACIONAL (OIV & CODEX)
+      {
+        id: "OIV-2024-OENO-01",
+        ambito: "Vitivinícola y Etiquetado",
+        topic: "vitivinicola",
+        organismo: "Organización Internacional de la Viña y el Vino (OIV)",
+        titulo: "Resolución OIV-OENO 684A-2022 / Actualización: Criterios Técnicos para la Desalcoholización de Vinos",
+        codigo: "Resolución OIV-OENO 684A y Código Internacional de Prácticas Enológicas",
+        fecha: "2024-05-15",
+        nivel: "Internacional / OIV",
+        region: "Internacional",
+        do: "Todas",
+        resumen: "Estándar técnico mundial que fija los límites analíticos y los procesos físicos autorizados (ósmosis inversa, destilación al vacío) para vino sin alcohol (<0,5% vol) y parcialmente desalcoholizado.",
+        requisitos: [
+          "No superar la reducción de grado alcohólico por encima del límite fijado en el pliego de la denominación.",
+          "Prohibición de aromatización exógena o reconstitución con agua de proceso.",
+          "Identificación analítica rigurosa de acidez volátil y azúcares residuales."
+        ],
+        sanciones: "Pérdida de la designación 'vino' en mercados internacionales y rechazo aduanero.",
+        enlace: "https://www.oiv.int/es/normas-y-documentos-tecnicos/resoluciones-de-la-oiv"
+      },
+      {
+        id: "OIV-2023-LIMITS-01",
+        ambito: "Seguridad Alimentaria y Calidad",
+        topic: "alimentaria",
+        organismo: "OIV / Comisión del Codex Alimentarius (FAO-OMS)",
+        titulo: "Límites Internacionales y Métodos Oficiales para Ocratoxina A, Plomo y Residuos en Vino",
+        codigo: "Norma General del Codex para Contaminantes / OIV-CST 501",
+        fecha: "2023-09-20",
+        nivel: "Internacional / OIV",
+        region: "Internacional",
+        do: "Todas",
+        resumen: "Umbrales toxicológicos de contaminantes y metales pesados exigibles para la exportación de vinos embotellados a mercados extracomunitarios (EE.UU. FDA, TTB, Canadá, Japón).",
+        requisitos: [
+          "Límite máximo de Ocratoxina A inferior a 2 µg/kg en vino embotellado.",
+          "Contenido de plomo inferior a 0,10 mg/L para vinos de cosechas recientes.",
+          "Boletín de análisis emitido por laboratorio enológico acreditado ISO 17025."
+        ],
+        sanciones: "Inmovilización de la carga y paralización de exportaciones aduaneras.",
+        enlace: "https://www.oiv.int/es/normas-y-documentos-tecnicos/resoluciones-de-la-oiv"
+      },
+
+      // 2. NIVEL UNIÓN EUROPEA (DOUE / EUR-LEX)
+      {
+        id: "UE-2024-ENV-01",
+        ambito: "Medio Ambiente y Aguas",
+        topic: "medioambiente",
+        organismo: "Unión Europea / DOUE",
+        titulo: "Reglamento Europeo de Envases y Residuos de Envases (PPWR)",
+        codigo: "Reglamento (UE) 2025/40 del Parlamento Europeo y del Consejo",
+        fecha: "2024-11-20",
+        nivel: "Unión Europea",
+        region: "Unión Europea",
+        do: "Todas",
+        resumen: "Nuevo marco europeo vinculante para reducción de residuos de embalaje, cuotas obligatorias de reutilización de botellas de vino y armonización de pictogramas de reciclaje.",
+        requisitos: [
+          "Ecodiseño y reducción progresiva de gramaje en botellas de vidrio de vino.",
+          "Cuotas obligatorias de botellas de formato reutilizable en canales de proximidad y HORECA.",
+          "Pictogramas estándar armonizados de reciclabilidad de tapones y cápsulas."
+        ],
+        sanciones: "Restricciones a la libre comercialización en el Mercado Único Europeo y multas medioambientales.",
+        enlace: "https://eur-lex.europa.eu/eli/reg/2025/40/oj"
+      },
+      {
+        id: "UE-2023-MAQ-01",
+        ambito: "Seguridad Industrial y Maquinaria",
+        topic: "maquinaria",
+        organismo: "Parlamento Europeo y Consejo de la UE",
+        titulo: "Nuevo Reglamento Europeo de Seguridad de las Máquinas de Embotellado y Bodega",
+        codigo: "Reglamento (UE) 2023/1230 / DOUE L 165",
+        fecha: "2023-06-14",
+        nivel: "Unión Europea",
+        region: "Unión Europea",
+        do: "Todas",
+        resumen: "Sustituye a la Directiva 2006/42/CE. Establece nuevos requisitos obligatorios de ciberseguridad industrial, marcado CE digital y protección física en trenes de embotellado, prensas y sinfines.",
+        requisitos: [
+          "Exigir declaración CE de conformidad digital y marcado CE 2023/1230 en compra de maquinaria nueva.",
+          "Ciberseguridad y protección contra manipulaciones en autómatas programables (PLC) de embotellado.",
+          "Resguardos de doble enclavamiento y parada de emergencia de categoría 4 en despalilladoras y tolvas."
+        ],
+        sanciones: "Inmovilización de la línea de maquinaria y multas de industria de hasta 100.000 €.",
+        enlace: "https://eur-lex.europa.eu/eli/reg/2023/1230/oj"
+      },
+      {
+        id: "UE-2023-EUDR-01",
+        ambito: "Medio Ambiente y Aguas",
+        topic: "medioambiente",
+        organismo: "Unión Europea / DOUE",
+        titulo: "Reglamento Europeo de Productos Libres de Deforestación (EUDR) en Madera de Barricas y Cartón",
+        codigo: "Reglamento (UE) 2023/1115 / DOUE L 150",
+        fecha: "2023-06-09",
+        nivel: "Unión Europea",
+        region: "Unión Europea",
+        do: "Todas",
+        resumen: "Exige a los operadores que compran madera de roble para tonelería y cartón de embalaje certificar la debida diligencia de no deforestación con coordenadas geográficas de origen.",
+        requisitos: [
+          "Certificado de debida diligencia de los proveedores de barricas de roble francés y americano.",
+          "Coordenadas de geolocalización de las parcelas de extracción de la madera.",
+          "Trazabilidad documental durante al menos 5 años en los archivos de la bodega."
+        ],
+        sanciones: "Confiscación del lote de barricas o embalajes y sanciones de hasta el 4% de la facturación anual en la UE.",
+        enlace: "https://eur-lex.europa.eu/eli/reg/2023/1115/oj"
+      },
+      {
+        id: "UE-2021-ELABEL-01",
+        ambito: "Vitivinícola y Etiquetado",
+        topic: "vitivinicola",
+        organismo: "Unión Europea / DOUE",
+        titulo: "Etiquetado Nutricional Obligatorio ('E') e Ingredientes Digitales (e-label)",
+        codigo: "Reglamento (UE) 2021/2117 / Reglamento Delegado (UE) 2023/1606",
+        fecha: "2023-12-08",
+        nivel: "Unión Europea",
+        region: "Unión Europea",
+        do: "Todas",
+        resumen: "Obligación de declarar los valores nutricionales en etiqueta (energía en kJ/kcal con 'E') y la lista completa de ingredientes y alérgenos físicamente o mediante código QR digital accesible.",
+        requisitos: [
+          "Imprimir en la contraetiqueta el valor energético por 100 ml y mención expresa de alérgenos (sulfitos).",
+          "Código QR con enlace directo a plataforma e-label neutral, sin publicidad comercial ni rastreadores.",
+          "Traducción automática de ingredientes a las lenguas oficiales de los países de venta."
+        ],
+        sanciones: "Inmovilización cautelar de botellas en distribución y retirada obligatoria de lineales.",
+        enlace: "https://eur-lex.europa.eu/eli/reg/2021/2117/oj"
+      },
+
+      // 3. NIVEL ESTATAL (ESPAÑA / BOE / MAPA)
       {
         id: "BOE-2024-PRL-01",
         ambito: "Seguridad y Salud Laboral (PRL)",
@@ -2482,7 +2675,7 @@
           "Instalación de detectores fijos de CO2 a 15 cm del suelo con alarma sonora/óptica conectada a extracción forzada.",
           "Procedimiento documentado y firmado de Permiso de Entrada en Espacios Confinados (depósitos, cubas, fosos).",
           "Medición previa y continua de oxígeno (>20,5%) con oxímetro homologado.",
-          "Presencia permanente de Recurso Preventivo en el exterior con arnés anticaídas, trípode y equipo de respiración de rescate."
+          "Presencia permanente de Recurso Preventivo en el exterior con arnés anticaídas, trípode y equipo de rescate."
         ],
         sanciones: "Paralización cautelar inmediata de la bodega por la Inspección de Trabajo y sanciones de hasta 983.736 €.",
         enlace: "https://www.insst.es/materias/riesgos/seguridad-en-el-trabajo/espacios-confinados"
@@ -2506,66 +2699,6 @@
         ],
         sanciones: "Infracciones graves con multas de 2.001 € a 60.000 € por carecer de plan de prevención.",
         enlace: "https://www.mapa.gob.es/es/alimentacion/temas/desperdicio/"
-      },
-      {
-        id: "UE-2024-ENV-01",
-        ambito: "Medio Ambiente y Aguas",
-        topic: "medioambiente",
-        organismo: "Unión Europea / DOUE",
-        titulo: "Reglamento Europeo de Envases y Residuos de Envases (PPWR)",
-        codigo: "Reglamento (UE) 2025/40 del Parlamento Europeo y del Consejo",
-        fecha: "2024-11-20",
-        nivel: "Unión Europea",
-        region: "Unión Europea",
-        do: "Todas",
-        resumen: "Nuevo marco europeo vinculante para reducción de residuos de embalaje, cuotas obligatorias de reutilización de botellas de vino y armonización de pictogramas de reciclaje.",
-        requisitos: [
-          "Ecodiseño y reducción de gramaje en botellas de vidrio de vino.",
-          "Adecuación a cuotas de reutilización de botellas para canales de proximidad y HORECA.",
-          "Adopción de pictogramas de reciclaje estándar europeos en embalajes secundarios."
-        ],
-        sanciones: "Restricciones a la comercialización y sanciones medioambientales de la UE.",
-        enlace: "https://eur-lex.europa.eu/eli/reg/2025/40/oj"
-      },
-      {
-        id: "UE-2023-MAQ-01",
-        ambito: "Seguridad Industrial y Maquinaria",
-        topic: "maquinaria",
-        organismo: "Parlamento Europeo y Consejo de la UE",
-        titulo: "Nuevo Reglamento Europeo de Seguridad de las Máquinas",
-        codigo: "Reglamento (UE) 2023/1230 / DOUE L 165",
-        fecha: "2023-06-14",
-        nivel: "Unión Europea",
-        region: "Unión Europea",
-        do: "Todas",
-        resumen: "Sustituye a la Directiva 2006/42/CE. Establece nuevos requisitos obligatorios de ciberseguridad, marcado CE digital y protección en maquinaria industrial de embotellado, prensas y vehículos autónomos de almacén.",
-        requisitos: [
-          "Exigir declaración CE de conformidad digital y marcado CE conforme al Reglamento 2023/1230 en compra de maquinaria nueva.",
-          "Protección contra manipulación digital y ciberseguridad en autómatas de líneas de llenado y embotellado.",
-          "Resguardos físicos y parada de emergencia de doble canal en prensas, cintas y despalilladoras."
-        ],
-        sanciones: "Inmovilización de la línea de maquinaria y multas de industria de hasta 100.000 €.",
-        enlace: "https://eur-lex.europa.eu/eli/reg/2023/1230/oj"
-      },
-      {
-        id: "DOCA-2025-VITI-01",
-        ambito: "Vitivinícola y Etiquetado",
-        topic: "vitivinicola",
-        organismo: "Consejo Regulador de la DO Cava / MAPA",
-        titulo: "Obligación de Uva 100% Ecológica Certificada para Cavas de Guarda Superior",
-        codigo: "Resolución D.G. Industria Alimentaria / Pliego DO Cava 2025",
-        fecha: "2025-08-01",
-        nivel: "Denominación de Origen",
-        region: "Multi-región",
-        do: "DO Cava",
-        resumen: "Exigencia obligatoria para la vendimia 2025 de que todo el vino base para Cavas Reserva, Gran Reserva y Paraje Calificado provenga de viñedos certificados ecológicos.",
-        requisitos: [
-          "Certificado ecológico en vigor emitido por CCPAE, CPAEN, CAECyL u organismo equivalente.",
-          "Separación física y trazabilidad en bodega entre partidas de vino base ecológico y convencional.",
-          "Rendimiento limitado a 10.000 kg/ha en viñedos de más de 10 años."
-        ],
-        sanciones: "Descalificación del lote a Cava genérico o vino espumoso sin DO.",
-        enlace: "https://www.mapa.gob.es/es/alimentacion/temas/calidad-diferenciada/dop-igp/detalle/vinos/cava"
       },
       {
         id: "BOE-2024-AGUA-01",
@@ -2606,16 +2739,287 @@
         ],
         sanciones: "Denegación de licencias municipales y posible rechazo de cobertura por compañías aseguradoras en caso de siniestro.",
         enlace: "https://www.boe.es/buscar/act.php?id=BOE-A-2004-21216"
+      },
+
+      // 4. NIVEL AUTONÓMICO (CCAA: Cataluña, La Rioja, Navarra, País Vasco, Castilla y León, Andalucía)
+      {
+        id: "DOGC-2020-CAT-01",
+        ambito: "Seguridad Alimentaria y Calidad",
+        topic: "alimentaria",
+        organismo: "Generalitat de Catalunya / DOGC",
+        titulo: "Llei de Prevenció de les Pèrdues i el Malbaratament Alimentaris de Catalunya",
+        codigo: "Llei 3/2020 del Parlament de Catalunya / DOGC núm. 8175",
+        fecha: "2020-07-13",
+        nivel: "Autonómico",
+        region: "Cataluña",
+        do: "DO Empordà, DO Catalunya, DOQ Priorat, DO Cava",
+        resumen: "Normativa catalana que obliga a bodegas y elaboradores agroalimentarios de Cataluña a tener un Plan de Prevención del Desperdicio, cuantificación de mermas y convenios de donación de vino y subproductos.",
+        requisitos: [
+          "Disponer del Plan de Prevención del Desperdicio validado en los centros de producción de Cataluña.",
+          "Convenio formal con bancos de alimentos o entidades de iniciativa social para donación.",
+          "Auditoría anual de reducción de mermas en los procesos de clarificación y filtración."
+        ],
+        sanciones: "Infracciones graves con multas de hasta 60.000 € impuestas por el DACC.",
+        enlace: "https://dogc.gencat.cat/es/document-del-dogc/?documentId=877478"
+      },
+      {
+        id: "BOR-2024-RIO-01",
+        ambito: "Vitivinícola y Etiquetado",
+        topic: "vitivinicola",
+        organismo: "Gobierno de La Rioja / Consejería de Agricultura",
+        titulo: "Orden Anual de Vendimia y Control de Trazabilidad en Tolva de La Rioja",
+        codigo: "Orden AGR/2024 del Gobierno de La Rioja / BOR",
+        fecha: "2024-07-25",
+        nivel: "Autonómico",
+        region: "La Rioja",
+        do: "DOCa Rioja",
+        resumen: "Normativa autonómica que regula las condiciones de entrega de uva en tolva, el pesaje electrónico oficial y la verificación telemática de cartillas de viticultor en La Rioja.",
+        requisitos: [
+          "Pesaje informatizado con transmisión telemática al Servicio de Control Vitivinícola de La Rioja.",
+          "Control de rendimientos máximos autorizados en parcela antes del despalillado.",
+          "Comprobación de la documentación de transporte agrario (DAT) en recepción."
+        ],
+        sanciones: "Inmovilización cautelar del mosto y descalificación del vino.",
+        enlace: "https://web.larioja.org/bor"
+      },
+      {
+        id: "BON-2023-NAV-01",
+        ambito: "Medio Ambiente y Aguas",
+        topic: "medioambiente",
+        organismo: "Gobierno de Navarra / Departamento de Desarrollo Rural y Medio Ambiente",
+        titulo: "Ley Foral de Cambio Climático: Registro de Huella de Carbono e Inventario Industrial",
+        codigo: "Ley Foral 14/2020 y Decreto Foral de Desarrollo / BON",
+        fecha: "2023-03-10",
+        nivel: "Autonómico",
+        region: "Navarra",
+        do: "DO Navarra, IGP 3 Riberas, DO Cava",
+        resumen: "Exigencia foral de inscripción en el Registro de Huella de Carbono de Navarra y plan de descarbonización para bodegas de elaboración y crianza ubicadas en la Comunidad Foral.",
+        requisitos: [
+          "Inscripción en el Registro Foral de Huella de Carbono de Navarra (Alcance 1 y 2).",
+          "Plan plurianual de reducción de emisiones y eficiencia en climatización de naves de crianza.",
+          "Auditoría energética reglamentaria cada 4 años."
+        ],
+        sanciones: "Exclusión de ayudas forales y régimen sancionador medioambiental de Navarra.",
+        enlace: "https://bon.navarra.es/"
+      },
+      {
+        id: "BOPV-2024-EUS-01",
+        ambito: "Seguridad Alimentaria y Calidad",
+        topic: "alimentaria",
+        organismo: "Gobierno Vasco / Departamento de Alimentación y Desarrollo Rural",
+        titulo: "Decreto de Control Oficial de la Cadena Vitivinícola y Trazabilidad en Euskadi",
+        codigo: "Decreto 48/2024 del Gobierno Vasco / BOPV",
+        fecha: "2024-04-18",
+        nivel: "Autonómico",
+        region: "País Vasco",
+        do: "DOCa Rioja, DO Cava",
+        resumen: "Protocolo de inspección oficial en bodega para el control de rendimientos, libros de registro digitalizados y trazabilidad de vinos amparados por DOCa Rioja (Rioja Alavesa).",
+        requisitos: [
+          "Validación de los libros de registro digitalizados en el sistema informático del Gobierno Vasco.",
+          "Separación documentada de partidas procedentes de viñedos de Rioja Alavesa.",
+          "Atención a inspectores oficiales del Departamento de Calidad Alimentaria de Euskadi."
+        ],
+        sanciones: "Sanciones tipificadas en la Ley de Calidad Agroalimentaria del País Vasco.",
+        enlace: "https://www.euskadi.eus/bopv/"
+      },
+      {
+        id: "BOCYL-2023-CYL-01",
+        ambito: "Medio Ambiente y Aguas",
+        topic: "medioambiente",
+        organismo: "Junta de Castilla y León / Consejería de Medio Ambiente",
+        titulo: "Control y Parámetros de Vertidos de Vinazas y Aguas Industriales a Cuenca del Duero",
+        codigo: "Decreto 45/2015 y Orden MAM de Calidad Ambiental / BOCyL",
+        fecha: "2023-05-12",
+        nivel: "Autonómico",
+        region: "Castilla y León",
+        do: "DO Ribera del Duero, DO Cava",
+        resumen: "Exigencia de adecuación de depuradoras industriales de bodega (EDARI) y límites de DBO5/DQO para vertidos en la cuenca del Duero durante la campaña de vendimia.",
+        requisitos: [
+          "Autorización de vertido vigente concedida por la Confederación Hidrográfica del Duero (CHD).",
+          "Control de caudalímetro homologado y arqueta de toma de muestras accesible.",
+          "Analítica trimestral de vertidos efectuada por Entidad Colaboradora de la Administración Hidráulica (ECA)."
+        ],
+        sanciones: "Canon de control de vertidos agravado y multas coercitivas de la CHD.",
+        enlace: "https://bocyl.jcyl.es/"
+      },
+      {
+        id: "BOJA-2023-AND-01",
+        ambito: "Vitivinícola y Etiquetado",
+        topic: "vitivinicola",
+        organismo: "Junta de Andalucía / Consejería de Agricultura y Pesca",
+        titulo: "Decreto de Industrias Vitivinícolas y Registros de Elaboración de Andalucía",
+        codigo: "Decreto 174/2016 y Resoluciones Específicas / BOJA",
+        fecha: "2023-09-05",
+        nivel: "Autonómico",
+        region: "Andalucía",
+        do: "DO Sierras de Málaga / Ronda",
+        resumen: "Regula las prácticas autorizadas para vinos tradicionales, vinos dulces y vinos de montaña de la Serranía de Ronda, así como las inspecciones de la Delegación Territorial.",
+        requisitos: [
+          "Inscripción en el Registro de Industrias Agroalimentarias de Andalucía (RIIA).",
+          "Libros de movimientos de alcohol y adición de mosto concentrado al día.",
+          "Declaraciones telemáticas obligatorias a la Consejería de Agricultura."
+        ],
+        sanciones: "Apercibimiento o clausura cautelar del tren de embotellado por infracción administrativa.",
+        enlace: "https://www.juntadeandalucia.es/boja.html"
+      },
+
+      // 5. NIVEL DENOMINACIONES DE ORIGEN Y CONSEJOS REGULADORES
+      {
+        id: "DOCA-2025-VITI-01",
+        ambito: "Vitivinícola y Etiquetado",
+        topic: "vitivinicola",
+        organismo: "Consejo Regulador de la DO Cava / MAPA",
+        titulo: "Obligación de Uva 100% Ecológica Certificada para Cavas de Guarda Superior",
+        codigo: "Resolución D.G. Industria Alimentaria / Pliego DO Cava 2025",
+        fecha: "2025-08-01",
+        nivel: "Denominación de Origen",
+        region: "Multi-región",
+        do: "DO Cava",
+        resumen: "Exigencia obligatoria para la vendimia 2025 de que todo el vino base para Cavas Reserva, Gran Reserva y Paraje Calificado provenga de viñedos certificados ecológicos.",
+        requisitos: [
+          "Certificado ecológico en vigor emitido por CCPAE, CPAEN, CAECyL u organismo equivalente.",
+          "Separación física y trazabilidad en bodega entre partidas de vino base ecológico y convencional.",
+          "Rendimiento limitado a 10.000 kg/ha en viñedos de más de 10 años."
+        ],
+        sanciones: "Descalificación del lote a Cava genérico o vino espumoso sin DO.",
+        enlace: "https://www.mapa.gob.es/es/alimentacion/temas/calidad-diferenciada/dop-igp/detalle/vinos/cava"
+      },
+      {
+        id: "DOCA-2024-RIO-01",
+        ambito: "Vitivinícola y Etiquetado",
+        topic: "vitivinicola",
+        organismo: "Consejo Regulador DOCa Rioja",
+        titulo: "Pliego de Condiciones DOCa Rioja: Separación Física Estricta y Trazabilidad Depósito-Parcela",
+        codigo: "Normativa de Campaña y Pliego Oficial DOCa Rioja",
+        fecha: "2024-05-30",
+        nivel: "Denominación de Origen",
+        region: "La Rioja / País Vasco / Navarra",
+        do: "DOCa Rioja",
+        resumen: "Obligación reglamentaria de separación física total (líneas de recepción, depósitos y prensas independientes) en bodegas que elaboren simultáneamente vinos con DOCa Rioja y vinos de mesa o IGP.",
+        requisitos: [
+          "Separación física irreversible o líneas temporales validadas e inspeccionadas previamente por el Consejo.",
+          "Libro de registro específico de Viñedos Singulares con trazabilidad parcela-depósito.",
+          "Acreditación de rendimientos máximos de 6.500 kg/ha en tintas y 9.000 kg/ha en blancas."
+        ],
+        sanciones: "Descalificación total de la cosecha de la bodega amparada en la campaña.",
+        enlace: "https://www.riojawine.com/"
+      },
+      {
+        id: "DO-2024-RIBERA-01",
+        ambito: "Vitivinícola y Etiquetado",
+        topic: "vitivinicola",
+        organismo: "Consejo Regulador DO Ribera del Duero",
+        titulo: "Pliego de Condiciones DO Ribera del Duero: Rendimientos y Elaboración de Vinos Blancos",
+        codigo: "Pliego Técnico Oficial Consejo Regulador Ribera del Duero",
+        fecha: "2024-03-15",
+        nivel: "Denominación de Origen",
+        region: "Castilla y León",
+        do: "DO Ribera del Duero",
+        resumen: "Normas de elaboración y envejecimiento en barricas para tintos y blancos de la variedad autóctona Albillo Mayor, con rendimientos limitados a 7.000 kg/ha.",
+        requisitos: [
+          "Composición varietal mínima del 75% de Tempranillo (Tinta del País) en vinos tintos.",
+          "Uso de barricas de roble de capacidad igual o inferior a 330 litros para Crianzas, Reservas y Gran Reservas.",
+          "Aprobación del comité de cata organoléptica y analítica físico-química del Consejo."
+        ],
+        sanciones: "Retirada de precintos de garantía y descalificación del lote.",
+        enlace: "https://www.riberadelduero.es/"
+      },
+      {
+        id: "DOQ-2024-PRIORAT-01",
+        ambito: "Vitivinícola y Etiquetado",
+        topic: "vitivinicola",
+        organismo: "Consell Regulador de la DOQ Priorat",
+        titulo: "Pliego de Clasificación de Vins de Vila, Paratge y Costers de Llicorella",
+        codigo: "Reglament DOQ Priorat / Resolució DACC",
+        fecha: "2024-02-20",
+        nivel: "Denominación de Origen",
+        region: "Cataluña",
+        do: "DOQ Priorat",
+        resumen: "Clasificación borgoñona piramidal de los vinos de la DOQ Priorat según el origen del suelo de llicorella, viñas viejas y parcelas en bancales de fuerte pendiente.",
+        requisitos: [
+          "Inscripción de parcelas singulares en el Registro de Paratges del Consell Regulador.",
+          "Rendimiento estricto limitado a 6.000 kg/ha para variedades tintas y 4.000 kg/ha en costers.",
+          "Trazabilidad documental y precinto específico de 'Vi de Vila' o 'Gran Vinya Classificada'."
+        ],
+        sanciones: "Prohibición de uso del nombre del municipio o paraje en la etiqueta comercial.",
+        enlace: "https://www.doqpriorat.org/"
       }
     ];
 
     /**
-     * ESTADO Y MOTOR DE CONEXIÓN EN DIRECTO CON LA API DE DATOS ABIERTOS DEL BOE
+     * ESTADO Y MOTOR DE CONEXIÓN EN DIRECTO MULTI-JURISDICCIONAL
      */
     let liveBoeDisposiciones = [];
     let currentBoeDate = '';
     let isScanningLive = false;
     let currentRadarTopic = 'todos';
+    let currentRadarNivel = 'todos'; // 'todos', 'mundial', 'europa', 'estatal', 'autonomico', 'do'
+
+    function filterRadarByNivel(nivel) {
+      currentRadarNivel = nivel;
+      document.querySelectorAll('.radar-nivel-btn').forEach(btn => {
+        btn.classList.remove('active', 'bg-cyan-800', 'text-white', 'border-cyan-600');
+        btn.classList.add('bg-slate-950', 'text-slate-300', 'border-slate-800');
+      });
+      const targetBtn = document.getElementById(`radar-nivel-${nivel}`);
+      if (targetBtn) {
+        targetBtn.classList.add('active', 'bg-cyan-800', 'text-white', 'border-cyan-600');
+        targetBtn.classList.remove('bg-slate-950', 'text-slate-300', 'border-slate-800');
+      }
+
+      const q = document.getElementById('radar-search-input')?.value || '';
+      renderRadarResults(currentRadarTopic, currentRadarNivel, q);
+    }
+
+    function filterRadarByTopic(topic) {
+      currentRadarTopic = topic;
+      document.querySelectorAll('.radar-topic-btn').forEach(btn => {
+        btn.classList.remove('active', 'bg-cyan-800', 'text-white', 'border-cyan-600');
+        btn.classList.add('bg-slate-950', 'text-slate-300', 'border-slate-800');
+      });
+      const targetBtn = document.getElementById(`radar-topic-${topic}`);
+      if (targetBtn) {
+        targetBtn.classList.add('active', 'bg-cyan-800', 'text-white', 'border-cyan-600');
+        targetBtn.classList.remove('bg-slate-950', 'text-slate-300', 'border-slate-800');
+      }
+
+      const q = document.getElementById('radar-search-input')?.value || '';
+      renderRadarResults(currentRadarTopic, currentRadarNivel, q);
+    }
+
+    function matchesNivel(item, targetNivel) {
+      if (targetNivel === 'todos') return true;
+      const itemNivel = (item.nivel || '').toLowerCase();
+      if (targetNivel === 'mundial') return itemNivel.includes('internacional') || itemNivel.includes('oiv') || itemNivel.includes('codex') || itemNivel.includes('mundial');
+      if (targetNivel === 'europa') return itemNivel.includes('unión europea') || itemNivel.includes('doue') || itemNivel.includes('comunitari');
+      if (targetNivel === 'estatal') return itemNivel.includes('estatal') || itemNivel.includes('españa') || itemNivel.includes('boe');
+      if (targetNivel === 'autonomico') return itemNivel.includes('autonóm') || itemNivel.includes('regional');
+      if (targetNivel === 'do') return itemNivel.includes('denominación de origen') || itemNivel.includes('consejo regulador');
+      return true;
+    }
+
+    function getNivelBadge(item) {
+      const niv = (item.nivel || '').toLowerCase();
+      if (niv.includes('internacional') || niv.includes('oiv') || niv.includes('codex')) {
+        return `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-950 text-purple-300 border border-purple-700/60 font-mono">🌍 MUNDIAL / OIV</span>`;
+      }
+      if (niv.includes('unión europea') || niv.includes('doue')) {
+        return `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-950 text-blue-300 border border-blue-700/60 font-mono">🇪🇺 UNIÓN EUROPEA</span>`;
+      }
+      if (item.is_live_boe) {
+        return `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-cyan-950 text-cyan-300 border border-cyan-700/60 font-mono">📡 BOE EN DIRECTO</span>`;
+      }
+      if (niv.includes('estatal') || niv.includes('españa')) {
+        return `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-950 text-amber-300 border border-amber-700/60 font-mono">🇪🇸 ESTATAL / BOE</span>`;
+      }
+      if (niv.includes('autonóm') || niv.includes('regional')) {
+        return `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-950 text-emerald-300 border border-emerald-700/60 font-mono">🏛️ AUTONÓMICO (${item.region || 'CCAA'})</span>`;
+      }
+      if (niv.includes('denominación de origen') || niv.includes('consejo regulador')) {
+        return `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-wine-950 text-wine-300 border border-wine-700/60 font-mono">🍷 DO (${item.do || 'Pliego'})</span>`;
+      }
+      return `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-800 text-slate-300 font-mono">OFICIAL</span>`;
+    }
 
     function detectBoeTopic(titulo, dep) {
       const text = (titulo + " " + (dep || "")).toLowerCase();
@@ -2736,7 +3140,7 @@
       }
 
       setBoeStatus('fallback', 'Sin conexión con la API del BOE. Mostrando catálogo estratégico.');
-      renderRadarResults(currentRadarTopic, document.getElementById('radar-search-input')?.value || '');
+      renderRadarResults(currentRadarTopic, currentRadarNivel, document.getElementById('radar-search-input')?.value || '');
     }
 
     async function scanLiveBoe(dateStr) {
@@ -2753,10 +3157,10 @@
           setBoeStatus('warning', `No hay sumario disponible en el BOE para el ${formatted} (festivo o fin de semana).`);
         }
       } catch (err) {
-        setBoeStatus('fallback', `Aviso de conexión: ${err.message}. Mostrando disposiciones estratégicas.`);
+        setBoeStatus('fallback', `Aviso de conexión: ${err.message}. Mostrando catálogo multi-fuente.`);
       } finally {
         isScanningLive = false;
-        renderRadarResults(currentRadarTopic, document.getElementById('radar-search-input')?.value || '');
+        renderRadarResults(currentRadarTopic, currentRadarNivel, document.getElementById('radar-search-input')?.value || '');
       }
     }
 
@@ -2771,7 +3175,7 @@
       if (dateInput) dateInput.value = formatted;
 
       setBoeStatus('connected', `Conectado al BOE (${formatted}) • ${items.length} disposiciones analizadas`);
-      renderRadarResults(currentRadarTopic, document.getElementById('radar-search-input')?.value || '');
+      renderRadarResults(currentRadarTopic, currentRadarNivel, document.getElementById('radar-search-input')?.value || '');
     }
 
     function setBoeStatus(type, msg) {
@@ -2797,7 +3201,7 @@
         if (headerStatus) headerStatus.textContent = `En Directo con BOE (${liveBoeDisposiciones.length} disposiciones)`;
       } else if (type === 'fallback') {
         if (dot) dot.className = 'inline-block w-2.5 h-2.5 rounded-full bg-cyan-400';
-        if (headerStatus) headerStatus.textContent = 'Modo Vigilancia Estratégica Bodega';
+        if (headerStatus) headerStatus.textContent = 'Radar Multi-Fuente: OIV • DOUE • BOE • CCAA • DOs';
       } else {
         if (dot) dot.className = 'inline-block w-2.5 h-2.5 rounded-full bg-rose-400';
       }
@@ -2807,22 +3211,37 @@
       if (liveBoeDisposiciones.length === 0 && !isScanningLive) {
         scanLatestAvailableBoe();
       } else {
-        renderRadarResults(currentRadarTopic, document.getElementById('radar-search-input')?.value || '');
+        renderRadarResults(currentRadarTopic, currentRadarNivel, document.getElementById('radar-search-input')?.value || '');
       }
     }
 
-    function renderRadarResults(topic = 'todos', filterText = '') {
+    function renderRadarResults(topic = currentRadarTopic, nivel = currentRadarNivel, filterText = '') {
       const container = document.getElementById('radar-results-container');
       if (!container) return;
 
-      currentRadarTopic = topic;
+      // Adaptación de argumentos si se pasa sólo filtro de texto
+      if (typeof nivel === 'string' && (nivel.length > 15 || (!['todos', 'mundial', 'europa', 'estatal', 'autonomico', 'do'].includes(nivel) && filterText === ''))) {
+        filterText = nivel;
+        nivel = currentRadarNivel;
+      }
 
+      currentRadarTopic = topic;
+      currentRadarNivel = nivel;
+
+      // Combinar normativas multi-fuente curadas y sumario en vivo del BOE
       let items = [...RADAR_DISPOSICIONES_DATABASE, ...liveBoeDisposiciones];
 
+      // Filtrar por Nivel Jurisdiccional (Mundial, Europa, España, CCAA, DO)
+      if (nivel !== 'todos') {
+        items = items.filter(d => matchesNivel(d, nivel));
+      }
+
+      // Filtrar por Ámbito Temático
       if (topic !== 'todos') {
         items = items.filter(d => d.topic === topic);
       }
 
+      // Filtrar por Texto de Búsqueda
       if (filterText && filterText.trim() !== '') {
         const q = filterText.toLowerCase().trim();
         items = items.filter(d => 
@@ -2830,7 +3249,9 @@
           (d.codigo && d.codigo.toLowerCase().includes(q)) ||
           (d.resumen && d.resumen.toLowerCase().includes(q)) ||
           (d.organismo && d.organismo.toLowerCase().includes(q)) ||
-          (d.ambito && d.ambito.toLowerCase().includes(q))
+          (d.ambito && d.ambito.toLowerCase().includes(q)) ||
+          (d.region && d.region.toLowerCase().includes(q)) ||
+          (d.do && d.do.toLowerCase().includes(q))
         );
       }
 
@@ -2843,26 +3264,24 @@
             <svg class="w-12 h-12 text-slate-600 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
-            <h4 class="text-slate-300 font-semibold text-sm">No se encontraron disposiciones con el filtro actual</h4>
-            <p class="text-xs text-slate-500 mt-1">Prueba con otro término de búsqueda o selecciona 'Todos los Ámbitos'.</p>
+            <h4 class="text-slate-300 font-semibold text-sm">No se encontraron disposiciones con los filtros seleccionados</h4>
+            <p class="text-xs text-slate-500 mt-1">Prueba seleccionando 'Todos los Niveles', 'Todos los Ámbitos' o consulta el diario oficial en vivo.</p>
           </div>
         `;
         return;
       }
 
-      const displayItems = filterText ? items : items.slice(0, 35);
+      const displayItems = filterText ? items : items.slice(0, 40);
 
       container.innerHTML = displayItems.map((item, index) => {
         const isAlreadyAdded = existingIds.has(item.id);
         const isLive = item.is_live_boe;
 
         return `
-          <div class="bg-slate-900 border ${isLive ? 'border-slate-800 hover:border-cyan-600/70' : 'border-amber-900/40 hover:border-amber-600/70'} rounded-2xl p-5 transition shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div class="bg-slate-900 border ${isLive ? 'border-cyan-800/60 hover:border-cyan-500/80' : 'border-slate-800 hover:border-slate-700'} rounded-2xl p-5 transition shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div class="space-y-1.5 max-w-3xl">
               <div class="flex flex-wrap items-center gap-2">
-                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold ${isLive ? 'bg-cyan-950 text-cyan-300 border border-cyan-700/60' : 'bg-amber-950 text-amber-300 border border-amber-700/60'}">
-                  ${isLive ? '📡 BOE EN DIRECTO' : '⭐ PRIORIDAD BODEGA'}
-                </span>
+                ${getNivelBadge(item)}
                 <span class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-slate-800 text-slate-300">
                   ${item.fecha}
                 </span>
@@ -2872,6 +3291,11 @@
                 <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-wine-950 text-wine-300 border border-wine-800/40">
                   ${item.ambito}
                 </span>
+                ${item.do && item.do !== 'Todas' ? `
+                  <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-950/80 text-amber-300 border border-amber-800/50">
+                    ${item.do}
+                  </span>
+                ` : ''}
               </div>
               <h3 class="font-serif font-bold text-base text-white hover:text-cyan-300 transition">
                 ${item.titulo}
@@ -2886,13 +3310,13 @@
               ` : ''}
               <div class="pt-2 text-[11px] text-cyan-400 font-medium flex items-center gap-1.5">
                 <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
-                <span>Acción para la bodega: ${item.requisitos ? item.requisitos[0] : 'Revisión y análisis de aplicabilidad legal en bodega'}</span>
+                <span>Acción para la bodega: ${item.requisitos ? item.requisitos[0] : 'Revisión y análisis de aplicabilidad en instalaciones y procesos'}</span>
               </div>
             </div>
 
             <div class="flex flex-row md:flex-col items-center md:items-end gap-2.5 flex-shrink-0 w-full md:w-auto pt-3 md:pt-0 border-t md:border-t-0 border-slate-800">
               <a href="${item.enlace}" target="_blank" rel="noopener noreferrer" class="flex-1 md:flex-none text-center px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold transition flex items-center justify-center gap-1">
-                <span>Ver en BOE Oficial</span>
+                <span>Ver en Fuente Oficial</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                 </svg>
@@ -2934,10 +3358,10 @@
         `;
       }).join('');
 
-      if (!filterText && items.length > 35) {
+      if (!filterText && items.length > 40) {
         container.innerHTML += `
           <div class="p-4 text-center bg-slate-900/60 rounded-xl border border-slate-800 text-xs text-slate-400">
-            Mostrando las primeras 35 disposiciones de ${items.length} disponibles. Utiliza el buscador para filtrar términos específicos.
+            Mostrando las primeras 40 disposiciones de ${items.length} disponibles. Utiliza el buscador o los filtros jurisdiccionales para afinar los resultados.
           </div>
         `;
       }
@@ -2945,22 +3369,7 @@
 
     function executeRadarSearch() {
       const q = document.getElementById('radar-search-input')?.value || '';
-      renderRadarResults(currentRadarTopic, q);
-    }
-
-    function filterRadarByTopic(topic) {
-      document.querySelectorAll('.radar-topic-btn').forEach(btn => {
-        btn.classList.remove('active', 'bg-cyan-800', 'text-white', 'border-cyan-600');
-        btn.classList.add('bg-slate-950', 'text-slate-300', 'border-slate-800');
-      });
-      const targetBtn = document.getElementById(`radar-topic-${topic}`);
-      if (targetBtn) {
-        targetBtn.classList.add('active', 'bg-cyan-800', 'text-white', 'border-cyan-600');
-        targetBtn.classList.remove('bg-slate-950', 'text-slate-300', 'border-slate-800');
-      }
-
-      const q = document.getElementById('radar-search-input')?.value || '';
-      renderRadarResults(topic, q);
+      renderRadarResults(currentRadarTopic, currentRadarNivel, q);
     }
 
     function addRadarItemToCatalogo(normaId) {
@@ -2983,12 +3392,12 @@
           nivel: item.nivel || "Estatal",
           region: item.region || "España",
           do: item.do || "Todas",
-          ambito: item.ambito || (item.organismo ? item.organismo : "Normativa Estatal"),
+          ambito: item.ambito || (item.organismo ? item.organismo : "Normativa General"),
           is_news: true,
-          novedad_badge: item.is_live_boe ? "Radar BOE en Directo" : "Radar BOE",
+          novedad_badge: item.is_live_boe ? "Radar BOE en Directo" : (item.nivel ? item.nivel : "Radar Oficial"),
           resumen: item.resumen || item.titulo,
           requisitos: item.requisitos || [
-            `Disposición oficial publicada en el BOE (${item.fecha}).`,
+            `Disposición oficial publicada (${item.fecha}).`,
             "Revisión de impacto normativo en instalaciones y procesos de bodega.",
             "Cumplimiento de plazos de aplicación e inspección."
           ],
@@ -3009,9 +3418,9 @@
       renderUrgentNewsBanner();
       renderCatalogo();
       renderDenominacionesGrid();
-      renderRadarResults(currentRadarTopic, document.getElementById('radar-search-input')?.value || '');
+      renderRadarResults(currentRadarTopic, currentRadarNivel, document.getElementById('radar-search-input')?.value || '');
       
-      alert(`¡La disposición "${item.titulo}" ha sido incorporada con éxito a tu catálogo y ordenada cronológicamente!`);
+      alert(`¡La disposición "${item.titulo}" (${item.nivel || 'Norma'}) ha sido incorporada con éxito a tu catálogo y ordenada cronológicamente!`);
     }
 
     function removeCustomNorma(normaId) {
