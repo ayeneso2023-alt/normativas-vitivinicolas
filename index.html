@@ -660,8 +660,8 @@
         <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
           <div>
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 text-xs font-semibold border border-cyan-500/30 mb-2">
-              <span class="inline-block w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
-              <span>Conexión en Directo con Boletines Oficiales</span>
+              <span id="radar-live-pulse-dot" class="inline-block w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+              <span id="radar-live-header-status">Conexión en Directo con la API de Datos Abiertos del BOE</span>
             </div>
             <h2 class="font-serif text-2xl font-bold text-white flex items-center gap-2">
               Radar de Novedades Oficiales (BOE / DOUE / CCAA)
@@ -673,11 +673,18 @@
 
           <!-- Botones de Acción Rápida -->
           <div class="flex flex-wrap items-center gap-2">
+            <button onclick="scanLatestAvailableBoe()" class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-cyan-700 hover:bg-cyan-600 text-white font-medium text-xs shadow-lg transition border border-cyan-500/50">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+              </svg>
+              <span>Escanear Último BOE</span>
+            </button>
+
             <button onclick="openNewNormaModal()" class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-gradient-to-r from-wine-700 to-wine-600 hover:from-wine-600 hover:to-wine-500 text-white font-medium text-xs shadow-lg transition border border-wine-500/40">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
               </svg>
-              <span>+ Registrar Norma / Circular</span>
+              <span>+ Registrar Norma</span>
             </button>
 
             <button onclick="exportCatalogoJSON()" class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-xs transition border border-slate-700">
@@ -689,12 +696,29 @@
           </div>
         </div>
 
+        <!-- Barra de Estado en Tiempo Real y Selector de Fecha BOE -->
+        <div class="mt-5 pt-4 border-t border-slate-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span id="boe-live-status-dot" class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+            <span id="boe-live-status-text" class="text-slate-300 font-medium">Iniciando conexión con API oficial del BOE...</span>
+            <span id="boe-live-count-badge" class="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-cyan-950 text-cyan-300 border border-cyan-700/60 hidden"></span>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <label for="radar-date-input" class="text-slate-400 font-medium text-[11px] whitespace-nowrap">Fecha Sumario:</label>
+            <input type="date" id="radar-date-input" onchange="triggerDateScan(this.value)" class="bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1 text-xs text-white focus:outline-none focus:border-cyan-500 transition">
+            <button onclick="triggerDateScan(document.getElementById('radar-date-input').value)" class="px-2.5 py-1 rounded-lg bg-cyan-800 hover:bg-cyan-700 text-white font-semibold text-[11px] transition">
+              Consultar
+            </button>
+          </div>
+        </div>
+
         <!-- Barra de Búsqueda del Radar y Filtros Temáticos -->
-        <div class="mt-6 pt-5 border-t border-slate-800/80">
+        <div class="mt-4 pt-4 border-t border-slate-800/80">
           <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
             <div class="md:col-span-3">
               <div class="relative">
-                <input type="text" id="radar-search-input" onkeyup="if(event.key==='Enter') executeRadarSearch()" placeholder="Buscar en el BOE en vivo (ej: 'riesgos laborales', 'maquinaria', 'desperdicio', 'cava', 'vertidos')..." class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 focus:border-cyan-500 text-xs text-white placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 transition">
+                <input type="text" id="radar-search-input" oninput="executeRadarSearch()" onkeyup="if(event.key==='Enter') executeRadarSearch()" placeholder="Buscar en vivo en el BOE (ej: 'decreto', 'subvención', 'alcohol', 'uva', 'residuos', 'maquinaria', 'inspección')..." class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 focus:border-cyan-500 text-xs text-white placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 transition">
                 <svg class="w-4 h-4 text-slate-500 absolute left-3.5 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                 </svg>
@@ -705,7 +729,7 @@
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                 </svg>
-                <span>Escanear Boletines</span>
+                <span>Filtrar Disposiciones</span>
               </button>
             </div>
           </div>
@@ -2239,6 +2263,12 @@
         targetBtn.classList.remove('border-transparent', 'text-slate-400');
       }
 
+      if (tabId === 'tab-radar') {
+        if (typeof onRadarTabActivated === 'function') {
+          onRadarTabActivated();
+        }
+      }
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -2579,29 +2609,228 @@
       }
     ];
 
+    /**
+     * ESTADO Y MOTOR DE CONEXIÓN EN DIRECTO CON LA API DE DATOS ABIERTOS DEL BOE
+     */
+    let liveBoeDisposiciones = [];
+    let currentBoeDate = '';
+    let isScanningLive = false;
     let currentRadarTopic = 'todos';
+
+    function detectBoeTopic(titulo, dep) {
+      const text = (titulo + " " + (dep || "")).toLowerCase();
+      if (/prevención|riesgo|laboral|asfixia|confinado|accidente|seguridad y salud|insst|trabajo/i.test(text)) return 'prl';
+      if (/maquinaria|equipo de trabajo|marcado ce|frigor|presión|seguridad industrial|eléctric|industria/i.test(text)) return 'maquinaria';
+      if (/aliment|desperdicio|calidad|sanidad|higiene|nutric|consumo|aesan|alérgeno/i.test(text)) return 'alimentaria';
+      if (/vino|vitivinícola|viñedo|uva|mosto|bodega|denominación de origen|enolog|alcohol/i.test(text)) return 'vitivinicola';
+      if (/medio ambiente|residuo|envase|vertido|agua|hidráulic|clima|emisión|ecolog|transición ecológica/i.test(text)) return 'medioambiente';
+      if (/incendio|fuego|bombero|protección civil|rsciei|ripci/i.test(text)) return 'incendios';
+      return 'general';
+    }
+
+    function getAmbitoLabelFromTopic(topic, dep) {
+      switch (topic) {
+        case 'prl': return 'Seguridad y Salud Laboral (PRL)';
+        case 'maquinaria': return 'Seguridad Industrial y Maquinaria';
+        case 'alimentaria': return 'Seguridad Alimentaria y Calidad';
+        case 'vitivinicola': return 'Vitivinícola y Etiquetado';
+        case 'medioambiente': return 'Medio Ambiente y Aguas';
+        case 'incendios': return 'Seguridad Contra Incendios';
+        default: return dep ? (dep.length > 40 ? dep.slice(0, 38) + '...' : dep) : 'Disposición Estatal';
+      }
+    }
+
+    function extractBoeItemsFromSumario(json, dateStr) {
+      const items = [];
+      const dateFormatted = `${dateStr.slice(0,4)}-${dateStr.slice(4,6)}-${dateStr.slice(6,8)}`;
+
+      function walk(node, currentDep, currentSec) {
+        if (!node) return;
+        if (Array.isArray(node)) {
+          for (const el of node) walk(el, currentDep, currentSec);
+          return;
+        }
+        if (typeof node === 'object') {
+          let dep = currentDep;
+          let sec = currentSec;
+          if (node.nombre && node.codigo && (node.codigo.length > 2 || isNaN(node.codigo))) {
+            dep = node.nombre;
+          }
+          if (node.nombre && (node.codigo === '1' || node.codigo === '3' || node.codigo === '2A' || node.codigo === '5A')) {
+            sec = node.nombre;
+          }
+
+          if (node.identificador && node.titulo) {
+            const id = node.identificador;
+            const titulo = node.titulo;
+            const urlPdf = node.url_pdf?.texto || (typeof node.url_pdf === 'string' ? node.url_pdf : `https://www.boe.es/boe/dias/${dateStr.slice(0,4)}/${dateStr.slice(4,6)}/${dateStr.slice(6,8)}/pdfs/${id}.pdf`);
+            const enlace = `https://www.boe.es/buscar/act.php?id=${id}`;
+
+            const topic = detectBoeTopic(titulo, dep);
+            const ambito = getAmbitoLabelFromTopic(topic, dep);
+
+            items.push({
+              id: id,
+              titulo: titulo,
+              codigo: id,
+              organismo: dep || "Boletín Oficial del Estado",
+              seccion: sec || "Disposiciones Oficiales",
+              fecha: dateFormatted,
+              nivel: "Estatal",
+              region: "España",
+              do: "Todas",
+              topic: topic,
+              ambito: ambito,
+              resumen: titulo,
+              enlace: enlace,
+              url_pdf: urlPdf,
+              is_live_boe: true
+            });
+            return;
+          }
+          for (const k of Object.keys(node)) {
+            walk(node[k], dep, sec);
+          }
+        }
+      }
+      walk(json.data?.sumario, "", "");
+      return items;
+    }
+
+    async function fetchBoeSumario(dateStr) {
+      const url = `https://www.boe.es/datosabiertos/api/boe/sumario/${dateStr}`;
+      const res = await fetch(url, {
+        headers: { 'Accept': 'application/json' }
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return await res.json();
+    }
+
+    async function triggerDateScan(dateVal) {
+      if (!dateVal) return;
+      const cleanDate = dateVal.replace(/-/g, '');
+      await scanLiveBoe(cleanDate);
+    }
+
+    async function scanLatestAvailableBoe() {
+      const candidateDates = ['20250923', '20250922', '20250920', '20250919', '20250918'];
+      
+      const today = new Date();
+      if (today.getDay() !== 0) {
+        const y = today.getFullYear();
+        const m = String(today.getMonth() + 1).padStart(2, '0');
+        const dt = String(today.getDate()).padStart(2, '0');
+        const sysDate = `${y}${m}${dt}`;
+        if (!candidateDates.includes(sysDate)) candidateDates.unshift(sysDate);
+      }
+
+      setBoeStatus('loading', 'Escaneando sumarios oficiales del BOE...');
+      for (const d of candidateDates) {
+        try {
+          const json = await fetchBoeSumario(d);
+          if (json?.status?.code === '200' && json.data?.sumario) {
+            await applyBoeSumario(json, d);
+            return;
+          }
+        } catch (e) {}
+      }
+
+      setBoeStatus('fallback', 'Sin conexión con la API del BOE. Mostrando catálogo estratégico.');
+      renderRadarResults(currentRadarTopic, document.getElementById('radar-search-input')?.value || '');
+    }
+
+    async function scanLiveBoe(dateStr) {
+      if (isScanningLive) return;
+      isScanningLive = true;
+      const formatted = `${dateStr.slice(0,4)}-${dateStr.slice(4,6)}-${dateStr.slice(6,8)}`;
+      setBoeStatus('loading', `Descargando sumario oficial del BOE (${formatted})...`);
+
+      try {
+        const json = await fetchBoeSumario(dateStr);
+        if (json?.status?.code === '200' && json.data?.sumario) {
+          await applyBoeSumario(json, dateStr);
+        } else {
+          setBoeStatus('warning', `No hay sumario disponible en el BOE para el ${formatted} (festivo o fin de semana).`);
+        }
+      } catch (err) {
+        setBoeStatus('fallback', `Aviso de conexión: ${err.message}. Mostrando disposiciones estratégicas.`);
+      } finally {
+        isScanningLive = false;
+        renderRadarResults(currentRadarTopic, document.getElementById('radar-search-input')?.value || '');
+      }
+    }
+
+    async function applyBoeSumario(json, dateStr) {
+      const items = extractBoeItemsFromSumario(json, dateStr);
+      liveBoeDisposiciones = items;
+      currentBoeDate = dateStr;
+      isScanningLive = false;
+
+      const formatted = `${dateStr.slice(0,4)}-${dateStr.slice(4,6)}-${dateStr.slice(6,8)}`;
+      const dateInput = document.getElementById('radar-date-input');
+      if (dateInput) dateInput.value = formatted;
+
+      setBoeStatus('connected', `Conectado al BOE (${formatted}) • ${items.length} disposiciones analizadas`);
+      renderRadarResults(currentRadarTopic, document.getElementById('radar-search-input')?.value || '');
+    }
+
+    function setBoeStatus(type, msg) {
+      const dot = document.getElementById('boe-live-status-dot');
+      const text = document.getElementById('boe-live-status-text');
+      const badge = document.getElementById('boe-live-count-badge');
+      const pulseDot = document.getElementById('radar-live-pulse-dot');
+      const headerStatus = document.getElementById('radar-live-header-status');
+
+      if (text) text.textContent = msg;
+
+      if (type === 'loading') {
+        if (dot) dot.className = 'inline-block w-2.5 h-2.5 rounded-full bg-amber-400 animate-spin';
+        if (pulseDot) pulseDot.className = 'inline-block w-2 h-2 rounded-full bg-amber-400 animate-ping';
+        if (headerStatus) headerStatus.textContent = 'Consultando API oficial de Datos Abiertos del BOE...';
+      } else if (type === 'connected') {
+        if (dot) dot.className = 'inline-block w-2.5 h-2.5 rounded-full bg-emerald-400';
+        if (pulseDot) pulseDot.className = 'inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping';
+        if (badge) {
+          badge.textContent = `${liveBoeDisposiciones.length} Disposiciones`;
+          badge.classList.remove('hidden');
+        }
+        if (headerStatus) headerStatus.textContent = `En Directo con BOE (${liveBoeDisposiciones.length} disposiciones)`;
+      } else if (type === 'fallback') {
+        if (dot) dot.className = 'inline-block w-2.5 h-2.5 rounded-full bg-cyan-400';
+        if (headerStatus) headerStatus.textContent = 'Modo Vigilancia Estratégica Bodega';
+      } else {
+        if (dot) dot.className = 'inline-block w-2.5 h-2.5 rounded-full bg-rose-400';
+      }
+    }
+
+    function onRadarTabActivated() {
+      if (liveBoeDisposiciones.length === 0 && !isScanningLive) {
+        scanLatestAvailableBoe();
+      } else {
+        renderRadarResults(currentRadarTopic, document.getElementById('radar-search-input')?.value || '');
+      }
+    }
 
     function renderRadarResults(topic = 'todos', filterText = '') {
       const container = document.getElementById('radar-results-container');
       if (!container) return;
 
       currentRadarTopic = topic;
-      let items = [...RADAR_DISPOSICIONES_DATABASE];
 
-      // Filtrar por tema
+      let items = [...RADAR_DISPOSICIONES_DATABASE, ...liveBoeDisposiciones];
+
       if (topic !== 'todos') {
         items = items.filter(d => d.topic === topic);
       }
 
-      // Filtrar por texto si existe
       if (filterText && filterText.trim() !== '') {
         const q = filterText.toLowerCase().trim();
         items = items.filter(d => 
-          d.titulo.toLowerCase().includes(q) ||
-          d.codigo.toLowerCase().includes(q) ||
-          d.resumen.toLowerCase().includes(q) ||
-          d.organismo.toLowerCase().includes(q) ||
-          d.ambito.toLowerCase().includes(q)
+          (d.titulo && d.titulo.toLowerCase().includes(q)) ||
+          (d.codigo && d.codigo.toLowerCase().includes(q)) ||
+          (d.resumen && d.resumen.toLowerCase().includes(q)) ||
+          (d.organismo && d.organismo.toLowerCase().includes(q)) ||
+          (d.ambito && d.ambito.toLowerCase().includes(q))
         );
       }
 
@@ -2614,24 +2843,30 @@
             <svg class="w-12 h-12 text-slate-600 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
-            <h4 class="text-slate-300 font-semibold text-sm">No se encontraron disposiciones en este escaneo</h4>
-            <p class="text-xs text-slate-500 mt-1">Intenta con otro término o selecciona 'Todos los Ámbitos'.</p>
+            <h4 class="text-slate-300 font-semibold text-sm">No se encontraron disposiciones con el filtro actual</h4>
+            <p class="text-xs text-slate-500 mt-1">Prueba con otro término de búsqueda o selecciona 'Todos los Ámbitos'.</p>
           </div>
         `;
         return;
       }
 
-      container.innerHTML = items.map((item, index) => {
+      const displayItems = filterText ? items : items.slice(0, 35);
+
+      container.innerHTML = displayItems.map((item, index) => {
         const isAlreadyAdded = existingIds.has(item.id);
+        const isLive = item.is_live_boe;
 
         return `
-          <div class="bg-slate-900 border border-slate-800 hover:border-cyan-700/60 rounded-2xl p-5 transition shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div class="bg-slate-900 border ${isLive ? 'border-slate-800 hover:border-cyan-600/70' : 'border-amber-900/40 hover:border-amber-600/70'} rounded-2xl p-5 transition shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div class="space-y-1.5 max-w-3xl">
               <div class="flex flex-wrap items-center gap-2">
-                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-cyan-950 text-cyan-300 border border-cyan-700/50">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold ${isLive ? 'bg-cyan-950 text-cyan-300 border border-cyan-700/60' : 'bg-amber-950 text-amber-300 border border-amber-700/60'}">
+                  ${isLive ? '📡 BOE EN DIRECTO' : '⭐ PRIORIDAD BODEGA'}
+                </span>
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-slate-800 text-slate-300">
                   ${item.fecha}
                 </span>
-                <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-slate-800 text-slate-300">
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-slate-800 text-slate-300 truncate max-w-xs" title="${item.organismo}">
                   ${item.organismo}
                 </span>
                 <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-wine-950 text-wine-300 border border-wine-800/40">
@@ -2644,22 +2879,33 @@
               <p class="text-xs text-slate-400 font-mono">
                 ${item.codigo}
               </p>
-              <p class="text-xs text-slate-300 leading-relaxed pt-1">
-                ${item.resumen}
-              </p>
+              ${item.resumen && item.resumen !== item.titulo ? `
+                <p class="text-xs text-slate-300 leading-relaxed pt-1">
+                  ${item.resumen}
+                </p>
+              ` : ''}
               <div class="pt-2 text-[11px] text-cyan-400 font-medium flex items-center gap-1.5">
                 <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
-                <span>Acción para la bodega: ${item.requisitos ? item.requisitos[0] : 'Revisión y adaptación de protocolos'}</span>
+                <span>Acción para la bodega: ${item.requisitos ? item.requisitos[0] : 'Revisión y análisis de aplicabilidad legal en bodega'}</span>
               </div>
             </div>
 
             <div class="flex flex-row md:flex-col items-center md:items-end gap-2.5 flex-shrink-0 w-full md:w-auto pt-3 md:pt-0 border-t md:border-t-0 border-slate-800">
               <a href="${item.enlace}" target="_blank" rel="noopener noreferrer" class="flex-1 md:flex-none text-center px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold transition flex items-center justify-center gap-1">
-                <span>Ver en BOE / Web</span>
+                <span>Ver en BOE Oficial</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                 </svg>
               </a>
+
+              ${item.url_pdf ? `
+                <a href="${item.url_pdf}" target="_blank" rel="noopener noreferrer" class="hidden md:flex text-center px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-cyan-300 text-[11px] font-mono transition items-center justify-center gap-1 border border-slate-800">
+                  <span>PDF Original</span>
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                  </svg>
+                </a>
+              ` : ''}
 
               ${isAlreadyAdded ? `
                 <div class="flex items-center gap-1.5 w-full md:w-auto">
@@ -2687,6 +2933,14 @@
           </div>
         `;
       }).join('');
+
+      if (!filterText && items.length > 35) {
+        container.innerHTML += `
+          <div class="p-4 text-center bg-slate-900/60 rounded-xl border border-slate-800 text-xs text-slate-400">
+            Mostrando las primeras 35 disposiciones de ${items.length} disponibles. Utiliza el buscador para filtrar términos específicos.
+          </div>
+        `;
+      }
     }
 
     function executeRadarSearch() {
@@ -2710,7 +2964,7 @@
     }
 
     function addRadarItemToCatalogo(normaId) {
-      const item = RADAR_DISPOSICIONES_DATABASE.find(d => d.id === normaId);
+      const item = RADAR_DISPOSICIONES_DATABASE.find(d => d.id === normaId) || liveBoeDisposiciones.find(d => d.id === normaId);
       if (!item) return;
 
       let custom = [];
@@ -2724,24 +2978,34 @@
         const newEntry = {
           id: item.id,
           titulo: item.titulo,
-          codigo: item.codigo,
+          codigo: item.codigo || item.id,
           fecha: item.fecha,
           nivel: item.nivel || "Estatal",
           region: item.region || "España",
           do: item.do || "Todas",
-          ambito: item.ambito,
+          ambito: item.ambito || (item.organismo ? item.organismo : "Normativa Estatal"),
           is_news: true,
-          novedad_badge: "Radar BOE",
-          resumen: item.resumen,
-          requisitos: item.requisitos || ["Revisión documental del expediente y adaptación del protocolo operativo."],
-          sanciones: item.sanciones || "Infracción según la ley sectorial aplicable.",
+          novedad_badge: item.is_live_boe ? "Radar BOE en Directo" : "Radar BOE",
+          resumen: item.resumen || item.titulo,
+          requisitos: item.requisitos || [
+            `Disposición oficial publicada en el BOE (${item.fecha}).`,
+            "Revisión de impacto normativo en instalaciones y procesos de bodega.",
+            "Cumplimiento de plazos de aplicación e inspección."
+          ],
+          sanciones: item.sanciones || "Régimen sancionador de la normativa sectorial de aplicación.",
           enlace: item.enlace
         };
         custom.push(newEntry);
         localStorage.setItem('bodega_custom_normas_v1', JSON.stringify(custom));
       }
 
-      // Refrescar vistas en tiempo real
+      // Actualizar contadores y todas las vistas del dashboard en tiempo real
+      const allMerged = getMergedNormativas();
+      const badgeTabCount = document.getElementById('badge-tab-total-count');
+      if (badgeTabCount) badgeTabCount.textContent = allMerged.length;
+      const footerCount = document.getElementById('footer-normativas-count');
+      if (footerCount) footerCount.textContent = `${allMerged.length} Normativas Indexadas`;
+
       renderUrgentNewsBanner();
       renderCatalogo();
       renderDenominacionesGrid();

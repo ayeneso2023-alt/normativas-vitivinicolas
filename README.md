@@ -15,8 +15,8 @@ Dashboard integral interactivo diseñado para **bodegas de elaboración, plantas
      - **Reglamento (UE) 2023/1115 (EUDR Deforestación)**: Trazabilidad de no deforestación en madera de roble para barricas y cartón.
      - **Ley 2/2023 (Canal de Denuncias / Whistleblowing)**: Canal ético interno obligatorio para empresas de 50 o más trabajadores.
      - **DO Cava**: Obligación de uva y vino 100% ecológico para Cava de Guarda Superior desde la cosecha 2025.
-     - **Reglamento PPWR (UE) 2024/1860**: Cuotas de reutilización de botellas y ecodiseño de envases de vidrio.
-     - **RD 145/2024 & INSST**: Protocolo reforzado contra asfixia por CO2 (*tufo*) en naves de fermentación y permisos de espacios confinados.
+     - **Reglamento PPWR (UE) 2025/40**: Cuotas obligatorias de reutilización de botellas, ecodiseño y reducción de envases de vidrio.
+     - **RD 39/1997 (Art. 22 bis) & Criterio Técnico INSST**: Protocolo reforzado contra asfixia por CO2 (*tufo*) en fermentación y permisos de espacios confinados.
      - **RD 3/2023**: Plan Sanitario del Agua (PSA) de proceso y limpieza de cubas.
      - **RD 1055/2022**: Registro de Productores de Producto (sección envases MITECO) y declaración anual.
      - **Ley 7/2022**: Impuesto sobre envases de plástico no reutilizables (Modelo 592).
@@ -26,15 +26,19 @@ Dashboard integral interactivo diseñado para **bodegas de elaboración, plantas
    - Las **78 normativas** del catálogo están ordenadas por defecto cronológicamente desde la fecha más reciente (2025) hasta las bases fundacionales internacionales (OIV - 1924).
    - Posibilidad de alternar orden ascendente o alfabético con un clic.
 
-3. **Radar Oficial en Tiempo Real (BOE / DOUE / CCAA)**:
-   - Módulo interactivo conectado al Servicio de Publicaciones Oficiales para vigilar en vivo novedades normativas en:
-     - 🦺 **Prevención de Riesgos Laborales (PRL)** (espacios confinados, asfixia por CO2, atmósferas explosivas ATEX, ergonomía).
-     - ⚙️ **Maquinaria Industrial y Equipos** (marcado CE, recipientes a presión, frío industrial RSIF, baja tensión).
-     - 🍏 **Seguridad Alimentaria, Higiene y Desperdicio** (APPCC, RGSEAA, alérgenos, materiales MOCA, control metrológico de llenado).
-     - 💧 **Medio Ambiente, Aguas y Vertidos** (EDARI, cánones hidrológicos de cuenca, residuos, huella de carbono, fitosanitarios).
-     - 🍷 **Vitivinícola y Denominaciones de Origen** (circulares de los 9 Consejos Reguladores, INFOVI, SILICIE, AICA).
-     - 🚒 **Seguridad Contra Incendios** (RSCIEI, RIPCI, revisiones OCA).
-   - **Botón "➕ Añadir a mi Catálogo"**: Incorpora cualquier norma del radar con un clic y la persiste en `localStorage`.
+3. **Radar Oficial en Tiempo Real (Conectado a la API oficial de Datos Abiertos del BOE)**:
+   - Motor en vivo conectado directamente a la API oficial de Datos Abiertos del Boletín Oficial del Estado (`https://www.boe.es/datosabiertos/api/boe/sumario/{YYYYMMDD}`):
+     - **Descarga y análisis en vivo** de más de 250 disposiciones por sumario diario oficial.
+     - **Selector de fechas y botón "Escanear Último BOE"** para monitorizar publicaciones recientes.
+     - **Filtros por los 6 ámbitos regulatorios de bodega**:
+       - 🦺 **Prevención de Riesgos Laborales (PRL)** (espacios confinados, asfixia por CO2, atmósferas explosivas ATEX, ergonomía).
+       - ⚙️ **Maquinaria Industrial y Equipos** (marcado CE, recipientes a presión, frío industrial RSIF, baja tensión).
+       - 🍏 **Seguridad Alimentaria, Higiene y Desperdicio** (APPCC, RGSEAA, alérgenos, materiales MOCA, control metrológico de llenado).
+       - 💧 **Medio Ambiente, Aguas y Vertidos** (EDARI, cánones hidrológicos de cuenca, residuos, huella de carbono, fitosanitarios).
+       - 🍷 **Vitivinícola y Denominaciones de Origen** (circulares de los 9 Consejos Reguladores, INFOVI, SILICIE, AICA).
+       - 🚒 **Seguridad Contra Incendios** (RSCIEI, RIPCI, revisiones OCA).
+   - **Buscador en directo**: Localiza cualquier término (ej: *decreto, subvención, uva, alcohol, residuos, inspección*) en el sumario oficial del día.
+   - **Integración Reactiva Instantánea**: El botón **"➕ Añadir a mi Catálogo"** incorpora cualquier disposición encontrada directamente a la base de datos de la bodega (`localStorage`), actualizando en tiempo real el contador global (de 78 a 79+), el banner de avisos prioritarios y el catálogo cronológico.
    - **Formulario de Alta Rápida**: Permite a la bodega registrar circulares y acuerdos de plenos de Consejos Reguladores o decretos autonómicos sin tocar código.
    - **Exportación JSON**: Descarga de la base de datos completa actualizada.
 
