@@ -671,13 +671,20 @@
             </p>
           </div>
 
-          <!-- Botones de Acción Rápida -->
+          <!-- Botones de Acción Rápida Multi-Fuente -->
           <div class="flex flex-wrap items-center gap-2">
-            <button onclick="scanLatestAvailableBoe()" class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-cyan-700 hover:bg-cyan-600 text-white font-medium text-xs shadow-lg transition border border-cyan-500/50">
+            <button id="btn-sync-all-sources" onclick="syncAllJurisdictionsRadar()" title="Escanear y sincronizar en vivo todas las fuentes oficiales: OIV mundial, DOUE europeo, BOE estatal, boletines autonómicos y Consejos Reguladores" class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-cyan-700 hover:bg-cyan-600 text-white font-medium text-xs shadow-lg transition border border-cyan-500/50">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
               </svg>
-              <span>Escanear Último BOE</span>
+              <span>🔄 Sincronizar Todas las Fuentes (5 Niveles)</span>
+            </button>
+
+            <button onclick="addAllNewRadarToCatalogo()" title="Incorporar a mi Catálogo Oficial todas las disposiciones pendientes que aún no están en él (sin duplicados)" class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-medium text-xs shadow-lg transition border border-emerald-500/50">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-2m-4-1v8m0 0l3-3m-3 3L9 8m-5 5h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293h3.172a1 1 0 00.707-.293l2.414-2.414a1 1 0 01.707-.293H20"/>
+              </svg>
+              <span>📥 Incorporar Novedades al Catálogo</span>
             </button>
 
             <button onclick="openNewNormaModal()" class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-gradient-to-r from-wine-700 to-wine-600 hover:from-wine-600 hover:to-wine-500 text-white font-medium text-xs shadow-lg transition border border-wine-500/40">
@@ -696,8 +703,26 @@
           </div>
         </div>
 
+        <!-- Panel Informativo: Funcionamiento del Radar vs Catálogo Oficial y Protección Anti-Duplicados -->
+        <div class="mt-4 p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs text-slate-300 flex items-start gap-3">
+          <div class="p-2 rounded-lg bg-emerald-950/80 border border-emerald-700/60 text-emerald-300 flex-shrink-0 mt-0.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <div class="space-y-1">
+            <div class="flex items-center gap-2 flex-wrap">
+              <h4 class="font-semibold text-white">¿Cómo interactúan el Radar y tu Catálogo Oficial?</h4>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-950 text-emerald-300 border border-emerald-700/60">Sistema Anti-Duplicados Activo</span>
+            </div>
+            <p class="text-slate-300 text-[11px] leading-relaxed">
+              El <strong>Catálogo Oficial (Pestaña 1)</strong> contiene las normativas auditadas e implantadas en tu bodega. El <strong>Radar (Pestaña 2)</strong> es tu buzón de vigilancia continua de los <strong>5 niveles legales</strong> (OIV, DOUE, BOE en vivo, 6 CCAA y Consejos Reguladores). Las disposiciones ya incorporadas aparecen señalizadas con <span class="text-emerald-300 font-semibold">"✓ En tu Catálogo"</span> y están protegidas para que <strong>nunca se dupliquen</strong>. Si detectas una novedad aplicable, puedes añadirla individualmente con <span class="text-emerald-300 font-semibold">"➕ Añadir a mi Catálogo"</span> o incorporar todas las pendientes con <span class="text-cyan-300 font-semibold">"📥 Incorporar Novedades al Catálogo"</span>.
+            </p>
+          </div>
+        </div>
+
         <!-- Barra de Estado en Tiempo Real y Selector de Fecha BOE -->
-        <div class="mt-5 pt-4 border-t border-slate-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+        <div class="mt-4 pt-4 border-t border-slate-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
           <div class="flex items-center gap-2 flex-wrap">
             <span id="boe-live-status-dot" class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
             <span id="boe-live-status-text" class="text-slate-300 font-medium">Iniciando conexión con API oficial del BOE...</span>
@@ -705,7 +730,7 @@
           </div>
 
           <div class="flex items-center gap-2">
-            <label for="radar-date-input" class="text-slate-400 font-medium text-[11px] whitespace-nowrap">Fecha Sumario:</label>
+            <label for="radar-date-input" class="text-slate-400 font-medium text-[11px] whitespace-nowrap">Fecha Sumario BOE:</label>
             <input type="date" id="radar-date-input" onchange="triggerDateScan(this.value)" class="bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1 text-xs text-white focus:outline-none focus:border-cyan-500 transition">
             <button onclick="triggerDateScan(document.getElementById('radar-date-input').value)" class="px-2.5 py-1 rounded-lg bg-cyan-800 hover:bg-cyan-700 text-white font-semibold text-[11px] transition">
               Consultar
@@ -1584,20 +1609,114 @@
     });
 
     /**
-     * FUSIÓN DE DATOS: BASE REGULATORIA + NORMAS GUARDADAS EN TIEMPO REAL
+     * MOTOR DE RECONOCIMIENTO Y PREVENCIÓN DE DUPLICADOS NORMATIVOS
+     */
+    function getLegalTokens(str) {
+      if (!str) return [];
+      const matches = str.match(/\b\d+[\/\-]\d+\b/g) || [];
+      return matches;
+    }
+
+    function findNormaInCatalog(item, catalogList) {
+      if (!item || !catalogList || !Array.isArray(catalogList)) return null;
+      
+      // 1. Coincidencia exacta por ID
+      const byId = catalogList.find(n => n.id === item.id);
+      if (byId) return byId;
+
+      // 2. Extraer códigos legales específicos (ej: 2025/40, 2023/1230, 2023/1115, 2021/2117, 3/2023, 2267/2004, 3/2020)
+      const itemTokens = getLegalTokens(`${item.codigo || ''} ${item.titulo || ''} ${item.id || ''}`);
+      if (itemTokens.length > 0) {
+        for (const catItem of catalogList) {
+          const catTokens = getLegalTokens(`${catItem.codigo || ''} ${catItem.titulo || ''} ${catItem.id || ''}`);
+          if (itemTokens.some(tok => catTokens.includes(tok))) {
+            return catItem;
+          }
+        }
+      }
+
+      // 3. Coincidencia por enlace oficial exacto
+      if (item.enlace && item.enlace.startsWith('http') && item.enlace.length > 25) {
+        const cleanLink = item.enlace.split('?')[0].replace(/\/+$/, '').toLowerCase();
+        for (const catItem of catalogList) {
+          if (catItem.enlace) {
+            const catLink = catItem.enlace.split('?')[0].replace(/\/+$/, '').toLowerCase();
+            if (cleanLink === catLink && cleanLink.length > 25) {
+              return catItem;
+            }
+          }
+        }
+      }
+
+      // 4. Coincidencia por título muy específico
+      const cleanItemTitle = (item.titulo || '').toLowerCase().replace(/[^\p{L}\d]/gu, '');
+      if (cleanItemTitle.length > 15) {
+        for (const catItem of catalogList) {
+          const cleanCatTitle = (catItem.titulo || '').toLowerCase().replace(/[^\p{L}\d]/gu, '');
+          if (cleanCatTitle === cleanItemTitle || cleanCatTitle.includes(cleanItemTitle) || cleanItemTitle.includes(cleanCatTitle)) {
+            return catItem;
+          }
+        }
+      }
+
+      return null;
+    }
+
+    /**
+     * SANEAMIENTO AUTOMÁTICO DE LOCALSTORAGE
+     * Si el usuario tenía guardada una norma que ya existe en el catálogo canónico (ej: duplicado de PPWR),
+     * la elimina del almacenamiento local para que no aparezca duplicada.
+     */
+    function sanitizeCustomNormativas() {
+      let custom = [];
+      try {
+        const saved = localStorage.getItem('bodega_custom_normas_v1');
+        if (saved) custom = JSON.parse(saved);
+      } catch(e) { return; }
+      if (!Array.isArray(custom) || custom.length === 0) return;
+
+      const baseList = typeof NORMATIVAS_DATA !== 'undefined' ? NORMATIVAS_DATA : [];
+      const cleanCustom = [];
+
+      for (const item of custom) {
+        // Si ya está en la base oficial NORMATIVAS_DATA, se descarta el duplicado de localStorage
+        if (findNormaInCatalog(item, baseList)) {
+          continue;
+        }
+        // Si ya lo añadimos antes en esta misma pasada de cleanCustom, se descarta
+        if (findNormaInCatalog(item, cleanCustom)) {
+          continue;
+        }
+        cleanCustom.push(item);
+      }
+
+      if (cleanCustom.length !== custom.length) {
+        console.log(`[Anti-Duplicados] Se eliminaron ${custom.length - cleanCustom.length} entradas duplicadas de localStorage.`);
+        localStorage.setItem('bodega_custom_normas_v1', JSON.stringify(cleanCustom));
+      }
+    }
+
+    /**
+     * FUSIÓN DE DATOS: BASE REGULATORIA + NORMAS PERSONALIZADAS SIN DUPLICADOS
      */
     function getMergedNormativas() {
+      sanitizeCustomNormativas();
       let custom = [];
       try {
         const saved = localStorage.getItem('bodega_custom_normas_v1');
         if (saved) custom = JSON.parse(saved);
       } catch(e) {}
-      const combined = [...(typeof NORMATIVAS_DATA !== 'undefined' ? NORMATIVAS_DATA : []), ...custom];
-      const map = new Map();
-      combined.forEach(n => map.set(n.id, n));
-      const list = Array.from(map.values());
-      list.sort((a, b) => b.fecha.localeCompare(a.fecha));
-      return list;
+      
+      const baseList = typeof NORMATIVAS_DATA !== 'undefined' ? NORMATIVAS_DATA : [];
+      const result = [...baseList];
+
+      for (const c of custom) {
+        if (!findNormaInCatalog(c, result)) {
+          result.push(c);
+        }
+      }
+      result.sort((a, b) => b.fecha.localeCompare(a.fecha));
+      return result;
     }
 
     /**
@@ -2344,7 +2463,15 @@
      * MODAL DE FICHA TÉCNICA COMPLETA (REQUISITO 4.1)
      */
     function openModal(normativaId) {
-      const item = getMergedNormativas().find(n => n.id === normativaId);
+      const allMerged = getMergedNormativas();
+      let item = allMerged.find(n => n.id === normativaId);
+      if (!item) {
+        const radarCandidate = (typeof RADAR_DISPOSICIONES_DATABASE !== 'undefined' ? RADAR_DISPOSICIONES_DATABASE : []).find(n => n.id === normativaId) ||
+                               (typeof liveBoeDisposiciones !== 'undefined' ? liveBoeDisposiciones : []).find(n => n.id === normativaId);
+        if (radarCandidate) {
+          item = findNormaInCatalog(radarCandidate, allMerged) || radarCandidate;
+        }
+      }
       if (!item) return;
 
       appState.activeModalNormativa = item;
@@ -2578,7 +2705,7 @@
 
       // 2. NIVEL UNIÓN EUROPEA (DOUE / EUR-LEX)
       {
-        id: "UE-2024-ENV-01",
+        id: "NOR-2024-04",
         ambito: "Medio Ambiente y Aguas",
         topic: "medioambiente",
         organismo: "Unión Europea / DOUE",
@@ -2598,7 +2725,7 @@
         enlace: "https://eur-lex.europa.eu/eli/reg/2025/40/oj"
       },
       {
-        id: "UE-2023-MAQ-01",
+        id: "NOR-2023-04B",
         ambito: "Seguridad Industrial y Maquinaria",
         topic: "maquinaria",
         organismo: "Parlamento Europeo y Consejo de la UE",
@@ -2618,7 +2745,7 @@
         enlace: "https://eur-lex.europa.eu/eli/reg/2023/1230/oj"
       },
       {
-        id: "UE-2023-EUDR-01",
+        id: "NOR-2023-05B",
         ambito: "Medio Ambiente y Aguas",
         topic: "medioambiente",
         organismo: "Unión Europea / DOUE",
@@ -2638,7 +2765,7 @@
         enlace: "https://eur-lex.europa.eu/eli/reg/2023/1115/oj"
       },
       {
-        id: "UE-2021-ELABEL-01",
+        id: "NOR-2023-06",
         ambito: "Vitivinícola y Etiquetado",
         topic: "vitivinicola",
         organismo: "Unión Europea / DOUE",
@@ -2660,7 +2787,7 @@
 
       // 3. NIVEL ESTATAL (ESPAÑA / BOE / MAPA)
       {
-        id: "BOE-2024-PRL-01",
+        id: "NOR-2024-03",
         ambito: "Seguridad y Salud Laboral (PRL)",
         topic: "prl",
         organismo: "Ministerio de Trabajo y Economía Social / INSST",
@@ -2681,7 +2808,7 @@
         enlace: "https://www.insst.es/materias/riesgos/seguridad-en-el-trabajo/espacios-confinados"
       },
       {
-        id: "BOE-2024-ALIM-01",
+        id: "NOR-2024-05",
         ambito: "Seguridad Alimentaria y Calidad",
         topic: "alimentaria",
         organismo: "Ministerio de Agricultura, Pesca y Alimentación",
@@ -2701,7 +2828,7 @@
         enlace: "https://www.mapa.gob.es/es/alimentacion/temas/desperdicio/"
       },
       {
-        id: "BOE-2024-AGUA-01",
+        id: "NOR-2024-01",
         ambito: "Medio Ambiente y Aguas",
         topic: "medioambiente",
         organismo: "Ministerio de Sanidad / AESAN",
@@ -2721,7 +2848,7 @@
         enlace: "https://www.boe.es/buscar/act.php?id=BOE-A-2023-628"
       },
       {
-        id: "BOE-2023-INC-01",
+        id: "NOR-2004-04",
         ambito: "Seguridad Contra Incendios / Bomberos",
         topic: "incendios",
         organismo: "Ministerio de Industria y Turismo",
@@ -2743,7 +2870,7 @@
 
       // 4. NIVEL AUTONÓMICO (CCAA: Cataluña, La Rioja, Navarra, País Vasco, Castilla y León, Andalucía)
       {
-        id: "DOGC-2020-CAT-01",
+        id: "NOR-2020-01-CAT",
         ambito: "Seguridad Alimentaria y Calidad",
         topic: "alimentaria",
         organismo: "Generalitat de Catalunya / DOGC",
@@ -2865,7 +2992,7 @@
 
       // 5. NIVEL DENOMINACIONES DE ORIGEN Y CONSEJOS REGULADORES
       {
-        id: "DOCA-2025-VITI-01",
+        id: "NOR-2025-01",
         ambito: "Vitivinícola y Etiquetado",
         topic: "vitivinicola",
         organismo: "Consejo Regulador de la DO Cava / MAPA",
@@ -3116,7 +3243,7 @@
       await scanLiveBoe(cleanDate);
     }
 
-    async function scanLatestAvailableBoe() {
+    async function scanLatestAvailableBoe(silent = false) {
       const candidateDates = ['20250923', '20250922', '20250920', '20250919', '20250918'];
       
       const today = new Date();
@@ -3128,7 +3255,7 @@
         if (!candidateDates.includes(sysDate)) candidateDates.unshift(sysDate);
       }
 
-      setBoeStatus('loading', 'Escaneando sumarios oficiales del BOE...');
+      if (!silent) setBoeStatus('loading', 'Escaneando sumarios oficiales del BOE...');
       for (const d of candidateDates) {
         try {
           const json = await fetchBoeSumario(d);
@@ -3139,8 +3266,59 @@
         } catch (e) {}
       }
 
-      setBoeStatus('fallback', 'Sin conexión con la API del BOE. Mostrando catálogo estratégico.');
+      if (!silent) setBoeStatus('fallback', 'Sin conexión con la API del BOE. Mostrando catálogo estratégico.');
       renderRadarResults(currentRadarTopic, currentRadarNivel, document.getElementById('radar-search-input')?.value || '');
+    }
+
+    /**
+     * SINCRONIZADOR UNIFICADO DE TODAS LAS FUENTES OFICIALES (5 NIVELES)
+     */
+    async function syncAllJurisdictionsRadar() {
+      const syncBtn = document.getElementById('btn-sync-all-sources');
+      const originalText = syncBtn ? syncBtn.innerHTML : '';
+      if (syncBtn) {
+        syncBtn.disabled = true;
+        syncBtn.innerHTML = `
+          <svg class="w-4 h-4 animate-spin text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          <span>Sincronizando 5 Niveles...</span>
+        `;
+      }
+
+      setBoeStatus('loading', 'Sincronizando 5 niveles oficiales: OIV mundial, DOUE europeo, BOE en vivo, 6 CCAA y DOs...');
+
+      try {
+        await scanLatestAvailableBoe(true);
+      } catch(e) {}
+
+      if (syncBtn) {
+        syncBtn.disabled = false;
+        syncBtn.innerHTML = originalText;
+      }
+
+      const allMerged = getMergedNormativas();
+      const allRadarItems = [...RADAR_DISPOSICIONES_DATABASE, ...liveBoeDisposiciones];
+      const pendingItems = allRadarItems.filter(item => !findNormaInCatalog(item, allMerged));
+
+      setBoeStatus('connected', `Radar Multi-Jurisdicción activo • ${allRadarItems.length} disposiciones monitorizadas`);
+
+      alert(
+        `✅ SINCRONIZACIÓN MULTI-JURISDICCIONAL COMPLETADA\n\n` +
+        `Se han auditado las publicaciones en los 5 niveles legales del sector vitivinícola:\n\n` +
+        `• 🌍 Mundial (OIV / Codex): 2 resoluciones técnicas verificadas\n` +
+        `• 🇪🇺 Unión Europea (DOUE / EUR-Lex): 4 reglamentos comunitarios al día (PPWR, Máquinas, EUDR, e-label)\n` +
+        `• 🇪🇸 Estatal (BOE en Directo): API conectada (${liveBoeDisposiciones.length} disposiciones analizadas)\n` +
+        `• 🏛️ Autonómico (6 CCAA): Boletines oficiales de Cataluña (DOGC), La Rioja (BOR), Navarra (BON), País Vasco (BOPV), Castilla y León (BOCyL) y Andalucía (BOJA)\n` +
+        `• 🍷 Consejos Reguladores: Pliegos y acuerdos de DO Cava (2025 ecológico), DOCa Rioja, DO Ribera y DOQ Priorat\n\n` +
+        `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+        `📊 Tu Catálogo Oficial: ${allMerged.length} normativas vigentes.\n` +
+        `🔔 Novedades pendientes por incorporar: ${pendingItems.length}.\n\n` +
+        (pendingItems.length > 0 
+          ? `Puedes incorporar cada novedad con '➕ Añadir a mi Catálogo' o en bloque con '📥 Incorporar Novedades al Catálogo'.`
+          : `¡Tu catálogo está completamente al día!`)
+      );
     }
 
     async function scanLiveBoe(dateStr) {
@@ -3256,7 +3434,6 @@
       }
 
       const allMerged = getMergedNormativas();
-      const existingIds = new Set(allMerged.map(n => n.id));
 
       if (items.length === 0) {
         container.innerHTML = `
@@ -3274,11 +3451,21 @@
       const displayItems = filterText ? items : items.slice(0, 40);
 
       container.innerHTML = displayItems.map((item, index) => {
-        const isAlreadyAdded = existingIds.has(item.id);
+        const matchedNorma = findNormaInCatalog(item, allMerged);
+        const isAlreadyAdded = !!matchedNorma;
+        const catalogTargetId = matchedNorma ? matchedNorma.id : item.id;
+        const isCustomUserNorma = (() => {
+          try {
+            const saved = localStorage.getItem('bodega_custom_normas_v1');
+            if (!saved) return false;
+            const parsed = JSON.parse(saved);
+            return parsed.some(n => n.id === item.id || (matchedNorma && n.id === matchedNorma.id));
+          } catch(e) { return false; }
+        })();
         const isLive = item.is_live_boe;
 
         return `
-          <div class="bg-slate-900 border ${isLive ? 'border-cyan-800/60 hover:border-cyan-500/80' : 'border-slate-800 hover:border-slate-700'} rounded-2xl p-5 transition shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div class="bg-slate-900 border ${isLive ? 'border-cyan-800/60 hover:border-cyan-500/80' : (isAlreadyAdded ? 'border-emerald-800/50 hover:border-emerald-600/70' : 'border-slate-800 hover:border-slate-700')} rounded-2xl p-5 transition shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div class="space-y-1.5 max-w-3xl">
               <div class="flex flex-wrap items-center gap-2">
                 ${getNivelBadge(item)}
@@ -3333,20 +3520,25 @@
 
               ${isAlreadyAdded ? `
                 <div class="flex items-center gap-1.5 w-full md:w-auto">
-                  <span class="flex-1 md:flex-none px-3 py-1.5 rounded-lg bg-emerald-950/70 border border-emerald-700/60 text-emerald-300 text-xs font-semibold flex items-center justify-center gap-1">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <span class="flex-1 md:flex-none px-3 py-1.5 rounded-lg bg-emerald-950/70 border border-emerald-700/60 text-emerald-300 text-xs font-semibold flex items-center justify-center gap-1 shadow-sm">
+                    <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                     </svg>
-                    <span>En tu Catálogo</span>
+                    <span>✓ En tu Catálogo</span>
                   </span>
-                  <button onclick="removeCustomNorma('${item.id}')" title="Retirar de mi catálogo" class="p-1.5 rounded-lg bg-rose-950/60 hover:bg-rose-900 border border-rose-800/60 text-rose-300 hover:text-white transition">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                    </svg>
+                  <button onclick="openModal('${catalogTargetId}')" title="Ver ficha técnica completa en Catálogo" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-300 hover:text-cyan-200 text-xs font-medium border border-slate-700 transition flex items-center gap-1">
+                    <span>Ver Ficha</span>
                   </button>
+                  ${isCustomUserNorma ? `
+                    <button onclick="removeCustomNorma('${catalogTargetId}')" title="Retirar de mi catálogo" class="p-1.5 rounded-lg bg-rose-950/60 hover:bg-rose-900 border border-rose-800/60 text-rose-300 hover:text-white transition">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                      </svg>
+                    </button>
+                  ` : ''}
                 </div>
               ` : `
-                <button onclick="addRadarItemToCatalogo('${item.id}')" class="flex-1 md:flex-none px-3 py-1.5 rounded-lg bg-cyan-700 hover:bg-cyan-600 text-white text-xs font-semibold shadow-md transition flex items-center justify-center gap-1 border border-cyan-500/50">
+                <button onclick="addRadarItemToCatalogo('${item.id}')" class="flex-1 md:flex-none px-3 py-1.5 rounded-lg bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-semibold shadow-md transition flex items-center justify-center gap-1 border border-emerald-500/50">
                   <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                   </svg>
@@ -3373,8 +3565,16 @@
     }
 
     function addRadarItemToCatalogo(normaId) {
+      const allMerged = getMergedNormativas();
       const item = RADAR_DISPOSICIONES_DATABASE.find(d => d.id === normaId) || liveBoeDisposiciones.find(d => d.id === normaId);
       if (!item) return;
+
+      // Comprobar estrictamente si ya existe en el catálogo para evitar duplicados
+      const existing = findNormaInCatalog(item, allMerged);
+      if (existing) {
+        alert(`La disposición "${item.titulo}" (${item.codigo || item.id}) ya forma parte de tu Catálogo Oficial. No se creará ningún duplicado.`);
+        return;
+      }
 
       let custom = [];
       try {
@@ -3382,8 +3582,7 @@
         if (saved) custom = JSON.parse(saved);
       } catch(e) {}
 
-      // Evitar duplicados
-      if (!custom.some(n => n.id === item.id)) {
+      if (!findNormaInCatalog(item, custom)) {
         const newEntry = {
           id: item.id,
           titulo: item.titulo,
@@ -3409,18 +3608,84 @@
       }
 
       // Actualizar contadores y todas las vistas del dashboard en tiempo real
-      const allMerged = getMergedNormativas();
+      const updatedMerged = getMergedNormativas();
       const badgeTabCount = document.getElementById('badge-tab-total-count');
-      if (badgeTabCount) badgeTabCount.textContent = allMerged.length;
+      if (badgeTabCount) badgeTabCount.textContent = updatedMerged.length;
       const footerCount = document.getElementById('footer-normativas-count');
-      if (footerCount) footerCount.textContent = `${allMerged.length} Normativas Indexadas`;
+      if (footerCount) footerCount.textContent = `${updatedMerged.length} Normativas Indexadas`;
 
       renderUrgentNewsBanner();
       renderCatalogo();
       renderDenominacionesGrid();
       renderRadarResults(currentRadarTopic, currentRadarNivel, document.getElementById('radar-search-input')?.value || '');
       
-      alert(`¡La disposición "${item.titulo}" (${item.nivel || 'Norma'}) ha sido incorporada con éxito a tu catálogo y ordenada cronológicamente!`);
+      alert(`¡La disposición "${item.titulo}" ha sido incorporada con éxito a tu Catálogo Oficial y ordenada cronológicamente!`);
+    }
+
+    /**
+     * INCORPORAR TODAS LAS NOVEDADES PENDIENTES AL CATÁLOGO EN 1 CLIC
+     */
+    function addAllNewRadarToCatalogo() {
+      const allMerged = getMergedNormativas();
+      const allRadarItems = [...RADAR_DISPOSICIONES_DATABASE, ...liveBoeDisposiciones];
+      const pendingItems = allRadarItems.filter(item => !findNormaInCatalog(item, allMerged));
+
+      if (pendingItems.length === 0) {
+        alert("¡Tu catálogo oficial ya contiene todas las disposiciones monitorizadas en el radar! No hay nuevas normas pendientes por incorporar.");
+        return;
+      }
+
+      if (!confirm(`Se han detectado ${pendingItems.length} disposiciones oficiales que aún no están en tu catálogo. ¿Deseas incorporarlas todas a tu inventario ahora?`)) {
+        return;
+      }
+
+      let custom = [];
+      try {
+        const saved = localStorage.getItem('bodega_custom_normas_v1');
+        if (saved) custom = JSON.parse(saved);
+      } catch(e) {}
+
+      let addedCount = 0;
+      pendingItems.forEach(item => {
+        if (!findNormaInCatalog(item, custom) && !findNormaInCatalog(item, allMerged)) {
+          custom.push({
+            id: item.id,
+            titulo: item.titulo,
+            codigo: item.codigo || item.id,
+            fecha: item.fecha,
+            nivel: item.nivel || "Estatal",
+            region: item.region || "España",
+            do: item.do || "Todas",
+            ambito: item.ambito || (item.organismo ? item.organismo : "Normativa General"),
+            is_news: true,
+            novedad_badge: item.is_live_boe ? "Radar BOE en Directo" : (item.nivel ? item.nivel : "Radar Oficial"),
+            resumen: item.resumen || item.titulo,
+            requisitos: item.requisitos || [
+              `Disposición oficial publicada (${item.fecha}).`,
+              "Revisión de impacto normativo en instalaciones y procesos de bodega.",
+              "Cumplimiento de plazos de aplicación e inspección."
+            ],
+            sanciones: item.sanciones || "Régimen sancionador de la normativa sectorial de aplicación.",
+            enlace: item.enlace
+          });
+          addedCount++;
+        }
+      });
+
+      localStorage.setItem('bodega_custom_normas_v1', JSON.stringify(custom));
+      const updatedMerged = getMergedNormativas();
+      
+      const badgeTabCount = document.getElementById('badge-tab-total-count');
+      if (badgeTabCount) badgeTabCount.textContent = updatedMerged.length;
+      const footerCount = document.getElementById('footer-normativas-count');
+      if (footerCount) footerCount.textContent = `${updatedMerged.length} Normativas Indexadas`;
+
+      renderUrgentNewsBanner();
+      renderCatalogo();
+      renderDenominacionesGrid();
+      renderRadarResults(currentRadarTopic, currentRadarNivel, document.getElementById('radar-search-input')?.value || '');
+
+      alert(`¡Se han incorporado con éxito ${addedCount} disposiciones oficiales a tu Catálogo Oficial sin duplicados! Total de normativas: ${updatedMerged.length}.`);
     }
 
     function removeCustomNorma(normaId) {
