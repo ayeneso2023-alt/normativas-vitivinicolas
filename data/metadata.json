@@ -1,0 +1,19 @@
+{
+  "ultima_actualizacion_iso": "2026-09-26T03:33:37.082Z",
+  "ultima_actualizacion_fecha": "26/09/2026",
+  "ultima_actualizacion_hora": "05:33:37",
+  "ultima_actualizacion_formateada": "Sábado, 26 de septiembre de 2026 a las 05:33:37",
+  "dia_semana": "Sábado",
+  "ultimo_boe_fecha": "2026-09-25",
+  "ultimo_boe_disposiciones": 187,
+  "disposiciones_sectoriales_detectadas": 7,
+  "total_normativas_catalogo": 78,
+  "sistema_estado": "Sincronizado y Vigente",
+  "fuentes_activas": [
+    "OIV (Organización Internacional de la Viña y el Vino)",
+    "DOUE / EUR-Lex (Unión Europea)",
+    "BOE (Agencia Estatal Boletín Oficial del Estado)",
+    "6 Boletines Autonómicos (DOGC, BOR, BON, BOPV, BOCyL, BOJA)",
+    "Consejos Reguladores (DO Cava, DOCa Rioja, DO Ribera, DOQ Priorat)"
+  ]
+}
