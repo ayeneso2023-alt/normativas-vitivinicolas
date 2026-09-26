@@ -1,13 +1,13 @@
 /**
  * METADATOS OFICIALES Y DISPOSICIONES EN VIVO DEL BOE PRE-SINCRONIZADAS
  * Autogenerado automáticamente por sync_boe_normativas.js
- * Fecha de actualización: Sábado, 26 de septiembre de 2026 a las 05:33:37
+ * Fecha de actualización: Sábado, 26 de septiembre de 2026 a las 05:35:51
  */
 window.DASHBOARD_METADATA = {
-  "ultima_actualizacion_iso": "2026-09-26T03:33:37.082Z",
+  "ultima_actualizacion_iso": "2026-09-26T03:35:51.674Z",
   "ultima_actualizacion_fecha": "26/09/2026",
-  "ultima_actualizacion_hora": "05:33:37",
-  "ultima_actualizacion_formateada": "Sábado, 26 de septiembre de 2026 a las 05:33:37",
+  "ultima_actualizacion_hora": "05:35:51",
+  "ultima_actualizacion_formateada": "Sábado, 26 de septiembre de 2026 a las 05:35:51",
   "dia_semana": "Sábado",
   "ultimo_boe_fecha": "2026-09-25",
   "ultimo_boe_disposiciones": 187,

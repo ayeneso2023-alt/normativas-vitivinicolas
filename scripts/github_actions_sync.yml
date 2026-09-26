@@ -1,0 +1,38 @@
+name: Sincronización Automática Oficial BOE & Radar Vitivinícola
+
+on:
+  schedule:
+    # Ejecutar cada 2 horas
+    - cron: '0 */2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Ejecutar Radar de Normativas BOE
+        run: |
+          node sync_boe_normativas.js
+
+      - name: Commit y Push si hay nuevas disposiciones o metadatos
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/metadata.json data/radar_live_boe.json normativas_metadata.js
+          if ! git diff --staged --quiet; then
+            git commit -m "Auto-sync oficial BOE y metadatos actualizados [skip ci]"
+            git push origin main
+          else
+            echo "Sin cambios en disposiciones en este ciclo."
+          fi

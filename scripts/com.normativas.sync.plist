@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.normativas.sync</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/Users/joseantoniocorralesortega/Documents/Normativas y reglamentos/scripts/auto_sync_job.sh</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StartInterval</key>
+    <integer>7200</integer>
+    <key>StandardOutPath</key>
+    <string>/Users/joseantoniocorralesortega/Documents/Normativas y reglamentos/logs/auto_sync.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/joseantoniocorralesortega/Documents/Normativas y reglamentos/logs/auto_sync.log</string>
+    <key>WorkingDirectory</key>
+    <string>/Users/joseantoniocorralesortega/Documents/Normativas y reglamentos</string>
+</dict>
+</plist>

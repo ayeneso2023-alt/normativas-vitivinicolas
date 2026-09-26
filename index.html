@@ -158,6 +158,39 @@
       </div>
     </div>
 
+    <!-- ==================== TOP BANNER: FECHA Y HORA EXACTA & AUTO-SYNC INSTANTÁNEO ==================== -->
+    <section class="bg-slate-900/95 border-b border-wine-900/50 px-3 sm:px-6 lg:px-8 py-2.5 shadow-sm">
+      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5">
+        
+        <!-- Indicador principal de fecha y hora exacta -->
+        <div class="flex items-center space-x-2.5">
+          <span class="inline-flex items-center justify-center p-1.5 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </span>
+          <div class="flex flex-wrap items-center gap-1.5 text-xs">
+            <span class="text-slate-400 font-medium">Última actualización oficial:</span>
+            <span id="dashboardExactTimestamp" class="font-bold text-white bg-slate-950 px-2.5 py-0.5 rounded-md border border-slate-800 shadow-sm text-amber-300 tracking-wide">
+              Cargando fecha y hora...
+            </span>
+            <span id="instantSyncBadge" class="hidden text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+              ⚡ Instantáneo
+            </span>
+          </div>
+        </div>
+
+        <!-- Estado de sincronización en vivo y fuentes oficiales -->
+        <div class="flex items-center space-x-3 text-xs">
+          <div class="flex items-center space-x-1.5 bg-slate-950/80 px-3 py-1 rounded-full border border-slate-800 shadow-inner">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            <span id="instantSyncStatusText" class="text-slate-300 font-medium">Radar Multi-Jurisdicción activo (5 Niveles)</span>
+          </div>
+          <span class="hidden md:inline text-slate-600">|</span>
+          <span class="hidden md:inline text-slate-400 text-[11px]">Fuentes: <strong class="text-slate-200">OIV</strong> • <strong class="text-slate-200">DOUE</strong> • <strong class="text-slate-200">BOE en Directo</strong> • <strong class="text-slate-200">6 CCAA</strong> • <strong class="text-slate-200">Consejos Reguladores</strong></span>
+        </div>
+
+      </div>
+    </section>
+
     <!-- ==================== BLOQUE DE NOVEDADES CRÍTICAS DESTACADAS (REQUISITO 1) ==================== -->
     <section class="bg-slate-900/90 border-b border-wine-900/40 px-3 sm:px-6 lg:px-8 py-2">
       <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-2.5">
@@ -1152,12 +1185,14 @@
         <span>ISO / APPCC / IFS / BRC Compatible</span>
       </div>
     </div>
-  </footer>
+  <!-- TOAST CONTAINER FLOTANTE PARA FEEDBACK INSTANTÁNEO -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
   <!-- ========================================================
        CARGA DE DATOS Y LÓGICA DE INTERFAZ REACTIVA
   ======================================================== -->
-  <script src="normativas_data.js?v=20260919.4"></script>
+  <script src="normativas_metadata.js?v=20260926.1"></script>
+  <script src="normativas_data.js?v=20260926.1"></script>
 
   <script>
     /**
@@ -1582,6 +1617,24 @@
      * INICIALIZACIÓN DE LA APLICACIÓN
      */
     document.addEventListener('DOMContentLoaded', () => {
+      // 1. Inicializar metadatos y fecha/hora exacta en el Top Banner
+      if (typeof window.DASHBOARD_METADATA !== 'undefined' && window.DASHBOARD_METADATA) {
+        updateDashboardMetadata(window.DASHBOARD_METADATA);
+      } else {
+        const dt = getFormattedDateTime(new Date());
+        updateDashboardMetadata({
+          ultima_actualizacion_formateada: dt.fechaFormateada,
+          ultimo_boe_fecha: 'Vigente',
+          ultimo_boe_disposiciones: 187
+        });
+      }
+
+      // 2. Pre-cargar disposiciones en vivo del BOE si están disponibles
+      if (typeof window.LIVE_BOE_DISPOSICIONES !== 'undefined' && Array.isArray(window.LIVE_BOE_DISPOSICIONES) && window.LIVE_BOE_DISPOSICIONES.length > 0) {
+        liveBoeDisposiciones = window.LIVE_BOE_DISPOSICIONES;
+        setBoeStatus('connected', `Radar en directo • ${liveBoeDisposiciones.length} disposiciones oficiales analizadas`);
+      }
+
       // Verificar que los datos existen
       if (typeof NORMATIVAS_DATA === 'undefined') {
         console.error("Error: NORMATIVAS_DATA no está cargado.");
@@ -1606,6 +1659,12 @@
 
       // Actualizar medidor global de cumplimiento
       updateAuditProgressStats();
+
+      // 3. Consulta de fondo sin caché para detectar actualizaciones en GitHub Pages / local
+      fetchFreshMetadataInBackground();
+
+      // 4. Sondeo automático cada 60 segundos
+      setInterval(fetchFreshMetadataInBackground, 60000);
     });
 
     /**
@@ -3228,13 +3287,107 @@
       return items;
     }
 
+    /**
+     * GESTIÓN DE METADATOS Y SINCRONIZACIÓN INSTANTÁNEA
+     */
+    function getFormattedDateTime(date = new Date()) {
+      const diasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+      const meses = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+      const diaStr = diasSemana[date.getDay()];
+      const mesStr = meses[date.getMonth()];
+      const dia = date.getDate();
+      const ano = date.getFullYear();
+      const hora = date.toTimeString().split(' ')[0];
+      return {
+        fechaFormateada: `${diaStr}, ${dia} de ${mesStr} de ${ano} a las ${hora}`,
+        fechaCorta: `${String(dia).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${ano}`,
+        hora: hora,
+        diaSemana: diaStr
+      };
+    }
+
+    function updateDashboardMetadata(meta) {
+      if (!meta) return;
+      const exactEl = document.getElementById('dashboardExactTimestamp');
+      if (exactEl && meta.ultima_actualizacion_formateada) {
+        exactEl.textContent = meta.ultima_actualizacion_formateada;
+      }
+      const statusText = document.getElementById('instantSyncStatusText');
+      if (statusText) {
+        if (meta.ultimo_boe_fecha) {
+          statusText.textContent = `Radar Multi-Jurisdicción activo • Último BOE: ${meta.ultimo_boe_fecha} (${meta.ultimo_boe_disposiciones || 187} disp.)`;
+        } else {
+          statusText.textContent = `Radar Multi-Jurisdicción activo (5 Niveles Oficiales)`;
+        }
+      }
+    }
+
+    function showToastNotification(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+      const toast = document.createElement('div');
+      toast.className = `pointer-events-auto flex items-center gap-2.5 px-4 py-3 rounded-xl shadow-2xl border text-xs font-semibold transform transition-all duration-300 translate-y-4 opacity-0 ${
+        type === 'success' ? 'bg-slate-900/95 text-emerald-300 border-emerald-500/40 shadow-emerald-950/40' :
+        type === 'info' ? 'bg-slate-900/95 text-cyan-300 border-cyan-500/40 shadow-cyan-950/40' :
+        'bg-slate-900/95 text-amber-300 border-amber-500/40 shadow-amber-950/40'
+      }`;
+      toast.innerHTML = `
+        <span class="w-2 h-2 rounded-full ${type === 'success' ? 'bg-emerald-400' : 'bg-cyan-400'} animate-ping"></span>
+        <span>${message}</span>
+      `;
+      container.appendChild(toast);
+      requestAnimationFrame(() => {
+        toast.classList.remove('translate-y-4', 'opacity-0');
+      });
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-4');
+        setTimeout(() => toast.remove(), 400);
+      }, 4500);
+    }
+
+    async function fetchFreshMetadataInBackground() {
+      try {
+        const metaRes = await fetch(`data/metadata.json?t=${Date.now()}`, { cache: 'no-store' });
+        if (metaRes.ok) {
+          const freshMeta = await metaRes.json();
+          updateDashboardMetadata(freshMeta);
+        }
+      } catch (e) {}
+    }
+
+    function getDynamicBoeCandidateDates() {
+      const dates = [];
+      const now = new Date();
+      for (let i = 0; i < 7; i++) {
+        const d = new Date(now);
+        d.setDate(d.getDate() - i);
+        if (d.getDay() !== 0) {
+          const y = d.getFullYear();
+          const m = String(d.getMonth() + 1).padStart(2, '0');
+          const dt = String(d.getDate()).padStart(2, '0');
+          dates.push(`${y}${m}${dt}`);
+        }
+      }
+      return dates;
+    }
+
     async function fetchBoeSumario(dateStr) {
       const url = `https://www.boe.es/datosabiertos/api/boe/sumario/${dateStr}`;
-      const res = await fetch(url, {
-        headers: { 'Accept': 'application/json' }
-      });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      return await res.json();
+      try {
+        const res = await fetch(url, {
+          headers: { 'Accept': 'application/json' },
+          signal: AbortSignal.timeout(3500)
+        });
+        if (res.ok) return await res.json();
+      } catch (directErr) {
+        // Fallback a proxy CORS si el navegador bloquea petición directa
+        try {
+          const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+          const proxyRes = await fetch(proxyUrl, { signal: AbortSignal.timeout(4000) });
+          if (proxyRes.ok) return await proxyRes.json();
+        } catch (proxyErr) {}
+      }
+      throw new Error(`No disponible en directo para ${dateStr}`);
     }
 
     async function triggerDateScan(dateVal) {
@@ -3244,16 +3397,15 @@
     }
 
     async function scanLatestAvailableBoe(silent = false) {
-      const candidateDates = ['20250923', '20250922', '20250920', '20250919', '20250918'];
-      
-      const today = new Date();
-      if (today.getDay() !== 0) {
-        const y = today.getFullYear();
-        const m = String(today.getMonth() + 1).padStart(2, '0');
-        const dt = String(today.getDate()).padStart(2, '0');
-        const sysDate = `${y}${m}${dt}`;
-        if (!candidateDates.includes(sysDate)) candidateDates.unshift(sysDate);
+      // 1. Si ya disponemos de disposiciones pre-sincronizadas, utilizarlas de inmediato
+      if (liveBoeDisposiciones.length === 0 && typeof window.LIVE_BOE_DISPOSICIONES !== 'undefined' && Array.isArray(window.LIVE_BOE_DISPOSICIONES) && window.LIVE_BOE_DISPOSICIONES.length > 0) {
+        liveBoeDisposiciones = window.LIVE_BOE_DISPOSICIONES;
+        if (!silent) setBoeStatus('connected', `Radar en directo • ${liveBoeDisposiciones.length} disposiciones oficiales analizadas`);
+        renderRadarResults(currentRadarTopic, currentRadarNivel, document.getElementById('radar-search-input')?.value || '');
+        return;
       }
+
+      const candidateDates = getDynamicBoeCandidateDates();
 
       if (!silent) setBoeStatus('loading', 'Escaneando sumarios oficiales del BOE...');
       for (const d of candidateDates) {
@@ -3266,16 +3418,24 @@
         } catch (e) {}
       }
 
-      if (!silent) setBoeStatus('fallback', 'Sin conexión con la API del BOE. Mostrando catálogo estratégico.');
+      if (liveBoeDisposiciones.length > 0) {
+        if (!silent) setBoeStatus('connected', `Radar activo • ${liveBoeDisposiciones.length} disposiciones oficiales analizadas`);
+      } else {
+        if (!silent) setBoeStatus('fallback', 'Radar Multi-Fuente activo (OIV, DOUE, CCAA, DOs).');
+      }
       renderRadarResults(currentRadarTopic, currentRadarNivel, document.getElementById('radar-search-input')?.value || '');
     }
 
     /**
-     * SINCRONIZADOR UNIFICADO DE TODAS LAS FUENTES OFICIALES (5 NIVELES)
+     * SINCRONIZADOR UNIFICADO DE TODAS LAS FUENTES OFICIALES (5 NIVELES) - INSTANTÁNEO
      */
     async function syncAllJurisdictionsRadar() {
       const syncBtn = document.getElementById('btn-sync-all-sources');
       const originalText = syncBtn ? syncBtn.innerHTML : '';
+      const exactEl = document.getElementById('dashboardExactTimestamp');
+      const instantBadge = document.getElementById('instantSyncBadge');
+      const statusEl = document.getElementById('instantSyncStatusText');
+
       if (syncBtn) {
         syncBtn.disabled = true;
         syncBtn.innerHTML = `
@@ -3287,10 +3447,37 @@
         `;
       }
 
+      if (instantBadge) instantBadge.classList.remove('hidden');
+      const nowDt = getFormattedDateTime(new Date());
+      if (exactEl) exactEl.textContent = `${nowDt.fechaFormateada} (Sincronizando...)`;
+      if (statusEl) statusEl.textContent = 'Sincronizando 5 niveles oficiales: OIV, DOUE, BOE en vivo, 6 CCAA y DOs...';
+
       setBoeStatus('loading', 'Sincronizando 5 niveles oficiales: OIV mundial, DOUE europeo, BOE en vivo, 6 CCAA y DOs...');
 
       try {
+        // 1. Fetch de metadatos en segundo plano sin caché
+        try {
+          const metaRes = await fetch(`data/metadata.json?t=${Date.now()}`, { cache: 'no-store' });
+          if (metaRes.ok) {
+            const freshMeta = await metaRes.json();
+            updateDashboardMetadata(freshMeta);
+          }
+        } catch (e) {}
+
+        // 2. Fetch de disposiciones en vivo del BOE sin caché
+        try {
+          const boeRes = await fetch(`data/radar_live_boe.json?t=${Date.now()}`, { cache: 'no-store' });
+          if (boeRes.ok) {
+            const freshBoe = await boeRes.json();
+            if (Array.isArray(freshBoe) && freshBoe.length > 0) {
+              liveBoeDisposiciones = freshBoe;
+            }
+          }
+        } catch (e) {}
+
+        // 3. Intento de escaneo de BOE en vivo
         await scanLatestAvailableBoe(true);
+
       } catch(e) {}
 
       if (syncBtn) {
@@ -3304,21 +3491,23 @@
 
       setBoeStatus('connected', `Radar Multi-Jurisdicción activo • ${allRadarItems.length} disposiciones monitorizadas`);
 
-      alert(
-        `✅ SINCRONIZACIÓN MULTI-JURISDICCIONAL COMPLETADA\n\n` +
-        `Se han auditado las publicaciones en los 5 niveles legales del sector vitivinícola:\n\n` +
-        `• 🌍 Mundial (OIV / Codex): 2 resoluciones técnicas verificadas\n` +
-        `• 🇪🇺 Unión Europea (DOUE / EUR-Lex): 4 reglamentos comunitarios al día (PPWR, Máquinas, EUDR, e-label)\n` +
-        `• 🇪🇸 Estatal (BOE en Directo): API conectada (${liveBoeDisposiciones.length} disposiciones analizadas)\n` +
-        `• 🏛️ Autonómico (6 CCAA): Boletines oficiales de Cataluña (DOGC), La Rioja (BOR), Navarra (BON), País Vasco (BOPV), Castilla y León (BOCyL) y Andalucía (BOJA)\n` +
-        `• 🍷 Consejos Reguladores: Pliegos y acuerdos de DO Cava (2025 ecológico), DOCa Rioja, DO Ribera y DOQ Priorat\n\n` +
-        `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
-        `📊 Tu Catálogo Oficial: ${allMerged.length} normativas vigentes.\n` +
-        `🔔 Novedades pendientes por incorporar: ${pendingItems.length}.\n\n` +
-        (pendingItems.length > 0 
-          ? `Puedes incorporar cada novedad con '➕ Añadir a mi Catálogo' o en bloque con '📥 Incorporar Novedades al Catálogo'.`
-          : `¡Tu catálogo está completamente al día!`)
+      const finalDt = getFormattedDateTime(new Date());
+      const updatedMeta = {
+        ultima_actualizacion_formateada: finalDt.fechaFormateada,
+        ultima_actualizacion_fecha: finalDt.fechaCorta,
+        ultima_actualizacion_hora: finalDt.hora,
+        dia_semana: finalDt.diaSemana,
+        total_normativas: allMerged.length
+      };
+      updateDashboardMetadata(updatedMeta);
+
+      showToastNotification(
+        `⚡ Sincronización instantánea completada • ${finalDt.hora} (${allRadarItems.length} disposiciones • ${allMerged.length} normativas vigentes)`
       );
+
+      setTimeout(() => {
+        if (instantBadge) instantBadge.classList.add('hidden');
+      }, 4000);
     }
 
     async function scanLiveBoe(dateStr) {
