@@ -1,9 +1,10 @@
 /**
- * MONITOR Y SINCRONIZADOR EN TIEMPO REAL CON EL BOE Y DIARIOS OFICIALES (v2.1)
+ * MONITOR Y SINCRONIZADOR EN TIEMPO REAL CON EL BOE Y DIARIOS OFICIALES (v2.2)
  * Herramienta para bodegas y departamentos de Compliance Vitivinícola.
  * 
  * Consulta el Boletín Oficial del Estado (BOE) buscando disposiciones publicadas
- * que contengan palabras clave en los 8 ámbitos regulatorios:
+ * que contengan palabras clave en los 8 ámbitos regulatorios con filtros estrictos
+ * contra falsos positivos (evitando 'inscripción' por 'ripci' o 'fotovoltaica' por 'aica'):
  * - Prevención de Riesgos Laborales (PRL) y Asfixia por CO2 (INSST)
  * - Seguridad Industrial y Maquinaria (Marcado CE, Equipos a Presión, Frío)
  * - Seguridad Alimentaria, Calidad y Desperdicio Alimentario
@@ -24,16 +25,85 @@ const BASE_DIR = __dirname;
 const DATA_DIR = path.join(BASE_DIR, 'data');
 const LOGS_DIR = path.join(BASE_DIR, 'logs');
 
-// Palabras clave de vigilancia por ámbitos
+// Palabras clave y expresiones regulares estrictas (con límites de palabra \b)
 const KEYWORDS = {
-  prl: ['prevención de riesgos', 'riesgos laborales', 'espacios confinados', 'asfixia', 'dióxido de carbono', 'atmósferas explosivas', 'amianto', 'ergonomía', 'seguridad y salud'],
-  maquinaria: ['maquinaria', 'equipos de trabajo', 'marcado ce', 'instalaciones frigoríficas', 'recipientes a presión', 'seguridad industrial', 'rebt', 'alta tensión'],
-  alimentaria: ['seguridad alimentaria', 'desperdicio alimentario', 'pérdidas alimentarias', 'appcc', 'alérgenos', 'sulfitos', 'materiales en contacto con alimentos', 'rgseaa', 'aesan'],
-  vitivinicola: ['vitivinícola', 'vino', 'bodega', 'denominación de origen', 'consejo regulador', 'cava', 'ribera del duero', 'rioja', 'priorat', 'infovi', 'oiv'],
-  medioambiente: ['aguas residuales', 'vertidos', 'dominio público hidráulico', 'envases', 'residuos de envases', 'ecodiseño', 'huella de carbono', 'fitosanitarios', 'ppwr'],
-  incendios: ['seguridad contra incendios', 'rsciei', 'ripci', 'autoprotección', 'bomberos'],
-  fiscalidad: ['silicie', 'impuestos especiales', 'emcs', 'depósito fiscal', 'cae vino'],
-  cadena: ['cadena alimentaria', 'aica', 'contrato alimentario', 'costes de producción']
+  prl: [
+    { label: 'prevención de riesgos', regex: /\bprevención de riesgos\b/i },
+    { label: 'riesgos laborales', regex: /\briesgos laborales\b/i },
+    { label: 'espacios confinados', regex: /\bespacios confinados\b/i },
+    { label: 'asfixia', regex: /\basfixia\b/i },
+    { label: 'dióxido de carbono', regex: /\bdióxido de carbono\b/i },
+    { label: 'atmósferas explosivas', regex: /\batmósferas explosivas\b/i },
+    { label: 'amianto', regex: /\bamianto\b/i },
+    { label: 'ergonomía', regex: /\bergonomía\b/i },
+    { label: 'seguridad y salud', regex: /\bseguridad y salud\b/i },
+    { label: 'insst', regex: /\binsst\b/i }
+  ],
+  maquinaria: [
+    { label: 'maquinaria', regex: /\bmaquinaria\b/i },
+    { label: 'equipos de trabajo', regex: /\bequipos de trabajo\b/i },
+    { label: 'marcado ce', regex: /\bmarcado ce\b/i },
+    { label: 'instalaciones frigoríficas', regex: /\binstalaciones frigoríficas\b/i },
+    { label: 'recipientes a presión', regex: /\brecipientes a presión\b/i },
+    { label: 'seguridad industrial', regex: /\bseguridad industrial\b/i },
+    { label: 'rebt', regex: /\brebt\b/i }
+  ],
+  alimentaria: [
+    { label: 'seguridad alimentaria', regex: /\bseguridad alimentaria\b/i },
+    { label: 'desperdicio alimentario', regex: /\bdesperdicio alimentario\b/i },
+    { label: 'pérdidas alimentarias', regex: /\bpérdidas alimentarias\b/i },
+    { label: 'appcc', regex: /\bappcc\b/i },
+    { label: 'alérgenos', regex: /\balérgenos?\b/i },
+    { label: 'sulfitos', regex: /\bsulfitos?\b/i },
+    { label: 'materiales en contacto con alimentos', regex: /\bmateriales en contacto con alimentos\b/i },
+    { label: 'rgseaa', regex: /\brgseaa\b/i },
+    { label: 'aesan', regex: /\baesan\b/i }
+  ],
+  vitivinicola: [
+    { label: 'vitivinícola', regex: /\bvitivinícol[ao]s?\b/i },
+    { label: 'vino', regex: /\bvinos?\b/i },
+    { label: 'bodega', regex: /\bbodegas?\b/i },
+    { label: 'denominación de origen', regex: /\bdenominación de origen\b/i },
+    { label: 'consejo regulador', regex: /\bconsejo regulador\b/i },
+    { label: 'cava', regex: /\bcava\b/i },
+    { label: 'ribera del duero', regex: /\bribera del duero\b/i },
+    { label: 'rioja', regex: /\brioja\b/i },
+    { label: 'priorat', regex: /\bpriorat\b/i },
+    { label: 'infovi', regex: /\binfovi\b/i },
+    { label: 'oiv', regex: /\boiv\b/i },
+    { label: 'viñedo', regex: /\bviñedos?\b/i },
+    { label: 'enología', regex: /\benolog[íi]a\b/i }
+  ],
+  medioambiente: [
+    { label: 'aguas residuales', regex: /\baguas residuales\b/i },
+    { label: 'vertidos', regex: /\bvertidos\b/i },
+    { label: 'dominio público hidráulico', regex: /\bdominio público hidráulico\b/i },
+    { label: 'residuos de envases', regex: /\bresiduos de envases\b/i },
+    { label: 'ecodiseño', regex: /\becodiseño\b/i },
+    { label: 'huella de carbono', regex: /\bhuella de carbono\b/i },
+    { label: 'fitosanitarios', regex: /\bfitosanitarios\b/i },
+    { label: 'ppwr', regex: /\bppwr\b/i }
+  ],
+  incendios: [
+    { label: 'seguridad contra incendios', regex: /\bseguridad contra incendios\b/i },
+    { label: 'rsciei', regex: /\brsciei\b/i },
+    { label: 'ripci', regex: /\bripci\b/i },
+    { label: 'autoprotección', regex: /\bautoprotección\b/i },
+    { label: 'bomberos', regex: /\bbomberos\b/i }
+  ],
+  fiscalidad: [
+    { label: 'silicie', regex: /\bsilicie\b/i },
+    { label: 'impuestos especiales', regex: /\bimpuestos especiales\b/i },
+    { label: 'emcs', regex: /\bemcs\b/i },
+    { label: 'depósito fiscal', regex: /\bdepósito fiscal\b/i },
+    { label: 'cae vino', regex: /\bcae vino\b/i }
+  ],
+  cadena: [
+    { label: 'cadena alimentaria', regex: /\bcadena alimentaria\b/i },
+    { label: 'aica', regex: /\baica\b/i },
+    { label: 'contrato alimentario', regex: /\bcontrato alimentario\b/i },
+    { label: 'costes de producción', regex: /\bcostes de producción\b/i }
+  ]
 };
 
 /**
@@ -43,7 +113,7 @@ function fetchBoeApi(url) {
   return new Promise((resolve, reject) => {
     https.get(url, {
       headers: {
-        'User-Agent': 'BodegaComplianceRadar/2.1 (+https://www.boe.es)',
+        'User-Agent': 'BodegaComplianceRadar/2.2 (+https://www.boe.es)',
         'Accept': 'application/json'
       }
     }, (res) => {
@@ -126,14 +196,16 @@ function extractBoeItems(json, dateStr) {
 
 function detectBoeTopic(titulo, dep) {
   const text = (titulo + " " + (dep || "")).toLowerCase();
-  if (/prevención|riesgo|laboral|asfixia|confinado|accidente|seguridad y salud|insst|trabajo/i.test(text)) return 'prl';
-  if (/maquinaria|equipo de trabajo|marcado ce|frigor|presión|seguridad industrial|eléctric|industria/i.test(text)) return 'maquinaria';
-  if (/aliment|desperdicio|calidad|sanidad|higiene|nutric|consumo|aesan|alérgeno/i.test(text)) return 'alimentaria';
-  if (/vino|vitivinícola|viñedo|uva|mosto|bodega|denominación de origen|enolog|alcohol/i.test(text)) return 'vitivinicola';
-  if (/medio ambiente|residuo|envase|vertido|agua|hidráulic|clima|emisión|ecolog|transición ecológica/i.test(text)) return 'medioambiente';
-  if (/incendio|fuego|bombero|protección civil|rsciei|ripci/i.test(text)) return 'incendios';
-  if (/silicie|impuesto|tribut|aduana|emcs/i.test(text)) return 'fiscalidad';
-  if (/cadena|aica|contrato alimentario/i.test(text)) return 'cadena';
+  
+  if (/\b(prevención de riesgos|riesgos laborales|espacios confinados|asfixia|dióxido de carbono|atmósferas explosivas|amianto|ergonomía|seguridad y salud|insst)\b/i.test(text)) return 'prl';
+  if (/\b(maquinaria|equipos de trabajo|marcado ce|instalaciones frigoríficas|recipientes a presión|seguridad industrial|rebt)\b/i.test(text)) return 'maquinaria';
+  if (/\b(seguridad alimentaria|desperdicio alimentario|pérdidas alimentarias|appcc|alérgenos?|sulfitos?|materiales en contacto con alimentos|rgseaa|aesan)\b/i.test(text)) return 'alimentaria';
+  if (/\b(vitivinícol[ao]s?|vinos?|bodegas?|denominación de origen|consejo regulador|cava|ribera del duero|rioja|priorat|infovi|oiv|enolog[íi]a|viñedos?)\b/i.test(text)) return 'vitivinicola';
+  if (/\b(aguas residuales|vertidos|dominio público hidráulico|residuos de envases|ecodiseño|huella de carbono|fitosanitarios|ppwr)\b/i.test(text)) return 'medioambiente';
+  if (/\b(seguridad contra incendios|rsciei|ripci|autoprotección|bomberos)\b/i.test(text)) return 'incendios';
+  if (/\b(silicie|impuestos especiales|emcs|depósito fiscal|cae vino)\b/i.test(text)) return 'fiscalidad';
+  if (/\b(cadena alimentaria|aica|contrato alimentario|costes de producción)\b/i.test(text)) return 'cadena';
+  
   return 'general';
 }
 
@@ -180,7 +252,7 @@ function generateMetadata(activeDate, itemsCount, matchedCount, totalNormativas)
   const meses = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
   
   const diaStr = diasSemana[now.getDay()];
-  const mesStr = meses[now.month ? now.month - 1 : now.getMonth()];
+  const mesStr = meses[now.getMonth()];
   const diaNum = now.getDate();
   const anio = now.getFullYear();
   const horaStr = now.toTimeString().split(' ')[0]; // HH:MM:SS
@@ -216,7 +288,7 @@ function generateMetadata(activeDate, itemsCount, matchedCount, totalNormativas)
  */
 async function runRadar() {
   console.log('================================================================');
-  console.log('🍷 RADAR DE NOVEDADES NORMATIVAS VITIVINÍCOLAS Y TRANSVERSALES v2.1');
+  console.log('🍷 RADAR DE NOVEDADES NORMATIVAS VITIVINÍCOLAS Y TRANSVERSALES v2.2');
   console.log('   PRL • Maquinaria • Seguridad Alimentaria • Medio Ambiente • DOs');
   console.log('================================================================\n');
 
@@ -251,13 +323,13 @@ async function runRadar() {
     items = extractBoeItems(sumarioJson, activeDate);
     console.log(`📄 Total de disposiciones oficiales analizadas en este sumario: ${items.length}\n`);
 
-    // Filtrar por palabras clave sectoriales
+    // Filtrar por palabras clave sectoriales con regex exacto
     items.forEach(item => {
       const fullText = (item.titulo + " " + item.organismo).toLowerCase();
       for (const [scope, words] of Object.entries(KEYWORDS)) {
-        const foundWord = words.find(w => fullText.includes(w.toLowerCase()));
-        if (foundWord) {
-          matched.push({ ...item, matchedScope: scope.toUpperCase(), matchedWord: foundWord });
+        const found = words.find(w => w.regex.test(fullText));
+        if (found) {
+          matched.push({ ...item, matchedScope: scope.toUpperCase(), matchedWord: found.label });
           break;
         }
       }
@@ -276,7 +348,16 @@ async function runRadar() {
       console.log('ℹ️ No se detectaron disposiciones con palabras clave exactas en este sumario.');
     }
   } else {
-    console.log('⚠️ No se pudo obtener sumario nuevo del BOE en este momento. Utilizando respaldo.');
+    console.log('⚠️ No se pudo obtener sumario nuevo del BOE en este momento. Verificando respaldo local...');
+    // Cargar respaldo previo para NO destruir los datos existentes
+    try {
+      const existingBoePath = path.join(DATA_DIR, 'radar_live_boe.json');
+      if (fs.existsSync(existingBoePath)) {
+        const raw = fs.readFileSync(existingBoePath, 'utf8');
+        items = JSON.parse(raw);
+        console.log(`🛡️ Respaldo local restaurado con éxito: ${items.length} disposiciones.`);
+      }
+    } catch(e) {}
   }
 
   // Leer total de normativas del catálogo base si existe
@@ -291,17 +372,19 @@ async function runRadar() {
   } catch (e) {}
 
   // Generar Metadatos Oficiales
-  const metadata = generateMetadata(activeDate, items.length, matched.length, totalNormativas);
+  const metadata = generateMetadata(activeDate || (items[0]?.fecha ? items[0].fecha.replace(/-/g,'') : null), items.length, matched.length, totalNormativas);
 
   // 1. Guardar data/metadata.json
   const metadataPath = path.join(DATA_DIR, 'metadata.json');
   fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2), 'utf8');
   console.log(`\n💾 Metadatos oficiales guardados en: ${metadataPath}`);
 
-  // 2. Guardar data/radar_live_boe.json
-  const boeDataPath = path.join(DATA_DIR, 'radar_live_boe.json');
-  fs.writeFileSync(boeDataPath, JSON.stringify(items, null, 2), 'utf8');
-  console.log(`💾 Disposiciones en vivo del BOE guardadas en: ${boeDataPath}`);
+  // 2. Guardar data/radar_live_boe.json (solo si tenemos datos válidos)
+  if (items.length > 0) {
+    const boeDataPath = path.join(DATA_DIR, 'radar_live_boe.json');
+    fs.writeFileSync(boeDataPath, JSON.stringify(items, null, 2), 'utf8');
+    console.log(`💾 Disposiciones en vivo del BOE guardadas en: ${boeDataPath}`);
+  }
 
   // 3. Guardar normativas_metadata.js para carga instantánea offline y sin CORS
   const jsMetadataPath = path.join(BASE_DIR, 'normativas_metadata.js');
@@ -333,4 +416,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { runRadar, extractBoeItems, getCandidateDates, generateMetadata };
+module.exports = { runRadar, extractBoeItems, getCandidateDates, generateMetadata, KEYWORDS, detectBoeTopic };

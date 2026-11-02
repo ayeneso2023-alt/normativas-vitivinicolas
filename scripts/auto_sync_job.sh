@@ -1,13 +1,13 @@
 #!/bin/bash
 # scripts/auto_sync_job.sh
-# Ejecución periódica (cada 2 horas o programada) para sincronizar normativas con el BOE y subirlas a GitHub
+# Sincronización oficial con el BOE, actualización de metadatos y subida a GitHub
 
 PROJECT_DIR="/Users/joseantoniocorralesortega/Documents/Normativas y reglamentos"
 cd "$PROJECT_DIR" || exit 1
 
 LOG_FILE="$PROJECT_DIR/logs/auto_sync.log"
 mkdir -p "$PROJECT_DIR/logs"
-echo "[$(date '+%Y-%m-%d %H:%M:%S')] 🔄 Iniciando auto-sync programado de normativas..." >> "$LOG_FILE"
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] 🔄 Iniciando auto-sync oficial del BOE..." >> "$LOG_FILE"
 
 NODE_BIN="$(command -v node)"
 if [ -z "$NODE_BIN" ]; then
@@ -22,6 +22,7 @@ if [ ! -f "$GIT_BIN" ]; then
     GIT_BIN="$(command -v git)"
 fi
 
+# Ejecutar escaneo oficial y generación de metadatos
 "$NODE_BIN" sync_boe_normativas.js >> "$LOG_FILE" 2>&1
 
 # Agregar datos y metadatos actualizados
@@ -29,10 +30,16 @@ fi
 
 if ! "$GIT_BIN" diff --staged --quiet; then
     FECHA_HORA=$(date "+%d/%m/%Y %H:%M:%S")
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')] 🚀 Nuevas disposiciones detectadas. Realizando commit y push a GitHub..." >> "$LOG_FILE"
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] 🚀 Nuevas disposiciones detectadas. Creando commit local..." >> "$LOG_FILE"
     "$GIT_BIN" commit -m "Auto-sync oficial BOE y metadatos actualizados ($FECHA_HORA)" >> "$LOG_FILE" 2>&1
-    "$GIT_BIN" push origin main >> "$LOG_FILE" 2>&1
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')] ✅ Push a GitHub completado con éxito." >> "$LOG_FILE"
+    
+    # Evitar bloqueo interactivo si no hay credenciales de GitHub
+    export GIT_TERMINAL_PROMPT=0
+    if "$GIT_BIN" push origin main >> "$LOG_FILE" 2>&1; then
+        echo "[$(date '+%Y-%m-%d %H:%M:%S')] ✅ Push a GitHub completado con éxito." >> "$LOG_FILE"
+    else
+        echo "[$(date '+%Y-%m-%d %H:%M:%S')] ⚠️ Commit guardado localmente, pero push a GitHub falló (credenciales expiradas o no configuradas)." >> "$LOG_FILE"
+    fi
 else
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] ℹ️ No hay cambios en disposiciones en este ciclo. Todo al día." >> "$LOG_FILE"
 fi

@@ -67,12 +67,14 @@ function extractBoeItemsFromSumario(json, dateStr) {
 
 function detectBoeTopic(titulo, dep) {
   const text = (titulo + " " + (dep || "")).toLowerCase();
-  if (/prevención|riesgo|laboral|asfixia|confinado|accidente|seguridad y salud|insst|trabajo/i.test(text)) return 'prl';
-  if (/maquinaria|equipo de trabajo|marcado ce|frigor|presión|seguridad industrial|eléctric|industria/i.test(text)) return 'maquinaria';
-  if (/aliment|desperdicio|calidad|sanidad|higiene|nutric|consumo|aesan|alérgeno/i.test(text)) return 'alimentaria';
-  if (/vino|vitivinícola|viñedo|uva|mosto|bodega|denominación de origen|enolog|alcohol/i.test(text)) return 'vitivinicola';
-  if (/medio ambiente|residuo|envase|vertido|agua|hidráulic|clima|emisión|ecolog|transición ecológica/i.test(text)) return 'medioambiente';
-  if (/incendio|fuego|bombero|protección civil|rsciei|ripci/i.test(text)) return 'incendios';
+  if (/\b(prevención de riesgos|riesgos laborales|espacios confinados|asfixia|dióxido de carbono|atmósferas explosivas|amianto|ergonomía|seguridad y salud|insst)\b/i.test(text)) return 'prl';
+  if (/\b(maquinaria|equipos de trabajo|marcado ce|instalaciones frigoríficas|recipientes a presión|seguridad industrial|rebt)\b/i.test(text)) return 'maquinaria';
+  if (/\b(seguridad alimentaria|desperdicio alimentario|pérdidas alimentarias|appcc|alérgenos?|sulfitos?|materiales en contacto con alimentos|rgseaa|aesan)\b/i.test(text)) return 'alimentaria';
+  if (/\b(vitivinícol[ao]s?|vinos?|bodegas?|denominación de origen|consejo regulador|cava|ribera del duero|rioja|priorat|infovi|oiv|enolog[íi]a|viñedos?)\b/i.test(text)) return 'vitivinicola';
+  if (/\b(aguas residuales|vertidos|dominio público hidráulico|residuos de envases|ecodiseño|huella de carbono|fitosanitarios|ppwr)\b/i.test(text)) return 'medioambiente';
+  if (/\b(seguridad contra incendios|rsciei|ripci|autoprotección|bomberos)\b/i.test(text)) return 'incendios';
+  if (/\b(silicie|impuestos especiales|emcs|depósito fiscal|cae vino)\b/i.test(text)) return 'fiscalidad';
+  if (/\b(cadena alimentaria|aica|contrato alimentario|costes de producción)\b/i.test(text)) return 'cadena';
   return 'general';
 }
 
@@ -84,6 +86,8 @@ function getAmbitoLabelFromTopic(topic, dep) {
     case 'vitivinicola': return 'Vitivinícola y Etiquetado';
     case 'medioambiente': return 'Medio Ambiente y Aguas';
     case 'incendios': return 'Seguridad Contra Incendios';
+    case 'fiscalidad': return 'Fiscalidad y SILICIE';
+    case 'cadena': return 'Cadena Alimentaria y AICA';
     default: return dep ? (dep.length > 40 ? dep.slice(0, 38) + '...' : dep) : 'Disposición Estatal';
   }
 }
