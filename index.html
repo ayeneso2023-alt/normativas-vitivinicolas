@@ -226,59 +226,58 @@
     </section>
 
     <!-- Barra de Navegación por Pestañas -->
-    <nav class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between gap-1 sm:gap-2 overflow-x-auto no-scrollbar pt-2">
-      <div class="flex space-x-1 sm:space-x-1.5 w-full">
+    <nav class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between gap-1 overflow-x-auto no-scrollbar pt-2">
+      <div class="flex space-x-1 sm:space-x-1.5 w-full min-w-max pb-1">
         
         <!-- Pestaña 1: Catálogo Normativo Cronológico -->
         <button onclick="switchTab('tab-catalogo')" id="nav-tab-catalogo" class="tab-btn active flex items-center gap-1.5 px-3 py-2 border-b-2 border-amber-400 text-amber-300 font-semibold text-xs sm:text-sm transition whitespace-nowrap">
           <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
           </svg>
-          <span class="hidden md:inline">Catálogo Cronológico</span>
-          <span class="md:hidden">Catálogo</span>
-          <span id="badge-tab-total-count" class="ml-0.5 px-1.5 py-0.2 text-[11px] rounded-full bg-slate-800 text-slate-300 font-mono">78</span>
+          <span class="hidden sm:inline">Catálogo Cronológico</span>
+          <span class="sm:hidden">Catálogo</span>
+          <span id="badge-tab-total-count" class="ml-0.5 px-1.5 py-0.2 text-[10px] rounded-full bg-slate-800 text-slate-300 font-mono">78</span>
         </button>
 
         <!-- Pestaña 2: Denominaciones de Origen e IGPs -->
-        <button onclick="switchTab('tab-denominaciones')" id="nav-tab-denominaciones" class="tab-btn flex items-center gap-1.5 px-3 py-2 border-b-2 border-transparent text-slate-400 hover:text-slate-200 font-semibold text-xs sm:text-sm transition whitespace-nowrap">
+        <button onclick="switchTab('tab-denominaciones')" id="nav-tab-denominaciones" class="tab-btn flex items-center gap-1.5 px-2.5 sm:px-3 py-2 border-b-2 border-transparent text-slate-400 hover:text-slate-200 font-semibold text-xs sm:text-sm transition whitespace-nowrap">
           <svg class="w-4 h-4 flex-shrink-0 text-wine-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
           </svg>
-          <span class="hidden lg:inline">Denominaciones & IGPs</span>
-          <span class="lg:hidden">D.O. & IGPs</span>
-          <span class="ml-0.5 px-1.5 py-0.2 text-[11px] rounded-full bg-wine-900/60 text-wine-200 font-mono">9 Figuras</span>
+          <span class="hidden xl:inline">Denominaciones & IGPs</span>
+          <span class="xl:hidden">D.O. & IGPs</span>
+          <span class="ml-0.5 px-1.5 py-0.2 text-[10px] rounded-full bg-wine-900/60 text-wine-200 font-mono">9 Figuras</span>
         </button>
 
         <!-- Pestaña 3: Herramienta de Autodiagnóstico / Auditoría (Compliance Check) -->
-        <button onclick="switchTab('tab-auditoria')" id="nav-tab-auditoria" class="tab-btn flex items-center gap-1.5 px-3 py-2 border-b-2 border-transparent text-slate-400 hover:text-slate-200 font-semibold text-xs sm:text-sm transition whitespace-nowrap">
+        <button onclick="switchTab('tab-auditoria')" id="nav-tab-auditoria" class="tab-btn flex items-center gap-1.5 px-2.5 sm:px-3 py-2 border-b-2 border-transparent text-slate-400 hover:text-slate-200 font-semibold text-xs sm:text-sm transition whitespace-nowrap">
           <svg class="w-4 h-4 flex-shrink-0 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
           </svg>
-          <span class="hidden lg:inline">Autodiagnóstico de Cumplimiento</span>
-          <span class="lg:hidden">Autodiagnóstico</span>
-          <span id="badge-nav-compliance" class="ml-0.5 px-1.5 py-0.2 text-[11px] rounded-full bg-emerald-900/40 text-emerald-300 font-mono">0%</span>
+          <span class="hidden xl:inline">Autodiagnóstico de Cumplimiento</span>
+          <span class="xl:hidden">Autodiagnóstico</span>
+          <span id="badge-nav-compliance" class="ml-0.5 px-1.5 py-0.2 text-[10px] rounded-full bg-emerald-900/40 text-emerald-300 font-mono">0%</span>
         </button>
 
         <!-- Pestaña 4: Calendario de Obligaciones Periódicas -->
-        <button onclick="switchTab('tab-calendario')" id="nav-tab-calendario" class="tab-btn flex items-center gap-1.5 px-3 py-2 border-b-2 border-transparent text-slate-400 hover:text-slate-200 font-semibold text-xs sm:text-sm transition whitespace-nowrap">
+        <button onclick="switchTab('tab-calendario')" id="nav-tab-calendario" class="tab-btn flex items-center gap-1.5 px-2.5 sm:px-3 py-2 border-b-2 border-transparent text-slate-400 hover:text-slate-200 font-semibold text-xs sm:text-sm transition whitespace-nowrap">
           <svg class="w-4 h-4 flex-shrink-0 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
           </svg>
-          <span class="hidden sm:inline">Calendario Periódico</span>
-          <span class="sm:hidden">Calendario</span>
-          <span class="ml-0.5 px-1.5 py-0.2 text-[11px] rounded-full bg-slate-800 text-amber-300 font-mono hidden md:inline">INFOVI • SILICIE</span>
-          <span class="ml-0.5 px-1.5 py-0.2 text-[11px] rounded-full bg-slate-800 text-amber-300 font-mono md:hidden">12 Hitos</span>
+          <span class="hidden sm:inline">Calendario</span>
+          <span class="sm:hidden">Cal.</span>
+          <span class="ml-0.5 px-1.5 py-0.2 text-[10px] rounded-full bg-slate-800 text-amber-300 font-mono hidden lg:inline">INFOVI • SILICIE</span>
         </button>
 
         <!-- Pestaña 5: Radar Oficial en Tiempo Real (BOE / DOUE) -->
-        <button onclick="switchTab('tab-radar')" id="nav-tab-radar" class="tab-btn flex items-center gap-1.5 px-3 py-2 border-b-2 border-transparent text-cyan-400 hover:text-cyan-300 font-semibold text-xs sm:text-sm transition whitespace-nowrap">
+        <button onclick="switchTab('tab-radar')" id="nav-tab-radar" class="tab-btn flex items-center gap-1.5 px-2.5 sm:px-3 py-2 border-b-2 border-transparent text-cyan-300 hover:text-cyan-200 font-semibold text-xs sm:text-sm transition whitespace-nowrap bg-cyan-950/30 rounded-t-lg border-t border-x border-cyan-800/40 shadow-sm">
           <span class="relative flex h-2 w-2 flex-shrink-0">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"></span>
           </span>
-          <span class="hidden lg:inline">Radar Oficial en Tiempo Real</span>
-          <span class="lg:hidden">Radar Oficial</span>
-          <span class="ml-0.5 px-1.5 py-0.2 text-[11px] rounded-full bg-cyan-950/80 text-cyan-300 border border-cyan-700/60 font-mono">BOE / DOUE</span>
+          <span class="hidden md:inline">Radar Oficial</span>
+          <span class="md:hidden">Radar</span>
+          <span class="ml-0.5 px-1.5 py-0.2 text-[10px] rounded-full bg-cyan-900/80 text-cyan-200 border border-cyan-600/60 font-mono font-bold">BOE / DOUE</span>
         </button>
 
       </div>
