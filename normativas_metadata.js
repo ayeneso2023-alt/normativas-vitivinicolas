@@ -1,13 +1,13 @@
 /**
  * METADATOS OFICIALES Y DISPOSICIONES EN VIVO DEL BOE PRE-SINCRONIZADAS
  * Autogenerado automáticamente por sync_boe_normativas.js
- * Fecha de actualización: Lunes, 2 de noviembre de 2026 a las 05:45:17
+ * Fecha de actualización: Lunes, 2 de noviembre de 2026 a las 05:48:18
  */
 window.DASHBOARD_METADATA = {
-  "ultima_actualizacion_iso": "2026-11-02T04:45:17.496Z",
+  "ultima_actualizacion_iso": "2026-11-02T04:48:18.991Z",
   "ultima_actualizacion_fecha": "02/11/2026",
-  "ultima_actualizacion_hora": "05:45:17",
-  "ultima_actualizacion_formateada": "Lunes, 2 de noviembre de 2026 a las 05:45:17",
+  "ultima_actualizacion_hora": "05:48:18",
+  "ultima_actualizacion_formateada": "Lunes, 2 de noviembre de 2026 a las 05:48:18",
   "dia_semana": "Lunes",
   "ultimo_boe_fecha": "2026-10-31",
   "ultimo_boe_disposiciones": 369,
